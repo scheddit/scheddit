@@ -3,10 +3,21 @@ scheddit
 
 Scheduler for Reddit posts
 
-
 Scheddit - Schedule your reddit posts ahead of time
 
 Audience: Reddit Moderators, Marketers, Karma whores, and everyone!
+
+To install from a clone:
+`bower install`
+`npm install`
+`grunt init`
+`npm install -g mocha`
+`mongod`
+`mongo` then `>use skeddit`
+
+You will need to edit server/config/config.js to contain the correct information about the Mongo db
+
+run `grunt server` and you should be up and running on localhost:1337 !
 
 Basic Build (3 views)
 
