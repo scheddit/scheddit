@@ -1,0 +1,38 @@
+{
+  "name": "scheddit",
+  "description": "Built with theStack!",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pschroedl/scheddit",
+  "author": {
+    "name": "Peter Schroedl",
+    "url": "https://github.com/pschroedl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pschroedl/scheddit.git"
+  },
+  "homepage": "https://pschroedl.github.io/scheddit",
+  "keywords": [
+    "generator-thestack"
+  ],
+  "bugs": {
+    "url": "https://github.com/pschroedl/scheddit/issues"
+  },
+  "main": "./server/server",
+  "dependencies": {
+    "express": "3.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-nodemon": "0.0.9",
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-contrib-jshint": "~0.3.0",
+    "grunt-shell": "~0.3.1",
+    "grunt-contrib-less": "~0.6.4",
+    "grunt-mocha-test": "~0.6.2",
+    "mongoose": "~3.6.19",
+    "superagent": "~0.15.4",
+    "expect.js": "~0.2.0",
+    "uglify-js": "~2.2.5"
+  }
+}
