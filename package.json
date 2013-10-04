@@ -2,7 +2,7 @@
   "name": "scheddit",
   "description": "Built with theStack!",
   "version": "0.0.1",
-  "homepage": "https://github.com/pschroedl/scheddit",
+  "homepage": "https://pschroedl.github.io/scheddit",
   "author": {
     "name": "Peter Schroedl",
     "url": "https://github.com/pschroedl"
@@ -11,7 +11,6 @@
     "type": "git",
     "url": "git@github.com:pschroedl/scheddit.git"
   },
-  "homepage": "https://pschroedl.github.io/scheddit",
   "keywords": [
     "generator-thestack"
   ],
@@ -33,6 +32,11 @@
     "mongoose": "~3.6.19",
     "superagent": "~0.15.4",
     "expect.js": "~0.2.0",
-    "uglify-js": "~2.2.5"
+    "uglify-js": "~2.2.5",
+    "passport": "~0.1.17",
+    "util": "~0.4.9",
+    "crypto": "0.0.3",
+    "passport-reddit": "~0.2.3",
+    "grunt-node-inspector": "~0.1.0"
   }
 }
