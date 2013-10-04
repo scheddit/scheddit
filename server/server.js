@@ -1,13 +1,24 @@
 // DEPENDENCIES
 // ============
 
-var Config =  global.Config = require('./config/config.js').config;
-    express = require("express"),
-    http =    require("http"),
-    port =    ( process.env.PORT || Config.listenPort ),
-    server =  module.exports = express(),
-    mongoose =     require('mongoose'),
-    API =     require('./API');
+var Config    = global.Config = require('./config/config.js').config;
+    express   = require("express"),
+    http      = require("http"),
+    port      = ( process.env.PORT || Config.listenPort ),
+    server    = module.exports = express(),
+    mongoose  = require('mongoose'),
+    API       = require('./API'),
+    passport  = require('passport');
+    util      = require('util');
+
+// ENV VARIABLE CONFIGURATION
+// ==========================
+
+var redditConsumerKey = process.env.REDDIT_KEY;
+var redditConsumerSecret = process.env.REDDIT_SECRET;
+
+console.log(redditConsumerKey);
+console.log(redditConsumerSecret);
 
 // DATABASE CONFIGURATION
 // ======================
