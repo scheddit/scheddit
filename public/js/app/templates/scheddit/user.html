@@ -8,7 +8,7 @@
 
 <button class="reddit">Log in with reddit! </button>
 
-<form id="newPost">
+<form id="newPost" name="submission">
 
   <select name="kind">
     <option value="link">Link</option>
@@ -17,8 +17,9 @@
   <input name="title" type="text" placeholder="Enter a title"></input>
   <input name="subreddit" type="text" placeholder="Which Subreddit"></input>
   <input name="URL" type="url" placeholder="Enter URL"></input>
-  <input name="selfPost" type="text placeholder="Enter your post details"></input>
-  <input type="submit" name="submit"></input>
+  <input name="selfPost" type="text" placeholder="Enter your post details"></input>
+  <input type="datetime-local" name="scheduler"></input>
+  <input type="submit" name="submitButton" class="submitButton"></input>
   
 
 

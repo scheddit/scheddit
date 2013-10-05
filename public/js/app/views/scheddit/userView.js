@@ -20,7 +20,7 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             // View Event Handlers
             events: {
                 // write an event that is triggered when the button is clicked and calls a function that launches oAuth
-                "click .reddit": "launchOauth"
+                "click .submitButton": "addToSchedule"
             },
 
             // function that is triggered on button event
@@ -29,6 +29,15 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 console.log("testing 1, 2, 3");
             },
 
+            // function that is triggered when the submit button is pressed
+            addToSchedule: function(event){
+                // this will create an array of objets that hold the name and value of the fields
+                // data = this.$el.find('form').serializeArray();
+                // pass data to the model
+                // this.model.saveDataToServer(data) << double check this
+                console.log("this.$el.find form", (this.$el.find('form').serializeArray()));
+                return false;
+            },
             // Renders the view's template to the UI
             render: function() {
 
