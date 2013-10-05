@@ -2,3 +2,4 @@ node_modules
 public/js/libs/*
 !public/js/libs/plugins
 server/config/**
+.DS_Store

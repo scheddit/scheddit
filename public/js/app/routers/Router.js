@@ -17,7 +17,8 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/s
             routes: {
 
                 // When there is no hash on the url, the home method is called
-                "": "index"
+                "": "index",
+                "testing": "scheddit"
 
             },
 
