@@ -54,21 +54,21 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
 
             },
 
-            // $('#newPost').change(displayTextOrLinkForm(event))
-            //ok, now define displayTextOr...
-            //displayTextOrLinkForm: function(event){
-            //  if
-            //}  OR MAYBE THIS WILL JUST WORK IN CONJUNCTION WITH THE EVENTS OBJECT/PROPERTY ABOVE
-
             displayTextOrLinkForm: function(event){
                 console.log("listening to form selection change");
                 var linkOrSelf = event.target.value;
-                console.log(linkOrSelf);
                 if (linkOrSelf=== "link"){
-
+                    console.log("link");
+                    $('#urlOrDetails').attr("placeholder", "Enter url to share");
+                    $('#urlOrDetails').attr("type", "url");
                 }
-                else if (linkOrSelf === "self"){}
-
+                else if (linkOrSelf === "self"){
+                  console.log("self");
+                  $('#urlOrDetails').attr("placeholder", "text (optional)");
+                  $('#urlOrDetails').attr("type", "text");
+                }
+                $('.initialHide').removeClass('initialHide');
+                $('.initialCollapse').removeClass('initialCollapse');
 
             }
 
