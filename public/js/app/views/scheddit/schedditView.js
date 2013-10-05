@@ -19,7 +19,25 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "text!templates/s
 
             // View Event Handlers
             events: {
+                // write an event that is triggered when the button is clicked and calls a function that launches oAuth
+                "click .reddit": "launchOauth"
+            },
 
+            // function that is triggered on button event
+            launchOauth: function(){
+                // code goes here
+                // GET to /login
+                console.log("testing 1, 2, 3");
+                $.ajax({
+                    url: "/login",
+                    method: "GET"
+                })
+                .done(function(data){
+                    console.log('ajax success', data);
+                })
+                .fail(function(err){
+                    console.log('ajax fail', err);
+                });
             },
 
             // Renders the view's template to the UI

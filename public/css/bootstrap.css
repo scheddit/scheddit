@@ -6803,3 +6803,15 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.initialHide{
+  display:none;
+}
+
+.initialCollapse{
+  margin-bottom: -70px;
+}
+
+h3{
+  text-decoration: underline;
+}
