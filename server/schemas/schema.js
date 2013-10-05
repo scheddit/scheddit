@@ -1,9 +1,9 @@
 // DEPENDENCIES
 // ============
 
-var mongoose =     require('mongoose'),
-    Schema =     mongoose.Schema,
-    objectID =     Schema.ObjectID;
+var mongoose =     require('mongoose');
+var Schema =     mongoose.Schema;
+var objectID =     Schema.ObjectID;
 
 // USER ACCOUNT SCHEMA
 // ===================
