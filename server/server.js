@@ -5,6 +5,8 @@ var Config    = global.Config = require('./config/config.js').config;
 var express   = require("express");
 var http      = require("http");
 var port      = ( process.env.PORT || Config.listenPort );
+var app = module.exports = express();
+
 var mongoose  = require('mongoose');
 var API       = require('./API');
 var passport  = require('passport');
@@ -80,7 +82,6 @@ passport.use(new redditStrategy({
 // APP CONFIGURATION
 // ====================
 
-var app = express();
 
 app.configure(function() {
   app.use(express["static"](__dirname + "/../public"));
@@ -104,7 +105,19 @@ app.configure(function() {
 
 API.api(app, schema);
 
-// Start Node.js app
-app.listen(1337);
 
-console.log('\n\nWelcome to Stacked!\n\nPlease go to http://localhost:' + port + ' to start using Require.js and Backbone.js\n\n');
+/*
+// Start Node.js app
+app.listen(1337);*/
+
+
+if (require.main === module) {
+  http.createServer(app).listen(port, function(){
+    console.info('Express server listening on port ' + port);
+  });
+} else {
+  console.info('Running app as a module');
+  exports.app = app;
+}
+
+// console.log('\n\nWelcome to Stacked!\n\nPlease go to http://localhost:' + port + ' to start using Require.js and Backbone.js\n\n');
