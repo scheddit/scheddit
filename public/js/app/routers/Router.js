@@ -1,8 +1,8 @@
 // Router.js
 
-define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/schedditView", "collections/scheddit/schedditCollection"],
+define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/userView", "views/scheddit/schedditView", "collections/scheddit/schedditCollection"],
 
-    function($, Backbone, Model, View, Collection) {
+    function($, Backbone, Model, userView, View, Collection) {
 
         var Router = Backbone.Router.extend({
 
@@ -17,7 +17,8 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/s
             routes: {
 
                 // When there is no hash on the url, the home method is called
-                "": "index"
+                "": "index",
+                "user": "user"
 
             },
 
@@ -26,6 +27,12 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/s
                 // Instantiates a new view which will render the header text to the page
                 new View();
 
+            },
+
+            user: function() {
+
+                console.log("Router.routes calling scheddit");
+                new userView();
             }
 
         });

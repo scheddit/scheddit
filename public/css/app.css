@@ -9,3 +9,5 @@
 
 @import url("font-awesome.css"); 
 @import url("font-awesome-ie7.css"); 
+
+#logo {display: inline-block; float:left;}
