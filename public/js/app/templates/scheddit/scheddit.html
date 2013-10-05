@@ -1,0 +1,500 @@
+<!-- HTML Template -->
+<div style="height:80px"></div>
+<div class="container">
+<p><img src="http://cl0udc0ntr0l.github.io/generator-stacked/img/banner-sm.png" alt="" width="100%"/></p>
+
+<blockquote><p>A Backbone.js and Require.js Test Driven Workflow inspired by <a href="http://gregfranko.com/">Greg Franko</a>'s <a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite">Backbone-Require-Boilerplate-Lite</a>. Together we promote decoupling your JavaScript into modules, separating business logic from application logic using Collections/Models and Views, including non-AMD Compatible Third Party Scripts in your project, optimizing all of your JavaScript (minify, concatenate, etc), and unit testing your JavaScript all while minimizing the time it takes to perform monotonous tasks.</p></blockquote>
+
+<hr>
+
+
+<p>Website: <a href="http://cl0udc0ntr0l.github.io/generator-stacked">cl0udc0ntr0l.github.io/generator-stacked</a></p>
+
+<p>NPM: <a href="https://npmjs.org/package/generator-stacked">npmjs.org/package/generator-stacked</a></p>
+
+<p>Repository: <a href="https://github.com/cl0udc0ntr0l/generator-stacked">github.com/cl0udc0ntr0l/generator-stacked</a></p>
+
+<p>Bugs: <a href="https://github.com/cl0udc0ntr0l/generator-stacked/issues">github.com/cl0udc0ntr0l/generator-stacked/issues</a></p>
+
+<hr>
+
+
+<h2>NEW FEATURES</h2>
+
+<h4>MongoDB and Mongoose</h4>
+
+<p>The yo man now asks you if you want to use MongoDB and Mongoose in your app. He does all the configuration for you and even sets up a sample schema.  You just have to point the config file at your database and start coding!</p>
+
+<h5>Example</h5>
+
+<blockquote><p>You will have to install mongoDB if you dont have it installed already. <a href="http://docs.mongodb.org/manual/installation/">This is how you do it</a>.</p>
+
+<p>Once you are done with that you have to point your config file <code>server/config/config.js</code> at your mongoDB install.</p></blockquote>
+
+<pre><code>exports.config = {
+    listenPort: "1337",
+    sessionSecret: "keyboard-cat", // You should change this while you are here
+    database: {
+        IP: "10.0.0.100",  // Put your mongoDB IP here (no http/ https)
+        name: "defaultDB" // Choose a name (the db will be created automatically)
+        port: "27017"    // 27017 is the default port.  Only change this if you specified a different port for your mongoDB install.
+    }
+};
+</code></pre>
+
+<blockquote><p>That's it! You can now create schemas and persist your data. A schema generator is coming soon.</p></blockquote>
+
+<h4>Event Aggregator</h4>
+
+<p>When you create a new app, Stacked will create an event aggregator called Notifier that you can use to send messages across your entire app.  It observes the pub/sub pattern.  Meaning you can have multiple listeners for your event.</p>
+
+<h5>Example:</h5>
+
+<blockquote><p>Include Notifier with require.js</p></blockquote>
+
+<pre><code>define(["jquery", "backbone", "events/Notifier"],
+
+function($, Backbone, Notifier){ ...
+</code></pre>
+
+<blockquote><p>Send the message</p></blockquote>
+
+<pre><code>Notifier.trigger('myChanel.myMessage', [optional, params]);
+</code></pre>
+
+<blockquote><p>Recieve the message somewhere else</p></blockquote>
+
+<pre><code>Notifier.on('myChannel.myMessage', function(optional, params){
+    ...
+});
+</code></pre>
+
+<blockquote><p>Or even better! In your initialize method:</p></blockquote>
+
+<pre><code>Notifier.on('myChannel.myMessage, this.myFunction, this);
+</code></pre>
+
+<blockquote><p>and then add your own method</p></blockquote>
+
+<pre><code>myFunction: function(optional, params) {
+    …
+}, // Dont forget to chain your methods!
+</code></pre>
+
+<h2>THE WORKFLOW</h2>
+
+<p><img src="http://cl0udc0ntr0l.github.io/generator-stacked/img/toolset.png" width="100%"></p>
+
+<p>The Stacked workflow is comprised of 8 tools for improving your productivity and satisfaction when building a web app: yo (the scaffolding tool), grunt (the build tool), npm (for sever side package management), mocha (for server side unit testing), bower (for client side package management), jasmine (for client side unit testing), backbone.js (for decoupling of data logic from application logic) and require.js (for making our code modular and maintainable).</p>
+
+<h2>INCLUDED LIBRARIES</h2>
+
+<p>Server Side</p>
+
+<ul>
+<li><a href="http://expressjs.com/">Express</a></li>
+<li><a href="http://gruntjs.com/mo">Grunt</a></li>
+<li><a href="http://visionmedia.github.io/mocha/">Mocha</a></li>
+<li><a href="http://requirejs.org/docs/optimization.html">r.js</a></li>
+<li><a href="https://github.com/ChrisWren/grunt-nodemon">Nodemon</a></li>
+<li><a href="http://www.mongodb.org/">MongoDB</a></li>
+<li><a href="http://mongoosejs.com/">Mongoose</a></li>
+</ul>
+
+<p>Client Side</p>
+
+<ul>
+<li><a href="http://backbonejs.org/">Backbone.js</a></li>
+<li><a href="http://lodash.com/">Lodash</a></li>
+<li><a href="http://requirejs.org/">Require.js</a></li>
+<li><a href="https://github.com/jrburke/almond">Almond.js</a></li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+<li><a href="http://pivotal.github.io/jasmine/">Jasmine</a></li>
+<li><a href="http://getbootstrap.com/">Bootstrap 3.0</a></li>
+<li><a href="http://fortawesome.github.io/Font-Awesome/">Font-Awesome</a></li>
+</ul>
+
+<h2>INSTALLATION</h2>
+
+<ol>
+<li>Download and install <a href="http://nodejs.org/#DOWNLOAD">Node.js</a></li>
+<li>Install Yeoman, Grunt and Bower: <code>npm install -g yo</code> (yes it downloads them all)</li>
+<li>Install Stacked: <code>npm install -g generator-stacked</code></li>
+<li>You're done!  Time to generate your first Stacked App.</li>
+</ol>
+
+
+<h2>THE GENERATOR</h2>
+
+<p>Generate your app.</p>
+
+<pre><code>mkdir myApp &amp;&amp; cd $_
+yo stacked`
+</code></pre>
+
+<p><img width="100%" align="right"  src="http://cl0udc0ntr0l.github.io/generator-stacked/img/questions.png" alt="Prompt"></p>
+
+<p>Stacked will ask you some questions to help you set up your app.</p>
+
+<h3>YOUR NAME</h3>
+
+<p>Your name is injected into package.json and bower.json as the author of the app.</p>
+
+<h3>YOUR GITHUB USERNAME</h3>
+
+<p>Your github username is used to create repository paths in package.json and bower.json</p>
+
+<h3>APP NAME</h3>
+
+<p>This is the name of your app.  It is complete repository paths and populate other files.</p>
+
+<blockquote><p>In the future I may use this varible to namespace the app.</p></blockquote>
+
+<h3>MVC SETS</h3>
+
+<p>I choose the name "MVC set" to represent a backbone.js Model, Collection, View and Template.  The generator automaticlly includes all your files with require.js, so you just initalize and write!</p>
+
+<blockquote><p>When you First create your app, the MVC option will initalize a Backbone.js Router and Require.js Init file for you.  It works a little differently in the MVC Subgenerator, which we will get to in a moment.</p></blockquote>
+
+<h3>PATH SELECTION</h3>
+
+<p>The path selector allows you to nest your Models, Views, Collections and Templates.  This is to allow for a more organized enviornment.  The path root is displayed for you <code>root -&gt; public/js/app/[type]/</code> [type] being Model, View, Collection or Template. You can just continue after the forward slash <code>users/admin</code> or <code>user\admin\</code> The trailing slash is optional.  Again... Require.js includes stay intact.</p>
+
+<blockquote><p>Yeoman automatically checks for file collisions and will prompt you for action.  You are not in danger :)</p></blockquote>
+
+<h3>USING LESS</h3>
+
+<p>If you want to use LESS, which you should (default is yes), you can just hit enter and Stacked will automatically include the dependencies in package.json and create grunt tasks for compiling.  If you decide you would rather stick with CSS or use SASS, Stylus etc... Stacked will strip those includes from all files so you are only using what you need.</p>
+
+<h3>USING MOCHA</h3>
+
+<p><a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate-Lite">Backbone-Require-Boilerplate-Lite</a> ships with Jasmine on the client, but I also wanted to have the option to use a server side testing framework.  I went with mocha because I feel it's the most flexible.  Its very easy to use after you get it all set up.  Luckily Stacked takes care of that for you.</p>
+
+<h1>INITIALIZE THE BUILD</h1>
+
+<p>After you make your selections, your app will be generated and all dependencies will be installed. The console will log out how to initialize your build.
+<img width="100%" align="right"  src="http://cl0udc0ntr0l.github.io/generator-stacked/img/after-app.png" alt="After Creation"></p>
+
+<h3>GRUNT INIT</h3>
+
+<p>To initalize your build type <code>grunt init</code> A few things are happening here which are good to understand and leverage.</p>
+
+<h6>BOOTSTRAP</h6>
+
+<p>The first thing the init task does is copy your bootstrap.css file from the bower install directory
+<code>public/js/libs/bootstrap/dist/css</code> to <code>public/css</code></p>
+
+<blockquote><p>Leverage!
+If you want to edit your bootstrap styles you could edit <code>public/css/bootsrap.css</code> or you can <code>cd public/js/libs/bootsrap/less</code> edit the less files and rebuild bootstrap, then <code>cd your/apps/root</code> and re-initialize your build to pull the new css into your <code>public/css</code> directory.</p></blockquote>
+
+<h6>AVAILABLE BOOTSTRAP GRUNT TASKS</h6>
+
+<p><code>grunt test</code> Run jshint and qunit</p>
+
+<p><code>grunt dist-js</code> Compile Bootstrap js</p>
+
+<p><code>grunt dist-css</code> Compile Less</p>
+
+<p><code>grunt dist</code> Compile Full Distribution</p>
+
+<blockquote><p>Be careful with updating boostrap with bower if you edit the less files.  They will be overwriten with the new bootstrap install.</p></blockquote>
+
+<h4>FONT-AWESOME</h4>
+
+<p>Next we pull in Font-Awesome CSS from bower.  Any time a new version is released you can <code>bower update font-awesome</code> from your app root to update the packages and then run <code>grunt init</code> to re-initialize your app.</p>
+
+<h4>LESS</h4>
+
+<p>If you chose the less option, your <code>public/css/includes/less/custom.less</code> file will be compiled to <code>public/css/includes/css/custom.css</code></p>
+
+<h4>JS</h4>
+
+<p>Finally, All your JS is run through jshint and r.js.  You can switch the production variable in <code>public/index.html</code> to <code>true</code> to use the minified build.</p>
+
+<blockquote><p>Back to our apps root directory now.</p></blockquote>
+
+<h3>GRUNT BUILD</h3>
+
+<p>'grunt build' will lint your javascript and run r.js to compile you production build.</p>
+
+<h3>GRUNT TEST</h3>
+
+<p><code>grunt test</code> runs jslint and mocha tests</p>
+
+<p><img width="100%" align="right"  src="http://cl0udc0ntr0l.github.io/generator-stacked/img/grunt-tasks.png" alt="Grunt Tasks"></p>
+
+<h3>GRUNT SERVER</h3>
+
+<p><code>grunt server</code> Starts up your express server and uses nodemon to listen for changes</p>
+
+<h2>SUBGENERATORS</h2>
+
+<p>Subgenerators create the components of your app that you use the most, Models, Collections, Views and Templates. There are three subgenerators that cover all bases.</p>
+
+<h3>MODEL</h3>
+
+<p><code>yo stacked:model</code>
+<img width="100%" src="http://cl0udc0ntr0l.github.io/generator-stacked/img/model-generator.png" alt="" /></p>
+
+<p>The Model generator creates a Model and optionally, a collection</p>
+
+<h3>VIEW</h3>
+
+<p><code>yo stacked:view</code>
+<img width="100%" src="http://cl0udc0ntr0l.github.io/generator-stacked/img/view-generator.png" alt="" /></p>
+
+<p>The view generator creates a View and optionally, a Template. There is no template generator because it really wouldn't save any time.</p>
+
+<h3>MVC</h3>
+
+<p><code>yo stacked:mvc</code>
+<img width="100%" src="http://cl0udc0ntr0l.github.io/generator-stacked/img/mvc-generator.png" alt="" /></p>
+
+<p>The mvc generator creates a full set of backbone components, minus the Router.  You will have to include your new set in your existing Router manually (for now).</p>
+
+<h2>BACKBONE-REQUIRE-BOILERPLATE-LITE</h2>
+
+<blockquote><p>Stacked App structures are based on <a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate">Backbone-Require-Boilerplate</a> by <a href="https://github.com/gfranko">Greg Franko</a>, <a href="https://github.com/nickpack">Nick Pack</a> and <a href="https://github.com/brettjonesdev">Brett Jones</a>.</p></blockquote>
+
+<p>I have made some enhancements to the server side.
+- Abstracted an API file: <code>server/API.js</code> file for REST calls.
+- Abstracted enviornment specific variables into a config file <code>server/congif/config.js</code>
+- Added support for mocha</p>
+
+<p>Below is the documentation for <a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate">Backbone-Require-Boilerplate</a>.</p>
+
+<h2>index.html</h2>
+
+<p>Uses a large portion of the <a href="https://github.com/h5bp/html5-boilerplate">HTML5 Boilerplate</a> HTML and CSS.  As you continue down the page to the first <code>&lt;script&gt;</code> tag, you will notice there is a <code>production</code> local JavaScript variable that is used to communicate to your application whether you would like to load production or development CSS and JavaScript files.</p>
+
+<p><em>Loading Files</em></p>
+
+<p>The <code>loadFiles()</code> method is then used to load all of the correct CSS and JavaScript files.  Below is what get's included:</p>
+
+<p><em>Production Mode</em></p>
+
+<p>In production mode, your app's single minified and concatenated JavaScript file is loaded using Almond.js instead of Require.js.  Your application's minfied common CSS file is also included.</p>
+
+<p><em>Development Mode</em></p>
+
+<p>In development mode, your app's non-minified JavaScript files are loaded using Require.js instead of Almond.js.  Your application's non-minified common CSS file is also included.</p>
+
+<p><em>Loader Methods</em></p>
+
+<p>You will notice that the CSS files and the Require.js file are being included on the page via the <code>loadFiles()</code> method (which uses the <code>loadCss()</code> and <code>loadJS()</code> methods internally).  Require.js does not officially support <a href="http://requirejs.org/docs/faq-advanced.html#css">loading CSS files</a>, which is why I included the <code>loadCSS()</code> method to asynchronously include CSS files.  Loading CSS asynchronously also allows the flexibilty/mechanism to load different CSS files if a user is on a mobile/desktop device.</p>
+
+<blockquote><p>Feel free to use the <code>loadCSS()</code> and <code>loadJS()</code> methods to load any other dependencies your application may have that you do not want to use Require.js for.</p></blockquote>
+
+<h2>Init.js</h2>
+
+<p>This file includes your mobile Require.js configurations.</p>
+
+<p>If we look at the Require.js configurations, we will see the first thing being configured are the paths.  Setting paths allow you to define an alias name and file path for any file that you like.</p>
+
+<p>Typically, you want to set a path for any file that will be listed as a dependency in more than one module (eq. jQuery, Backbone).  This saves you some typing, since you just have to list the alias name, and not the entire file path, when listing dependencies.  After all of the file paths are set, you will find the Shim configuration (Added in Require.js 2.0).</p>
+
+<p>The Shim configuration allows you to easily include non-AMD compatible JavaScript files with Require.js (a separate library such as <a href="https://github.com/tbranyen/use.js/">Use.js</a> was previously needed for this).  This is very important, because Backbone versions > 0.5.3 no longer support AMD (meaning you will get an error if you try to use both Require.js and the latest version of Backbone).  This configuration is a much better solution than manually editing non-AMD compatible JavaScript files to make sure the code is wrapped in a <code>define</code> method.  Require.js creator <a href="http://tagneto.blogspot.com/">James Burke</a> previously maintained AMD compatible forks of both Backbone.js and Underscore.js because of this exact reason.</p>
+
+<p><code>js
+   shim: {
+      // Backbone
+      "backbone": {
+         // Depends on underscore/lodash and jQuery
+         "deps": ["underscore", "jquery"],
+         // Exports the global window.Backbone object
+         "exports": "Backbone"
+      },
+   }
+</code></p>
+
+<p>The Shim configuration also takes the place for the old Require.js <code>order</code> plugin.  Within the Shim configuration, you can list files and their dependency tree.  An example is jQuery plugins being dependent on jQuery:</p>
+
+<p><code>js
+   shim: {
+      // Twitter Bootstrap plugins depend on jQuery
+      "bootstrap": ["jquery"]
+   }
+</code></p>
+
+<blockquote><p>You do not need a shim configuration for <a href="http://www.jquery.com">jQuery</a> or <a href="https://github.com/bestiejs/lodash">lodash</a> because they are both AMD compatible.</p></blockquote>
+
+<p>After Require.js is configured, you will notice the <code>require</code> method is called.  The <code>require</code> method is asynchronously including all of the files/dependencies passed into the first parameter (jQuery, Backbone, Lodash, Router, etc) into the page.</p>
+
+<p>Finally, a new router instance is instantiated to allow you to use Backbone's routing mechanism (keep reading below for more clarification).</p>
+
+<blockquote><p>You don't need to instantiate a new router instance if you aren't using a Backbone Router class.</p></blockquote>
+
+<h2>Router.js</h2>
+
+<p>This file starts with a define method that lists jquery, backbone, and View.js as dependencies.</p>
+
+<p>It is best practice to list out all of your dependencies for every file, regardless of whether or not they expose global objects and are already included in the page.  This is also especially important for the Require.js optimizer (which needs to determine which files depend on which other files).</p>
+
+<blockquote><p>If your dependencies do not expose global objects, then it is absolutely mandatory to list it as a dependency, since Require.js does not allow global variables (meaning your modules are private and cannot be accessed by other modules or code without explicitly listing them as dependencies).</p></blockquote>
+
+<p>The rest of the file is a pretty standard Backbone.js Router class:</p>
+
+<p>There is currently only one route listed (which gets called if there is no hash tag on the url), but feel free to create more for your application.</p>
+
+<blockquote><p>You must keep the <code>Backbone.history.start()</code> method call, since this is what triggers Backbone to start reacting to hashchange events.</p></blockquote>
+
+<p>When your default route is invoked, a new View instance is created, which calls the render method immediately to append the header template to the page.</p>
+
+<h2>View.js</h2>
+
+<p>View.js starts with a define method that lists all of its dependencies.</p>
+
+<p>The rest of the file is a pretty standard Backbone.js View class:</p>
+
+<p>Backbone.js View's have a one-to-one relationship with DOM elements, and a View's DOM element is listed in the <code>el</code> property.  After the <code>el</code> property is set, the View's model attribute is set to a new instance of the Model returned by Model.js (which was listed at the top as a dependency).  Next, the View's <code>render</code> method is called within the View's constructor, aka <code>initialize()</code> method, and the View's <code>template</code> property is set and appended to the page using the <a href="https://github.com/documentcloud/underscore">Underscore.js</a> <code>template</code> method ported to Lodash.</p>
+
+<blockquote><p>If you have read all of the documentation up until this point, you will most likely have already noticed that <a href="https://github.com/bestiejs/lodash">lodash</a> is being used instead of Underscore.js.  Apart from having a bit better cross-browser performance and stability than Underscore.js, lodash also provides a custom build process.  Although I have provided a version of lodash that has all of the Underscore.js methods you would expect, you can download a custom build and swap that in.  Also, it doesn't hurt that Lodash creator, <a href="https://twitter.com/jdalton">John-David Dalton</a>, is an absolute performance and API consistency maniac =)</p></blockquote>
+
+<p>Next, you will find an <code>events</code> object.  Here is where all of your View DOM event handlers associated with the HTML element referenced by your View's <code>el</code> property should be stored.  Keep in mind that Backbone is using the jQuery <code>delegate</code> method, so it expects a selector that is within your View's <code>el</code> property.  I did not include any events by default, so you will have to fill those in yourself.  Below is an example of having an events object with one event handler that calls a View's <code>someMethod()</code> method when an element with a class name of <em>someElement</em> is clicked.</p>
+
+<p><code>js
+   // View Event Handlers
+   events: {
+      "click .someElement": "someMethod"
+   },
+</code></p>
+
+<p>I am also declaring a <code>render</code> method within the View.  Backbone expects you to override the <code>render</code> method with your own functionality, so that is what I did.  All my <code>render</code> method does is append the View's template to the page.</p>
+
+<blockquote><p>You do not need to use Underscore.js templates.  In fact, you don't need to use templates at all.  I just included them so you would understand how to use them.</p></blockquote>
+
+<p>Finally, I am returning the View class.</p>
+
+<h2>template.html</h2>
+
+<p>This file includes a template that is included via the Require.js <a href="https://github.com/requirejs/text">text plugin</a>.  Templates are typically a useful way for you to update your View (the DOM) if a Model attribute changes.  They are also useful when you have a lot of HTML and JavaScript that you need to fit together, and instead of concatenating HTML strings inside of your JavaScript, templates provide a cleaner solution.  Look at Underscore's documentation to read more about the syntax of Underscore.js templates.</p>
+
+<h2>Model.js</h2>
+
+<p>Model.js starts with a define method that lists jquery and backbone as dependencies.</p>
+
+<p>The rest of the file is a pretty standard Backbone.js Model class.</p>
+
+<p>Like other Backbone.js classes, there is an <code>initialize()</code> method that acts as the Model's constructor function.  There is also a <strong>defaults</strong> object that allows you to set default Model properties if you wish.</p>
+
+<p>Finally, The Backbone.js <code>validate</code> method is provided for you.  This method is called any time an attribute of the model is set.  Keep in mind that all model attributes will be validated (once set), even if a different model attribute is being set/validated.  This does not make much sense to me, so if you prefer only the Model attributes that are currently being saved/set to be validated, then use the validateAll option provided by <a href="https://github.com/gfranko/Backbone.validateAll">Backbone.validateAll</a>.</p>
+
+<p>Finally, a new Model class is returned.</p>
+
+<h2>Collection.js</h2>
+
+<p>Collection.js starts with a define method that lists jquery, backbone, and UserModel.js as dependencies.</p>
+
+<p>The rest of the file is a pretty standard Backbone.js Collection class that is used to store all of your Backbone Models.  The Collection model property is set to indicate that all Models that will be within this Collection class will be of type Model (the dependency that is passed into the file).</p>
+
+<p>Finally, a new Collection class is returned.</p>
+
+<h2>Gruntfile.js</h2>
+
+<p>This file is ready made for you to have your entire project optimized using Grunt.js, the <a href="https://github.com/jrburke/r.js/">Require.js Optimizer</a> and <a href="https://github.com/jrburke/almond">almond.js</a>.</p>
+
+<p>Grunt.js is a JavaScript command line task runner that allows you to easily automate common development tasks such as code linting, minification, and unit testing.</p>
+
+<blockquote><p>Running the Jasmine Tasks with Grunt has not been implemented yet.</p></blockquote>
+
+<p>Almond.js a lightweight AMD shim library created by <a href="https://github.com/jrburke">James Burke</a>, the creator of Require.js.  Almond is meant for small to medium sized projects that use one concatenated/minified JavaScript file.  If you don't need some of the advanced features that Require.js provides (lazy loading, etc) then Almond.js is great for performance.</p>
+
+<p>Backbone-Require-Boilerplate sets you up to use Require.js in development and Almond.js in production.  By default, Backbone-Require-Boilerplate is in <em>development</em> mode, so if you want to try out the production build, read the production instructions below.</p>
+
+<p><strong>Production Build Instructions</strong></p>
+
+<p>Navigate to the root directory of the Backbone-Require-Boilerplate folder and type <strong>grunt</strong> and wait a few seconds for the build to complete.</p>
+
+<p><strong>Note:</strong> If you are on a Windows machine, you will have to type <code>grunt.cmd</code></p>
+
+<p>Once the script has finished, you will see that both <em>DesktopInit.min.js</em> and <em>MobileInit.min.js</em>, and the <em>mobile.min.css</em> and <em>desktop.min.css</em> files will be created/updated.</p>
+
+<p>Next, update the <code>production</code> local variable inside of <strong>index.html</strong> to be <strong>true</strong>.</p>
+
+<p>And that's it!  If you have any questions just create in an issue on Github.</p>
+
+<h2>SpecRunner.html</h2>
+
+<p>This file is the starting point to your Jasmine test suite and outputs the results of your Jasmine tests.  It includes Require.js and points it to <strong>testInit.js</strong> for all of the proper configurations.</p>
+
+<h2>TestInit.js</h2>
+
+<p>This file includes all of the Require.js configurations for your Jasmine unit tests.  This file will look very similar to the <strong>Init.js</strong> file, but will also include Jasmine and the jasmine-jquery plugin as dependencies.</p>
+
+<p>You will also notice a <em>specs</em> array that will allow you to add as many specs files as your application needs (Specs folders are where your unit tests are).  The boilerplate only includes one specs js file by default, so only one specs item is added to the array.  Finally, once the specs file is included by the <code>require()</code> call, Jasmine is initialized</p>
+
+<h2>spec.js</h2>
+
+<p>This file contains all of your Jasmine unit tests.  Only seven tests are provided, with unit tests provided for Views, Models, Collections, and Routers (Mobile and Desktop).  I'd write more, but why spoil your fun?  Read through the tests and use them as examples to write your own.</p>
+
+<p>The entire file is wrapped in an AMD define method, with all external module (file) dependencies listed.  The Jasmine tests should be self explanatory (BDD tests are supposed to describe an app's functionality and make sense to non-techy folk as well), but if you have any questions, just file an issue and I'll respond as quickly as I can.</p>
+
+<h2>DEMONSTRATIONS AND DOCUMENTATIONS</h2>
+
+<p>If you want to see Stacked and <a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate">Backbone-Require-Boilerplate</a> in action, you can head over to <a href="cl0udc0ntr0l.github.io/generator-stacked">the projects site</a> To watch my screen cast showing the power of yeoman and Greg's screencast demonstrating <a href="https://github.com/BoilerplateMVC/Backbone-Require-Boilerplate">Backbone-Require-Boilerplate</a>. I have also included quick links to the documentation for all the libraries included in Stacked.</p>
+
+<h2>CHANGE LOG</h2>
+
+<p><code>0.1.5</code> - Sept 5, 2013</p>
+
+<ul>
+<li>Added Support for MongoDB &amp; Mongoose</li>
+<li>Added Event Aggregator (Notifier)</li>
+<li>Added Session Support</li>
+<li>Fixed Font-Awesome Import</li>
+<li>Fixed Bootstrap.js Include</li>
+<li>Various Minor Bug Fixes</li>
+</ul>
+
+
+<p><code>0.1.4</code> - Sept 1, 2013</p>
+
+<ul>
+<li>Updated Yeoman Deps</li>
+<li>Removed Model Require from View Subgenerator</li>
+</ul>
+
+
+<p><code>0.1.3</code> - Aug 15, 2013</p>
+
+<ul>
+<li>Fixed Path Bug in Init Files</li>
+</ul>
+
+
+<p><code>0.1.2</code> - Aug 14, 2013</p>
+
+<ul>
+<li>Fixed Path Bug in Subgenerators</li>
+</ul>
+
+
+<p><code>0.1.1</code> - Aug 12, 2013</p>
+
+<ul>
+<li>Added Support for Initial Build MVC Set Path Selection</li>
+</ul>
+
+
+<p><code>0.1.0</code> - Aug 11, 2013</p>
+
+<ul>
+<li>First Stable Release</li>
+</ul>
+
+
+<h2>TODO</h2>
+
+<ul>
+<li>Automatate route creation and Require.js Includes in Existing Router</li>
+<li>Add Support for SASS</li>
+<li>Live Reload</li>
+</ul>
+
+
+<h2>LICENSE</h2>
+
+<p>Copyright (c) 2013 Randy Lebeau
+Licensed under the <a href="https://github.com/cl0udc0ntr0l/generator-stacked/blob/master/LICENSE-MIT">MIT license</a>.</p>
+</div>
+<div class="clearfix" style="height:80px"></div>
