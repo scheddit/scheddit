@@ -44,6 +44,20 @@ describe('API: GET /login', function() {
 
 //Also neet to test oauth
 
+//test to return user data/posts at /userdata endpoint
+// describe('API: GET /userdata', function() {
+//   it('Should Return 200 and get user name', function(done) {
+//     request.get('localhost:3000/userdata').end(function(res) {
+//       expect(res).to.exist;
+//       expect(res.status).to.equal(200);
+//       expect(res.body.username).to.equal('bob');
+//       done();
+//     });
+//   });
+// });
+
+
+
 
 /*Test database*/
 //Test connection to db
