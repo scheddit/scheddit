@@ -1,4 +1,4 @@
-// IndexView.js
+// userView.js
 
 define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/scheddit/user.html"],
 
@@ -20,7 +20,9 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             // View Event Handlers
             events: {
                 // write an event that is triggered when the button is clicked and calls a function that launches oAuth
-                "click .submitButton": "addToSchedule"
+                "click .submitButton": "addToSchedule",
+                // listen for change on the "select type of post button", then call jquery function that either displays link or self-post form
+                "change #postType": "displayTextOrLinkForm"
             },
 
             // function that is triggered on button event
@@ -50,7 +52,26 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 // Maintains chainability
                 return this;
 
+            },
+
+            // $('#newPost').change(displayTextOrLinkForm(event))
+            //ok, now define displayTextOr...
+            //displayTextOrLinkForm: function(event){
+            //  if
+            //}  OR MAYBE THIS WILL JUST WORK IN CONJUNCTION WITH THE EVENTS OBJECT/PROPERTY ABOVE
+
+            displayTextOrLinkForm: function(event){
+                console.log("listening to form selection change");
+                var linkOrSelf = event.target.value;
+                console.log(linkOrSelf);
+                if (linkOrSelf=== "link"){
+
+                }
+                else if (linkOrSelf === "self"){}
+
+
             }
+
 
         });
 

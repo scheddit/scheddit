@@ -2,27 +2,35 @@
 <div style="height:80px"></div>
 <div class="container">
 
-<h2>Login in to try us out</h2>
 
-<h4>Click the button below</h4>
-
-<button class="reddit">Log in with reddit! </button>
+<h3> What would you like to share today? </h3>
 
 <form id="newPost" name="submission">
 
-  <select name="kind">
+  <select name="kind" id="postType">
     <option value="link">Link</option>
     <option value="self">Self-Post</option>
-  </select>
-  <input name="title" type="text" placeholder="Enter a title"></input>
-  <input name="subreddit" type="text" placeholder="Which Subreddit"></input>
-  <input name="URL" type="url" placeholder="Enter URL"></input>
-  <input name="selfPost" type="text" placeholder="Enter your post details"></input>
-  <input type="datetime-local" name="scheduler"></input>
+  </select> </br>
+  <input name="title" type="text" placeholder="Enter a title"></input> <br>
+  <input name="subreddit" type="text" placeholder="Which Subreddit"></input> <br>
+  <input name="URL" type="url" placeholder="Enter URL"></input> <br>
+  <input name="selfPost" type="text" placeholder="Enter your post details"></input> <br>
+  <input type="datetime-local" name="scheduler"></input><br>
   <input type="submit" name="submitButton" class="submitButton"></input>
-  
-
-
 </form>
+
+<h3> Scheduled</h3>
+
+<div id="futurePosts"></div>
+
+<h3> History </h3>
+
+<div id="alreadyPosted"></div>
+
+
+
+
+
+
 
 </div>
