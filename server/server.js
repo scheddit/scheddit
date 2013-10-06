@@ -48,6 +48,7 @@ var schema = require('./schemas/schema');
 //   have a database of user records, the complete Reddit profile is
 //   serialized and deserialized.
 passport.serializeUser(function(user, done) {
+  //so this is where we get the user's info which we will store in the db
   done(null, user);
 });
 
@@ -66,16 +67,8 @@ passport.use(new redditStrategy({
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-
-
-      // To keep the example simple, the user's Reddit profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Reddit account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
+    //here we have to store our access token in the db?
+    return done(null, profile);
   }
 ));
 

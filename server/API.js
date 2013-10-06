@@ -38,8 +38,16 @@ module.exports.api = function(app, schema) {
     //res.send(result);
   });
 
-  app.get('/redirect', function(req, res) {
-    res.send();
+  app.get('/redirect', function(req, res, next) {
+    if (req.query.state == req.session.state){
+      passport.authenticate('reddit', {
+        successRedirect: '/#user',
+        failureRedirect: '/login'
+      })(req, res, next);
+    }
+    else {
+      next( new Error(403) );
+    }
   });
 
   // Simple route middleware to ensure user is authenticated.
