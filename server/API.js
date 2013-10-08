@@ -39,6 +39,7 @@ module.exports.api = function(app, schema) {
   });
 
   app.get('/redirect', function(req, res, next) {
+    //debugger;
     if (req.query.state == req.session.state){
       passport.authenticate('reddit', {
         successRedirect: '/#user',

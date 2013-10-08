@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           document: true
         }
       }
-    }, 
+    },
     mochaTest: {
       test: {
         options: {
