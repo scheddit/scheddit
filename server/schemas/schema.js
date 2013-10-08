@@ -21,6 +21,10 @@ var userSchema = new Schema({
     is_mod: Boolean,
     has_verified_email: Boolean,
     id: String
+  },
+  oauthInfo: {
+    accessToken: String,
+    refreshToken: String
   }
 });
 

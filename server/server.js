@@ -67,11 +67,19 @@ passport.use(new redditStrategy({
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    var newUser = new schema.userModel({profile: profile._json});
+    //findorcreate user
+    var newUser = new schema.userModel({
+      profile: profile._json,
+      oauthInfo: {
+        accessToken: accessToken,
+        refreshToken: refreshToken
+      }
+    });
     newUser.save(function (err) {
       if (err) console.log(err);
       else console.log('user saved!');
     });
+    // debugger;
     return done(null, profile);
   }
 ));
