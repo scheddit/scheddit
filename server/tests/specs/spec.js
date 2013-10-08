@@ -1,13 +1,12 @@
 // SERVER SIDE TEST SUITE
-var request = require('superagent');
-var expect = require('expect.js');
-var http = require('http');
-var app = require('../../server.js');
+var request = require('superagent'),
+  expect = require('expect.js'),
+  app = require('../../server.js');
 
 
 // BEFORE HOOK
 before(function(){
-  this.server = http.createServer(app).listen(1337);
+  this.server = http.createServer(app).listen(3000);
 });
 
 // AFTER HOOK
@@ -18,7 +17,7 @@ after(function(done){
 // TEST SUITES
 describe('API: GET /hello', function() {
   it('Should Return 200', function(done) {
-    request.get('localhost:1337/hello').end(function(res) {
+    request.get('localhost:3000/hello').end(function(res) {
       expect(res).to.exist;
       expect(res.status).to.equal(200);
       done();
@@ -29,7 +28,7 @@ describe('API: GET /hello', function() {
 //Write a test that will expect a 200 reply for enpoint /login GET
 describe('API: GET /login', function() {
   it('Should Return 200', function(done) {
-    request.get('localhost:1337/login').end(function(res) {
+    request.get('localhost:3000/login').end(function(res) {
       expect(res).to.exist;
       expect(res.status).to.equal(200);
       done();
