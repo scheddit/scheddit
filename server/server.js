@@ -67,7 +67,11 @@ passport.use(new redditStrategy({
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    //here we have to store our access token in the db?
+    var newUser = new schema.userModel({profile: profile._json});
+    newUser.save(function (err) {
+      if (err) console.log(err);
+      else console.log('user saved!');
+    });
     return done(null, profile);
   }
 ));
@@ -97,11 +101,6 @@ app.configure(function() {
 // ===
 
 API.api(app, schema);
-
-
-/*
-// Start Node.js app
-app.listen(1337);*/
 
 
 if (require.main === module) {

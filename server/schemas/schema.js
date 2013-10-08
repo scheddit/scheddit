@@ -10,8 +10,18 @@ var objectID =     Schema.ObjectID;
 
 var userSchema = new Schema({
   //TO-DO: add payment info/ plan level as necessary
-  _userid : Number,
-  username : String
+  profile: {
+    name: String,
+    created: Number,
+    created_utc: Number,
+    link_karma: Number,
+    comment_karma: Number,
+    over_18: Boolean,
+    is_gold: Boolean,
+    is_mod: Boolean,
+    has_verified_email: Boolean,
+    id: String
+  }
 });
 
 var postSchema = new Schema({
@@ -27,17 +37,18 @@ var postSchema = new Schema({
 
 // CREATE DATABASE MODEL
 // =====================
-var userModel = mongoose.model('userModel', userSchema);
-var postModel = mongoose.model('postModel', postSchema);
+var userModel = mongoose.model('user', userSchema);
+var postModel = mongoose.model('post', postSchema);
 module.exports.userModel = userModel;
 module.exports.postModel = postModel;
 
-var dummyUser = { _userid : 1, username: 'bob' };
+//changed to new userModel
+/*var dummyUser = new userModel({ _userid : 1, username: 'bob' });
 var dummyPosts = { _userid : 1, title : 'my test post',
     isLink: false,
     contents: 'this is the body of the post',
     subr : 'scheddit'
-  };
+  };*/
 
 
 // SCHEMA METHODS
