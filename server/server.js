@@ -67,7 +67,26 @@ passport.use(new redditStrategy({
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    //findorcreate user
+
+    var conditions = { "profile.id" : profile.id };
+    var update = {
+      profile: profile._json,
+      oauthInfo: {
+        accessToken: accessToken,
+        refreshToken: refreshToken
+      }
+    };
+    var options = { upsert: true};
+
+    //Update user document if found in databse,
+    //If not found, create document
+
+    schema.userModel.findOneAndUpdate(conditions, update, options, function(){
+      console.log('user in database');
+    });
+    return done(null, profile);
+  }));
+/*
     var newUser = new schema.userModel({
       profile: profile._json,
       oauthInfo: {
@@ -82,7 +101,7 @@ passport.use(new redditStrategy({
     // debugger;
     return done(null, profile);
   }
-));
+));*/
 
 // APP CONFIGURATION
 // ====================
