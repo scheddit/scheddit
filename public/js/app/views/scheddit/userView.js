@@ -11,10 +11,11 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
 
             // View constructor
             initialize: function() {
+                user = new Model({name: "Rupa"}); //dynamically set userModel w/ name
+                console.log(user);
 
                 // Calls the view's render method
-                this.render();
-
+                this.render(user.attributes.name);
             },
 
             // View Event Handlers
@@ -38,7 +39,7 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 // pass data to the model
                 // this.model.saveDataToServer(data) << double check this
                 $.ajax({
-                    url: "/schedule",
+                    url: "/schedule", // the API 
                     method: "POST",
                     data: this.$el.find('form').serializeArray()
                 })
@@ -52,10 +53,10 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 return false;
             },
             // Renders the view's template to the UI
-            render: function() {
+            render: function(name) {
 
                 // Setting the view's template property using the Underscore template method
-                this.template = _.template(template, {});
+                this.template = _.template(template, {name: name});
 
                 // Dynamically updates the UI with the view's template
                 this.$el.html(this.template);

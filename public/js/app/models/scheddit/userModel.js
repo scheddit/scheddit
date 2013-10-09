@@ -1,4 +1,4 @@
-// IndexModel.js
+// UserModel.js
 
 define(["jquery", "backbone"],
 
@@ -7,7 +7,8 @@ define(["jquery", "backbone"],
         // Creates a new Backbone Model class object
         var userModel = Backbone.Model.extend({
 
-            url: '',
+            url: 'user', //relative URL where model's resource is
+
 
             // Model Constructor
             initialize: function() {
@@ -16,6 +17,7 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
+                name:"",
                 kind:"",
                 title:"",
                 subreddit:"",
