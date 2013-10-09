@@ -37,7 +37,18 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 // data = this.$el.find('form').serializeArray();
                 // pass data to the model
                 // this.model.saveDataToServer(data) << double check this
-                console.log("this.$el.find form", (this.$el.find('form').serializeArray()));
+                $.ajax({
+                    url: "/schedule",
+                    method: "POST",
+                    data: this.$el.find('form').serializeArray()
+                })
+                .done(function(data){
+                    console.log('schedule ajax success', data);
+                })
+                .fail(function(err){
+                    console.log('schedule ajax fail', err);
+                });
+                // console.log("this.$el.find form", (this.$el.find('form').serializeArray()));
                 return false;
             },
             // Renders the view's template to the UI
