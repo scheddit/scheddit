@@ -10,9 +10,10 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             el: ".magic",
 
             // View constructor
-            initialize: function() {
-                user = new Model({name: "Rupa"}); //dynamically set userModel w/ name
-                console.log(user);
+            initialize: function(data) {
+                var user = new Model(data.user); //dynamically set userModel w/ name
+                var posts = data.posts;
+                console.log(posts);
 
                 // Calls the view's render method
                 this.render(user.attributes.name);

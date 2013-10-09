@@ -1,8 +1,8 @@
 // Router.js
 
-define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/userView", "views/scheddit/schedditView", "collections/scheddit/schedditCollection"],
+define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/userView", "views/scheddit/schedditView", "collections/scheddit/schedditCollection", "models/scheddit/userModel"],
 
-    function($, Backbone, Model, userView, View, Collection) {
+    function($, Backbone, Model, userView, View, Collection, userModel) {
 
         var Router = Backbone.Router.extend({
 
@@ -30,9 +30,10 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/u
             },
 
             user: function() {
-
-                console.log("Router.routes calling scheddit");
-                new userView();
+                var data = {};
+                data.user = {name: "Rupa"}; // brute force to send user name with View potentially from server
+                data.posts = [{urlOrDetails: "http://www.google.com", title: "Google is cool", subreddit: "testOne", kind: "link", isPending: true, time: "2013-10-17T10:11"}, {urlOrDetails: "http://www.aol.com", title: "Aol is cool", subreddit: "testTwo", kind: "link", isPending: true, time: "2013-10-17T20:11"}];
+                new userView(data); // {model: } is this where we pass in model?
             }
 
         });
