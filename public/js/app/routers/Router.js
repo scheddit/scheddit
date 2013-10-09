@@ -1,8 +1,8 @@
 // Router.js
 
-define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/userView", "views/scheddit/schedditView", "collections/scheddit/schedditCollection", "models/scheddit/userModel"],
+define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/userView", "views/scheddit/schedditView", "collections/scheddit/schedditCollection", "models/scheddit/userModel", "models/scheddit/postModel"],
 
-    function($, Backbone, Model, userView, View, Collection, userModel) {
+    function($, Backbone, Model, userView, View, Collection, userModel, postModel) {
 
         var Router = Backbone.Router.extend({
 

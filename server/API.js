@@ -46,7 +46,7 @@ module.exports.api = function(app, schema) {
     if (req.query.state == req.session.state){
       // console.log('redireq', req);
       passport.authenticate('reddit', {
-        successRedirect: '/#user',
+        successRedirect: '/#user', // needs to send user along
         failureRedirect: '/login'
       })(req, res, next);
     }
