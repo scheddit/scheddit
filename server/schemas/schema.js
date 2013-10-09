@@ -31,10 +31,12 @@ var userSchema = new Schema({
 var postSchema = new Schema({
   _userid : Number,
   title : String,
-  isLink : Boolean,
-  url: String,
-  contents: String,
-  subr: String,
+  kind : String,
+  urlOrDetails: String,
+  subreddit: String,
+  // according to http://api.mongodb.org/perl/current/MongoDB/DataTypes.html
+  // creating Date objects is slow and we should be storing
+  // a Number and converting to a date
   time: Date,
   isPending: Boolean
 });
@@ -57,6 +59,16 @@ var dummyPosts = { _userid : 1, title : 'my test post',
 
 // SCHEMA METHODS
 // ==============
+module.exports.insertPost = function(postData, res) {
+  var newPost = new postModel(postData);
+    newPost.save(function (err) {
+      if (err) console.log(err);
+      // else console.log('post saved!');
+      else res.send('Successful scheddit');
+    });
+};
+
+
 
 module.exports.userGet = function(req, res, username) {
   res.send(dummyUser);
