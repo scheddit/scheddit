@@ -1,8 +1,8 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/scheddit/user.html"],
+define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/scheddit/user.html", "views/scheddit/postView"],
 
-    function($, Backbone, Model, template){
+    function($, Backbone, Model, template, PostView){ //note: we are not passing in postView.html
 
         var userView = Backbone.View.extend({
 
@@ -11,12 +11,17 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
 
             // View constructor
             initialize: function(data) {
-                var user = new Model(data.user); //dynamically set userModel w/ name
-                var posts = data.posts;
-                console.log(posts);
-
+                console.log(data.user);
+                this.user = new Model(data.user); //dynamically set userModel w/ name
+                // var posts = data.posts;
+                console.log(this.user);
+                // this.post = new PostView(); // pass in a collection here
+                
                 // Calls the view's render method
-                this.render(user.attributes.name);
+                this.render();
+
+                // this.post.render(); // What are we doing here.
+               // console.log(this.post.render());
             },
 
             // View Event Handlers
@@ -54,14 +59,16 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 return false;
             },
             // Renders the view's template to the UI
-            render: function(name) {
-
+            render: function() {
+                //var post = this.post;
+                //console.log(post);
                 // Setting the view's template property using the Underscore template method
-                this.template = _.template(template, {name: name});
+                this.template = _.template(template, {name: this.user.attributes.name, post: "testing"});
 
-                // Dynamically updates the UI with the view's template
+                // hacked solution?::
                 this.$el.html(this.template);
-
+                //this.$el.find(".post").append(this.post.$el);
+                //this.post.render();
                 // Maintains chainability
                 return this;
 
