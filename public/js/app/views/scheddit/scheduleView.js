@@ -26,7 +26,7 @@ define(["jquery", "backbone", "models/scheddit/postModel", "views/scheddit/postV
 
                 return this.$el.html('<div class="schedule">Schedule</div>').append(
                   this.collection.map(function(post){
-                    console.log(post);
+                    // console.log(post);
                     return new PostView({model: post}).render();
                   })
                 );

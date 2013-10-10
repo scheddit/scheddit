@@ -2,29 +2,30 @@
 
 define(["jquery", "backbone"],
 
-    function($, Backbone) {
+  function($, Backbone) {
 
-        // Creates a new Backbone Model class object
-        var userModel = Backbone.Model.extend({
+    // Creates a new Backbone Model class object
+    var userModel = Backbone.Model.extend({
 
-            url: 'user', //relative URL where model's resource is
+      url: 'user', //relative URL where model's resource is
 
 
-            // Model Constructor
-            initialize: function() {
+      // Model Constructor
+      initialize: function(data) {
+        this.name = data.name;
 
-            },
+      },
 
-            // Default values for all of the Model attributes
-            defaults: {
-                name:""
-            }
+      // Default values for all of the Model attributes
+      defaults: {
+        name:""
+      }
 
-        });
+    });
 
-        // Returns the Model class
-        return userModel;
+    // Returns the Model class
+    return userModel;
 
-    }
+  }
 
 );
