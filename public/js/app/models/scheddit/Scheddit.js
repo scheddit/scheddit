@@ -5,7 +5,7 @@ define(["jquery", "backbone"],
   function($, Backbone) {
 
     // Creates a new Backbone Model class object
-    var schedditModel = Backbone.Model.extend({
+    var Scheddit = Backbone.Model.extend({
 
       url: '',
 
@@ -27,7 +27,7 @@ define(["jquery", "backbone"],
     });
 
     // Returns the Model class
-    return schedditModel;
+    return Scheddit;
 
   }
 

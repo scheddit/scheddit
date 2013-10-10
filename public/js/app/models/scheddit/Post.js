@@ -5,7 +5,7 @@ define(["jquery", "backbone"],
   function($, Backbone) {
 
     // Creates a new Backbone Model class object
-    var postModel = Backbone.Model.extend({
+    var Post = Backbone.Model.extend({
 
       url: '/post', //relative URL where model's resource is
 
@@ -28,7 +28,7 @@ define(["jquery", "backbone"],
     });
 
     // Returns the Model class
-    return postModel;
+    return Post;
 
   }
 
