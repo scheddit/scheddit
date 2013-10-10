@@ -9,6 +9,7 @@ define(["jquery", "backbone", "models/scheddit/postModel", "collections/scheddit
 
             // The DOM Element associated with this view
             el: ".schedule",
+            Collection: Collection,
 
             // View constructor
             initialize: function() {

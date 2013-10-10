@@ -61,10 +61,11 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             // Renders the view's template to the UI
             render: function() {
                 // example from myTunes
-                return this.$el.html([
-                  this.playerView.$el,
-                  new scheduleView().render(), new historyView().render()
+                this.template = _.template(template, [
+                  this.$el, new scheduleView().render(), new historyView().render()
                 ]);
+
+                return this.$el.html(this.template);
 
                 //var post = this.post;
                 //console.log(post);
