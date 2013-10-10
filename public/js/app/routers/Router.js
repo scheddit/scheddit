@@ -39,7 +39,24 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/u
         // console.log("data in user page initial call", data, arguments);
         data = data || {};
         data.user = {name: "Rupa"}; // brute force to send user name with View potentially from server
-        data.posts = [{urlOrDetails: "http://www.google.com", title: "Data from ROUTER", subreddit: "testOne", kind: "link", isPending: true, time: "2013-10-17T10:11"}, {urlOrDetails: "http://www.aol.com", title: "Aol is cool", subreddit: "testTwo", kind: "link", isPending: true, time: "2013-10-17T20:11"}];
+        data.posts = [
+        {
+          urlOrDetails: "http://www.google.com",
+          title: "Data from ROUTER",
+          subreddit: "testOne",
+          kind: "link",
+          isPending: true,
+          time: "2013-10-17T10:11"
+        },
+        {
+          urlOrDetails: "http://www.aol.com",
+          title: "Aol is cool",
+          subreddit: "testTwo",
+          kind: "link",
+          isPending: false,
+          time: "2013-10-17T20:11"
+        }
+      ];
         new userView(data); // {model: } is this where we pass in model?
       }
 
