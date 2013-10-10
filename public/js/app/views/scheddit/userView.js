@@ -60,17 +60,23 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             },
             // Renders the view's template to the UI
             render: function() {
+                // example from myTunes
+                return this.$el.html([
+                  this.playerView.$el,
+                  new scheduleView().render(), new historyView().render()
+                ]);
+
                 //var post = this.post;
                 //console.log(post);
                 // Setting the view's template property using the Underscore template method
-                this.template = _.template(template, {name: this.user.attributes.name, post: "testing"});
+                // this.template = _.template(template, {name: this.user.attributes.name, post: "testing"});
 
-                // hacked solution?::
-                this.$el.html(this.template);
-                //this.$el.find(".post").append(this.post.$el);
-                //this.post.render();
-                // Maintains chainability
-                return this;
+                // // hacked solution?::
+                // this.$el.html(this.template);
+                // //this.$el.find(".post").append(this.post.$el);
+                // //this.post.render();
+                // // Maintains chainability
+                // return this;
 
             },
 

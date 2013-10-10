@@ -15,8 +15,16 @@ define(["jquery", "backbone"],
 
             },
 
-            // Default values for all of the Model attributes
-            defaults: {urlOrDetails: "http://www.aol.com", title: "Google is cool", subreddit: "testOne", kind: "link", isPending: true, time: "2013-10-17T10:11"}
+            defaults: {
+                name:"",
+                kind:"",
+                title:"",
+                subreddit:"",
+                urlOrDetails:"",
+                selfPost:"",
+                isPending: true,
+                time:""
+            }            
 
         });
 
