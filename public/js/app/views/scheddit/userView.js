@@ -1,8 +1,8 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/scheddit/user.html", "views/scheddit/postView"],
+define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/scheddit/user.html", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
 
-    function($, Backbone, Model, template, PostView){ //note: we are not passing in postView.html
+    function($, Backbone, Model, template, PostView, scheduleView, historyView){ //note: we are not passing in postView.html
 
         var userView = Backbone.View.extend({
 
@@ -13,10 +13,11 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             initialize: function(data) {
                 console.log(data.user);
                 this.user = new Model(data.user); //dynamically set userModel w/ name
-                // var posts = data.posts;
-                console.log(this.user);
+                this.posts = data.posts;
+                console.log(this.posts);
                 // this.post = new PostView(); // pass in a collection here
-                
+                //this.user.get('name') check this
+                this.name = this.user.attributes.name;
                 // Calls the view's render method
                 this.render();
 
@@ -30,12 +31,6 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
                 "click .submitButton": "addToSchedule",
                 // listen for change on the "select type of post button", then call jquery function that either displays link or self-post form
                 "change #postType": "displayTextOrLinkForm"
-            },
-
-            // function that is triggered on button event
-            launchOauth: function(){
-                // code goes here
-                console.log("testing 1, 2, 3");
             },
 
             // function that is triggered when the submit button is pressed
@@ -62,7 +57,7 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
             render: function() {
                 // example from myTunes
                 this.template = _.template(template, [
-                  this.$el, new scheduleView().render(), new historyView().render()
+                  this.$el, new scheduleView({collection: this.posts}).render(), new historyView({collection: this.posts}).render()
                 ]);
 
                 return this.$el.html(this.template);

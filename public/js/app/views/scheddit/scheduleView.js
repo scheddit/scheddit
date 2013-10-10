@@ -1,15 +1,14 @@
 // scheduleView.js -- this is for scheduled posts
 
 
-define(["jquery", "backbone", "models/scheddit/postModel", "collections/scheddit/scheduleCollection", "views/scheddit/postView", "text!templates/scheddit/user.html"],
+define(["jquery", "backbone", "models/scheddit/postModel", "views/scheddit/postView", "text!templates/scheddit/user.html"],
 
-    function($, Backbone, Model, PostView, Collection, template){
+    function($, Backbone, Model, PostView, template){
 
         var scheduleView = Backbone.View.extend({
 
             // The DOM Element associated with this view
             el: ".schedule",
-            Collection: Collection,
 
             // View constructor
             initialize: function() {
@@ -26,7 +25,8 @@ define(["jquery", "backbone", "models/scheddit/postModel", "collections/scheddit
                 this.$el.children().detach();
 
                 return this.$el.html('<div class="schedule">Schedule</div>').append(
-                  this.Collection.map(function(post){
+                  this.collection.map(function(post){
+                    console.log(post);
                     return new PostView({model: post}).render();
                   })
                 );

@@ -19,7 +19,7 @@ define(["jquery", "backbone", "models/scheddit/postModel", "text!templates/sched
             render: function() {
 
                 // Setting the view's template property using the Underscore template method
-                this.template = _.template(template, {this.model.attributes});
+                this.template = _.template(template, {model: this.model});
 
                 // Dynamically updates the UI with the view's template
                 this.$el.html(this.template);

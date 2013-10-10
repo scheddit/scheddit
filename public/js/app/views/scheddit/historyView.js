@@ -1,15 +1,14 @@
 // historyView.js -- this is for historyd posts
 
 
-define(["jquery", "backbone", "models/scheddit/postModel", "collections/scheddit/historyCollection", "views/scheddit/postView", "text!templates/scheddit/user.html"],
+define(["jquery", "backbone", "models/scheddit/postModel", "views/scheddit/postView", "text!templates/scheddit/user.html"],
 
-    function($, Backbone, Model, PostView, Collection, template){
+    function($, Backbone, Model, PostView, template){
 
         var historyView = Backbone.View.extend({
 
             // The DOM Element associated with this view
             el: ".history",
-            Collection: Collection,
             // View constructor
             initialize: function() {
                 this.render();
@@ -24,8 +23,8 @@ define(["jquery", "backbone", "models/scheddit/postModel", "collections/scheddit
             render: function() {
                 this.$el.children().detach();
 
-                return this.$el.html('<div class="history">Schedule</div>').append(
-                  this.Collection.map(function(post){
+                return this.$el.html('<div class="history">History</div>').append(
+                  this.collection.map(function(post){
                     return new PostView({model: post}).render();
                   })
                 );

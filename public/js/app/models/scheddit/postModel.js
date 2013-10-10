@@ -24,8 +24,7 @@ define(["jquery", "backbone"],
                 selfPost:"",
                 isPending: true,
                 time:""
-            }            
-
+            }
         });
 
         // Returns the Model class
