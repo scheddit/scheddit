@@ -13,6 +13,7 @@ var passport  = require('passport');
 var util      = require('util');
 var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
+var request = require('request');
 
 // ENV VARIABLE CONFIGURATION
 // ==========================
@@ -76,32 +77,19 @@ passport.use(new redditStrategy({
         refreshToken: refreshToken
       }
     };
+
     var options = { upsert: true};
 
     //Update user document if found in databse,
     //If not found, create document
-
+    console.log("AccessToken:" + accessToken);
+    console.log("Profile: " + profile.name);
     schema.userModel.findOneAndUpdate(conditions, update, options, function(){
       console.log('user in database');
     });
     return done(null, profile);
   }));
-/*
-    var newUser = new schema.userModel({
-      profile: profile._json,
-      oauthInfo: {
-        accessToken: accessToken,
-        refreshToken: refreshToken
-      }
-    });
-    newUser.save(function (err) {
-      if (err) console.log(err);
-      else console.log('user saved!');
-    });
-    // debugger;
-    return done(null, profile);
-  }
-));*/
+
 
 // APP CONFIGURATION
 // ====================
@@ -138,5 +126,3 @@ if (require.main === module) {
   console.info('Running app as a module');
   exports.app = app;
 }
-
-// console.log('\n\nWelcome to Stacked!\n\nPlease go to http://localhost:' + port + ' to start using Require.js and Backbone.js\n\n');

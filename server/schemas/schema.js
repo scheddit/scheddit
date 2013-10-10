@@ -63,8 +63,8 @@ module.exports.insertPost = function(postData, res) {
   var newPost = new postModel(postData);
     newPost.save(function (err) {
       if (err) console.log(err);
-      // else console.log('post saved!');
-      else res.send('Successful scheddit');
+      else console.log('post saved!');
+      //else res.send('Successful scheddit');
     });
 };
 
