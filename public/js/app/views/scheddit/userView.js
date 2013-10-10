@@ -51,6 +51,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
       },
       // Renders the view's template to the UI
       render: function() {
+        $(document).find('#user').text(this.name);
         this.template = _.template(template, {name: this.name});
 
         return this.$el.html(this.template);
