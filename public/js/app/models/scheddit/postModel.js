@@ -2,34 +2,34 @@
 
 define(["jquery", "backbone"],
 
-    function($, Backbone) {
+  function($, Backbone) {
 
-        // Creates a new Backbone Model class object
-        var postModel = Backbone.Model.extend({
+    // Creates a new Backbone Model class object
+    var postModel = Backbone.Model.extend({
 
-            url: '/post', //relative URL where model's resource is
+      url: '/post', //relative URL where model's resource is
 
 
-            // Model Constructor
-            initialize: function() {
+      // Model Constructor
+      initialize: function() {
 
-            },
+      },
 
-            defaults: {
-                name:"",
-                kind:"",
-                title:"",
-                subreddit:"",
-                urlOrDetails:"",
-                selfPost:"",
-                isPending: true,
-                time:""
-            }
-        });
+      defaults: {
+        name:"",
+        kind:"",
+        title:"",
+        subreddit:"",
+        urlOrDetails:"",
+        selfPost:"",
+        isPending: true,
+        time:""
+      }
+    });
 
-        // Returns the Model class
-        return postModel;
+    // Returns the Model class
+    return postModel;
 
-    }
+  }
 
 );

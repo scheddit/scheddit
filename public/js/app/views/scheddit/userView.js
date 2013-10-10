@@ -17,13 +17,24 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
         this.model = new Model(data.user);
         console.log('model', this.model);
         // console.log('user', this.user.get('name'));
-        this.posts = data.posts;
+        this.posts = new Backbone.Collection(data.posts);
         // console.log(this.posts);
         // this.post = new PostView(); // pass in a collection here
         //this.user.get('name') check this
         this.name = this.model.name;
         // Calls the view's render method
         this.render();
+
+        console.log('this.posts', this.posts);
+
+        this.scheduleView = new scheduleView({
+          collection: this.posts,
+          el: this.$('#schedule')
+        });
+        this.historyView =  new historyView({
+          collection: this.posts,
+          el: this.$('#history')
+        });
 
         // this.post.render(); // What are we doing here.
          // console.log(this.post.render());
@@ -60,9 +71,8 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
       // Renders the view's template to the UI
       render: function() {
         // example from myTunes
-        this.template = _.template(template, {name: this.name,
-          schedule: new scheduleView({collection: this.posts}).render(), history: new historyView({collection: this.posts}).render()
-        });
+        // this.template = _.template(template, {name: this.name, schedule: new scheduleView({collection: this.posts}).render(), history: new historyView({collection: this.posts}).render()
+        this.template = _.template(template, {name: this.name});
 
         return this.$el.html(this.template);
 
@@ -79,7 +89,6 @@ define(["jquery", "backbone", "models/scheddit/userModel", "text!templates/sched
         // return this;
 
       },
-
       displayTextOrLinkForm: function(event){
         console.log("listening to form selection change");
         var linkOrSelf = event.target.value;

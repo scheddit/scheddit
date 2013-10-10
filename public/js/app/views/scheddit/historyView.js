@@ -3,48 +3,43 @@
 
 define(["jquery", "backbone", "models/scheddit/postModel", "views/scheddit/postView", "text!templates/scheddit/user.html"],
 
-    function($, Backbone, Model, PostView, template){
+  function($, Backbone, Model, PostView, template){
 
-        var historyView = Backbone.View.extend({
+    var historyView = Backbone.View.extend({
+      // View constructor
+      initialize: function() {
+        this.render();
+      },
 
-            // The DOM Element associated with this view
-            el: ".history",
-            // View constructor
-            initialize: function() {
-                this.render();
-            },
+      // View Event Handlers
+      events: {
+        //add delete and edit events
+      },
 
-            // View Event Handlers
-            events: {
-                //add delete and edit events
-            },
+      // Renders the view's template to the UI
+      render: function() {
+        return this.$el.html('<h2>History</h2>').append(
+          this.collection.map(function(post){
+          return new PostView({model: post}).render();
+          })
+        );
 
-            // Renders the view's template to the UI
-            render: function() {
-                this.$el.children().detach();
+        // Setting the view's template property using the Underscore template method
+        // this.template = _.template(template, {title: this.data.title, kind: this.data.kind, urlOrDetails:this.data.urlOrDetails, subreddit: this.data.subreddit, time:this.data.time});
 
-                return this.$el.html('<div class="history">History</div>').append(
-                  this.collection.map(function(post){
-                    return new PostView({model: post}).render();
-                  })
-                );
+        // // Dynamically updates the UI with the view's template
+        // this.$el.html(this.template);
 
-                // Setting the view's template property using the Underscore template method
-                // this.template = _.template(template, {title: this.data.title, kind: this.data.kind, urlOrDetails:this.data.urlOrDetails, subreddit: this.data.subreddit, time:this.data.time});
+        // // Maintains chainability
+        // return this;
 
-                // // Dynamically updates the UI with the view's template
-                // this.$el.html(this.template);
+      }
 
-                // // Maintains chainability
-                // return this;
+    });
 
-            }
+    // Returns the View class
+    return historyView;
 
-        });
-
-        // Returns the View class
-        return historyView;
-
-    }
+  }
 
 );

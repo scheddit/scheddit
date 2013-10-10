@@ -36,7 +36,7 @@ define(["jquery", "backbone", "models/scheddit/schedditModel", "views/scheddit/u
         // from the server we get the user from reddit
         // from mongo we get posts if the user has any throgh scheddit
         // comes in as a response
-        console.log("data in user page initial call", data, arguments);
+        // console.log("data in user page initial call", data, arguments);
         data = data || {};
         data.user = {name: "Rupa"}; // brute force to send user name with View potentially from server
         data.posts = [{urlOrDetails: "http://www.google.com", title: "Data from ROUTER", subreddit: "testOne", kind: "link", isPending: true, time: "2013-10-17T10:11"}, {urlOrDetails: "http://www.aol.com", title: "Aol is cool", subreddit: "testTwo", kind: "link", isPending: true, time: "2013-10-17T20:11"}];
