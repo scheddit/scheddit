@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           ignoredFiles: ['README.md', 'node_modules/**'],
           watchedExtensions: ['js'],
           watchedFolders: ['tests','server'],
-          debug: false,
+          debug: true,
           delayTime: 1,
           env: {
             PORT: '1337'
