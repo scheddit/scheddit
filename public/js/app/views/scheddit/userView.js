@@ -11,6 +11,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
 
       // View constructor
       initialize: function(data) {
+        console.log(data);
         this.model = new Model(data.user);
         this.posts = new Backbone.Collection(data.posts);
         this.name = this.model.name;

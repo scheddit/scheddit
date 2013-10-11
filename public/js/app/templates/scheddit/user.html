@@ -1,7 +1,7 @@
 <!-- HTML Template -->
 <div style="height:80px"></div>
 <div class="container">
-  <h4 class="name"><%=name %></h4>
+  <h4 class="name"><em>Welcome <%=name %>!</em></h4>
   <h3 class="underline"> What would you like to share today? </h3>
   <form id="newPost" name="submission"class="initialCollapse">
     <select name="kind" id="postType" class="btn dropdown-toggle">
@@ -9,15 +9,15 @@
       <option value="link">Link</option>
       <option value="self">Self-Post</option>
     </select>
-    </br>
+    <br/>
     <input name="title" type="text" placeholder="title" class="initialHide"></input>
-    <br>
+    <br/>
     <input name="subreddit" type="text" placeholder="choose a subreddit" class="initialHide"></input>
-    <br>
+    <br/>
     <input name="urlOrDetails" id="urlOrDetails" type="url" class="initialHide"></input>
-    <br>
+    <br/>
     <input type="datetime-local" name="scheduler" class="initialHide"></input>
-    <br>
+    <br/>
     <input type="submit" name="submitButton" class="submitButton initialHide"></input>
   </form>
   <div id="schedule"></div>

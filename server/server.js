@@ -13,6 +13,7 @@ var passport  = require('passport');
 var util      = require('util');
 var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
+var request = require('request');
 
 // ENV VARIABLE CONFIGURATION
 // ==========================
@@ -61,28 +62,38 @@ passport.deserializeUser(function(obj, done) {
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Reddit
 //   profile), and invoke a callback with a user object.
-passport.use(new redditStrategy({
+var rStrategy = new redditStrategy({
     clientID: redditConsumerKey,
     clientSecret: redditConsumerSecret,
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    //findorcreate user
-    var newUser = new schema.userModel({
+    console.log('modhash?', profile);
+
+    var conditions = { "profile.id" : profile.id };
+    var update = {
       profile: profile._json,
       oauthInfo: {
         accessToken: accessToken,
         refreshToken: refreshToken
       }
+    };
+
+    var options = { upsert: true};
+    //Update user document if found in databse,
+    //If not found, create document
+    console.log("AccessToken:" + accessToken);
+    console.log("Profile: " + profile.name);
+    schema.userModel.findOneAndUpdate(conditions, update, options, function(){
+      console.log('user in database');
     });
-    newUser.save(function (err) {
-      if (err) console.log(err);
-      else console.log('user saved!');
-    });
-    // debugger;
     return done(null, profile);
-  }
-));
+});
+
+passport.use(rStrategy);
+module.exports.rStrategy = rStrategy;
+
+//rs._oauth2.post(uri,token,secret,body, function(){/*callback;*/ });
 
 // APP CONFIGURATION
 // ====================
@@ -119,5 +130,3 @@ if (require.main === module) {
   console.info('Running app as a module');
   exports.app = app;
 }
-
-// console.log('\n\nWelcome to Stacked!\n\nPlease go to http://localhost:' + port + ' to start using Require.js and Backbone.js\n\n');

@@ -6,14 +6,10 @@ var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
 var http = require('http');
 
+var request = require('request');
+var server = require('./server');
 
 module.exports.api = function(app, schema) {
-
-/* route organization
-  {
-    'login' : login function
-    'userdata' : get userdata
-  }*/
 
   // Sample Rest Call
 
@@ -32,17 +28,26 @@ module.exports.api = function(app, schema) {
   app.get('/userdata', function(req, res) {
     //TO-DO: solidify schema
     //schema.getUserPosts
-
     //figure out how to get the userid of the client
-    schema.userGet(req, res, 'dummyUser');
+    //result = schema.userGet(req, res, 'dummyUser');
 
-    //res.send(result);
+    schema.userModel.findOne({'profile.name': req.user.name }, 'profile', function(err, result){
+      res.send(result.profile);
+    });
+
+  });
+
+
+  app.get('/userposts', function(req, res) {
+    schema.userModel.findOne({'profile.name': req.user.name }, 'profile.id', function(err, result){
+      var posts = [];
+      //find all posts w/ id = result.profile.id;
+      //debugger;
+      res.send(result.posts);
+    });
   });
 
   app.get('/redirect', function(req, res, next) {
-    //debugger;
-    console.log('GET headers ', req.headers);
-
     if (req.query.state == req.session.state){
       // console.log('redireq', req);
       passport.authenticate('reddit', {
@@ -56,66 +61,47 @@ module.exports.api = function(app, schema) {
   });
 
   app.post('/schedule', function(req, res, next) {
-    // console.log('sched req',req.user);
-    // console.log('POST headers ', req.headers);
+
+//debugger;
     var postData = req.body;
+    postData.isPending = true;
+    postData.redditProfileId = req.user.id;
+    schema.insertPost(postData);
 
-    // var options = {
-    //   hostname: 'www.reddit.com',
-    //   port: 80,
-    //   path: '/api/me.json',
-    //   method: 'POST'
-    //   // headers: req.headers
-    // };
 
-    // var request = http.request(options, function(response) {
-    //   var total = '';
-    //   response.on('data', function(chunk){
-    //     total += chunk;
-    //   });
-    //   response.on('end', function() {
-    //     console.log('modhash? ', total);
-    //   });
-    // });
+    //query mongo for this users oauth token
+    schema.userModel.findOne({'profile.name': req.user.name },
+      'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
+        var token = response.oauthInfo.accessToken;
+        var refresh = response.oauthInfo.refreshToken;
+        var body = {
+          api_type: 'json',
+          kind: 'link',
+          sr: 'testonetwo',
+          title: 'The Url for Google',
+          url: 'http://www.google.com',
+          then: 'comments'
+        };
 
-    // request.on('error', function(e) {
-    //   console.log('Error: ', e);
-    // });
+        // var headers = {
+        //   'Content-Type':'application/json',
+        //   'User-Agent':'scheddit'
+        // };
 
-    // request.end();
-    //TODO: figure out how we determine who the user is so we can store something in _userid
+        console.log("accessToken from db :" + token);
 
-    // ensureAuthenticated(req, res, function(){
-      postData.isPending = true;
-      // schema.insertPost(postData);
-      // }, res);
-    // });
+        request.post({
+          url: 'https://oauth.reddit.com/api/submit', 
+          json: true,
+          body: body,
+          headers: { Authorization: "Bearer " + token + ", scope=submit", 'User-Agent': 'Requests test'}
+        }, function(err, response, body){
+          //debugger;
+          console.log(err, body);
+        });
 
-    var options2 = {
-      hostname: 'www.reddit.com',
-      port: 80,
-      path: '/api/submit',
-      method: 'POST'
-      // headers: req.headers
-    };
-
-    var request2 = http.request(options2, function(res) {
-      console.log('STATUS: ' + res.statusCode);
-      console.log('HEADERS: ' + JSON.stringify(res.headers));
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
-        console.log('BODY: ' + chunk);
-      });
     });
 
-    request2.on('error', function(e) {
-      console.log('problem with request: ' + e.message);
-    });
-
-    // write data to request body
-    request2.write('data\n');
-    request2.write('data\n');
-    request2.end();
   });
 
   // Simple route middleware to ensure user is authenticated.

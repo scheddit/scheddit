@@ -18,8 +18,8 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/UserVi
 
         // When there is no hash on the url, the home method is called
         "": "index",
-        "user": "user",
-        "/": "index"
+        "user": "user"
+        // "/": "index",
 
       },
 
@@ -29,30 +29,48 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/UserVi
         new View();
       },
 
-      user: function(data) {
-        data = data || {};
-        data.user = {name: "Rupa"};
-        data.posts = [
-        {
-          urlOrDetails: "http://www.google.com",
-          title: "Data from ROUTER",
-          subreddit: "testOne",
-          kind: "link",
-          isPending: true,
-          time: "2013-10-17T10:11"
-        },
-        {
-          urlOrDetails: "http://www.aol.com",
-          title: "Aol is cool",
-          subreddit: "testTwo",
-          kind: "link",
-          isPending: false,
-          time: "2013-10-17T20:11"
-        }
-      ];
-        new UserView(data);
+      user: function() {
+        var data = {};
+        $.get("/userdata").success(function(userdata){
+          console.log('in success', userdata);
+          data.user = userdata;
+          data.posts = [
+            {
+              urlOrDetails: "http://www.google.com",
+              title: "Data from ROUTER",
+              subreddit: "testOne",
+              kind: "link",
+              isPending: true,
+              time: "2013-10-17T10:11"
+            },
+            {
+              urlOrDetails: "http://www.aol.com",
+              title: "Aol is cool",
+              subreddit: "testTwo",
+              kind: "link",
+              isPending: false,
+              time: "2013-10-17T20:11"
+            },
+            {
+              urlOrDetails: "http://www.google.com",
+              title: "Data from ROUTER2",
+              subreddit: "testOne2",
+              kind: "link",
+              isPending: true,
+              time: "2013-10-17T10:11"
+            },
+            {
+              urlOrDetails: "http://www.aol.com",
+              title: "Aol is cool2",
+              subreddit: "testTwo2",
+              kind: "link",
+              isPending: false,
+              time: "2013-10-17T20:11"
+            }
+          ];
+          new UserView(data);
+        });
       }
-
     });
 
     // Returns the DesktopRouter class
