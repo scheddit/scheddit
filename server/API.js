@@ -47,8 +47,8 @@ module.exports.api = function(app, schema) {
   app.get('/userposts', function(req, res) {
     schema.userModel.findOne({'profile.name': req.user.name }, 'profile.id', function(err, result){
       var posts = [];
-      //find all posts w/ id = result.profile.id
-
+      //find all posts w/ id = result.profile.id;
+      debugger;
       res.send(result.posts);
     });
   });
