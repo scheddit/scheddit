@@ -29,7 +29,7 @@ var userSchema = new Schema({
 });
 
 var postSchema = new Schema({
-  _userid : Number,
+  redditProfileId : String,
   title : String,
   kind : String,
   urlOrDetails: String,
@@ -38,7 +38,8 @@ var postSchema = new Schema({
   // creating Date objects is slow and we should be storing
   // a Number and converting to a date
   time: Date,
-  isPending: Boolean
+  isPending: Boolean,
+  accessToken: String
 });
 
 // CREATE DATABASE MODEL
@@ -48,16 +49,28 @@ var postModel = mongoose.model('post', postSchema);
 module.exports.userModel = userModel;
 module.exports.postModel = postModel;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fae89e5776baa834607ca714d17b8cca2a89962d
 // SCHEMA METHODS
 // ==============
 module.exports.insertPost = function(postData, res) {
-  var newPost = new postModel(postData);
+    userModel.findOne({ 'profile.id': postData.redditProfileId}, 'oauthInfo.accessToken', function(err, user) {
+      if(err) console.log(err);
+      postData.accessToken = user.oauthInfo.accessToken;
+    });
+    var newPost = new postModel(postData);
     newPost.save(function (err) {
       if (err) console.log(err);
+<<<<<<< HEAD
       else console.log('post saved!');
       //else res.send('Successful scheddit');
+=======
+      else res.send('Successful scheddit');
+>>>>>>> fae89e5776baa834607ca714d17b8cca2a89962d
     });
+    return accessToken;
 };
 
 module.exports.userGet = function(req, res, username) {

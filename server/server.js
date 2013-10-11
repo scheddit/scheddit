@@ -68,6 +68,7 @@ var rStrategy = new redditStrategy({
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('modhash?', profile);
 
     var conditions = { "profile.id" : profile.id };
     var update = {
