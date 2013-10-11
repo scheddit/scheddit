@@ -48,14 +48,6 @@ var postModel = mongoose.model('post', postSchema);
 module.exports.userModel = userModel;
 module.exports.postModel = postModel;
 
-//changed to new userModel
-/*var dummyUser = new userModel({ _userid : 1, username: 'bob' });
-var dummyPosts = { _userid : 1, title : 'my test post',
-    isLink: false,
-    contents: 'this is the body of the post',
-    subr : 'scheddit'
-  };*/
-
 
 // SCHEMA METHODS
 // ==============
@@ -68,14 +60,12 @@ module.exports.insertPost = function(postData, res) {
     });
 };
 
-
-
 module.exports.userGet = function(req, res, username) {
-  res.send(dummyUser);
-  // userModel.find({'username': username}, function(err, user){
-  //   if (err) throw err;
+  userModel.find({'username': username}, function(err, user){
+     if (err) throw err;
+     console.log("user: " + user.profile.name);
   //   res.send(user);
-  // });
+   });
 };
 
 

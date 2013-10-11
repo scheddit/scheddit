@@ -5,11 +5,13 @@ var util      = require('util');
 var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
 var http = require('http');
+var request = require('request');
+var server = require('./server');
 
 
 module.exports.api = function(app, schema) {
 
-/* route organization
+/* to-do : refactor route organization
   {
     'login' : login function
     'userdata' : get userdata
@@ -32,11 +34,23 @@ module.exports.api = function(app, schema) {
   app.get('/userdata', function(req, res) {
     //TO-DO: solidify schema
     //schema.getUserPosts
-
     //figure out how to get the userid of the client
-    schema.userGet(req, res, 'dummyUser');
+    //result = schema.userGet(req, res, 'dummyUser');
 
-    //res.send(result);
+    schema.userModel.findOne({'profile.name': req.user.name }, 'profile', function(err, result){
+      res.send(result.profile);
+    });
+
+  });
+
+
+  app.get('/userposts', function(req, res) {
+    schema.userModel.findOne({'profile.name': req.user.name }, 'profile.id', function(err, result){
+      var posts = [];
+      //find all posts w/ id = result.profile.id
+
+      res.send(result.posts);
+    });
   });
 
   app.get('/redirect', function(req, res, next) {
@@ -56,11 +70,45 @@ module.exports.api = function(app, schema) {
   });
 
   app.post('/schedule', function(req, res, next) {
-    // console.log('sched req',req.user);
-    // console.log('POST headers ', req.headers);
+
+
     var postData = req.body;
     postData.isPending = true;
     schema.insertPost(postData);
+
+
+    //query mongo for this users oauth token
+    schema.userModel.findOne({'profile.name': req.user.name },
+      'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
+        var token = response.oauthInfo.accessToken;
+        var refresh = response.oauthInfo.refreshToken;
+        var body = {
+          api_type: 'json',
+          kind: 'link',
+          sr: 'testonetwo',
+          title: 'The Url for Google',
+          url: 'http://www.google.com',
+          then: 'comments'
+        };
+
+        // var headers = {
+        //   'Content-Type':'application/json',
+        //   'User-Agent':'scheddit'
+        // };
+
+        console.log("accessToken from db :" + token);
+
+        request.post({
+          url: 'https://oauth.reddit.com/api/submit', 
+          json: true,
+          body: body,
+          headers: { Authorization: "Bearer " + token + ", scope=submit", 'User-Agent': 'Requests test'}
+        }, function(err, response, body){
+          //debugger;
+          console.log(err, body);
+        });
+
+    });
 
   });
 
