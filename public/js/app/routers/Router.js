@@ -18,7 +18,8 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/UserVi
 
         // When there is no hash on the url, the home method is called
         "": "index",
-        "user": "user"
+        "user": "user",
+        "/": "index"
 
       },
 
