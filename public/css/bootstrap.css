@@ -4206,7 +4206,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-right: 15px;
   margin-bottom: 8px;
   background-color: transparent;
-  border: 1px solid transparent;
+  border: 1px solid #cccccc;
   border-radius: 4px;
 }
 
@@ -4215,6 +4215,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   width: 22px;
   height: 2px;
   border-radius: 1px;
+  background-color: #cccccc;
 }
 
 .navbar-toggle .icon-bar + .icon-bar {
