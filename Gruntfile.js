@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       },
       exec: {
         options: {
-          exec: 'less'
+          exec: 'stylus'
         }
       }
     },
@@ -78,28 +78,36 @@ module.exports = function(grunt) {
         command: 'cp -r ./public/js/libs/font-awesome/font/* ./public/font'
       }
     },
-    less: {
-      production: {
+    stylus: {
+      compile: {
         options: {
-          paths: ["public/css"]
+          paths: ["public/css"],
+          urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
+          use: [
+            require('fluidity') // use stylus plugin at compile time
+          // ],
+          // import: [      //  @import 'foo', 'bar/moo', etc. into every .styl file
+          //   'foo',       //  that is compiled. These might be findable based on values you gave
+          //   'bar/moo'    //  to `paths`, or a plugin you added under `use`
+          ]
         },
         files: {
-          "public/css/includes/css/custom.css": "public/css/includes/less/custom.less"
+          "public/css/includes/css/custom.css": "public/css/includes/stylus/custom.styl" // 1:1 compile
         }
       }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('test', ['jshint', 'mochaTest' ]);
-  grunt.registerTask('init', ['shell:copyBootstrapCSS', 'shell:copyFontAwesomeCSS', 'shell:copyFontAwesomeFonts','less:production', 'requirejs:mainJS', 'requirejs:mainCSS']);
-  grunt.registerTask('build', ['less:production', 'requirejs:mainJS', 'requirejs:mainCSS']);
+  grunt.registerTask('init', ['shell:copyBootstrapCSS', 'shell:copyFontAwesomeCSS', 'shell:copyFontAwesomeFonts', 'requirejs:mainJS', 'requirejs:mainCSS']);
+  grunt.registerTask('build', ['requirejs:mainJS', 'requirejs:mainCSS']);
   grunt.registerTask('server', ['nodemon:dev']);
   grunt.registerTask('default', ['init', 'test', 'build']);
 
