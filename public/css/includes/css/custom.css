@@ -1,21 +1,31 @@
+body{background-color:#f1f1f1}
 #user{padding:25px;float:right}
 .post-details{list-style:none;display:table-row}
 .post-details li{display:table-cell;padding:0 10px}
-.nav{background-color:#cee3f8}
+.nav{background-color:#7c90ad}
 .nav a{color:#fff}
-.navbar-header{background-color:#cee3f8}
+.navbar-header{background-color:#7c90ad}
 .navbar-header a{color:#fff}
-.collapse{background-color:#cee3f8}
+.collapse{background-color:#7c90ad}
 .collapse a{color:#fff}
 .navbar-collapse{border-bottom:1px solid #ccc}
+.navbar-nav{border:1px solid #7a93b4}
 .navbar-nav > li > a{line-height:40px}
 .navbar-brand{line-height:40px}
 #logo{padding-left:10px}
-.post{position:relative;padding:10px;margin:15px;background:rgba(200,200,200,0.92);border:2px solid #a0a0a0;border-radius:5px;font-size:16px;list-style:none;}
+.toShareForm{padding:5px}
+.initialHide{width:400px}
+form{background-color:#e2e2e2;border:2px solid #c2c2c2;border-radius:5px;width:400px;padding:5px}
+.tryIt{background-color:#bababa;color:#3a4854}
+.signIn{background-color:#7c90ad;border:2px solid #7a93b4;border-radius:5px;}
+.signIn a{color:#fff}
+.frontPage{border:2px solid #c2c2c2}
+.explainIt{color:#7a93b4}
+.post{position:relative;padding:10px;margin:15px;background:#f1f1f1;border:2px solid #a0a0a0;border-radius:5px;font-size:16px;list-style:none;}
 .post:before,.post:after{position:absolute;width:0;height:0;border:solid transparent;content:" ";pointer-events:none;left:50%;bottom:100%;margin-left:-.75rem}
-.post:before{border-width:.75rem;border-bottom-color:#a0a0a0}
-.post:after{border-width:-2.25rem;margin-left:2.25rem;border-bottom-color:rgba(200,200,200,0.92)}
-.post:before,.post.arrowCenter:before,.post:after,.post.arrowCenter:after{left:50%}
+.post:before{border-width:.75rem;border-right-color:#a0a0a0;margin-top:-.5rem}
+.post:after{border-width:-2.25rem;margin-left:0;border-right-color:rgba(200,200,200,0.92)}
+.post:before,.post.arrowCenter:before,.post:after,.post.arrowCenter:after{left:-.76rem;top:1.5rem}
 .post.arrowCen ter > strong:first-child{text-align:center;padding:.563rem 0 0 0}
 .post.arrowLeft:before,.post.arrowLeft:after{left:1.25rem}
 .post.arrowRight:before,.post.arrowRight:after{left:auto;right:.5rem}

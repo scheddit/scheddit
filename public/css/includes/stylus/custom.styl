@@ -1,18 +1,29 @@
 // Custom Stylus
 // ===========
 
+$body_background_color = rgb(241, 241, 241)
+$body_text_dark = rgb(58, 72, 84)
+$body_text_recessed = rgb(184, 184, 184)
+$body_unselected_icon = rgb(216, 216, 216)
+
 $nav_text_color = white
-$nav_border_color = rgb(160, 160, 160)
-$nav_background_color = #cee3f8 //from reddit
+$nav_border_color = rgb(122, 147, 180)
+$nav_background_color = rgb(124, 144, 173)
+// $nav_background_color = rgb(157, 168, 191) rgb(97, 122, 155) NOT WORKING
 $nav_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
 
-/*body
-  background-color :*/
+$form_background_color = rgb(226,226,226)
+$form_border_color = rgb(194,194,194)
+$form_dark_background = rgb(186, 186, 186)
+$form_dark_text = rgb(241, 241, 241)
+
+body
+  background-color : $body_background_color
 
 #user
+  // border: 1px solid $nav_border_color
   padding: 25px
   float: right
-
 
 .post-details
   list-style: none
@@ -45,6 +56,8 @@ $nav_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
   /*background-color: white*/
   border-bottom: 1px solid #cccccc
 
+.navbar-nav
+  border: 1px solid $nav_border_color
 
 .navbar-nav > li > a
   line-height: 40px
@@ -57,13 +70,41 @@ $nav_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
 #logo
   padding-left: 10px
 
+.toShareForm
+  // width: 70% //This should change
+  padding: 5px
 
-/*.post
-  border-radius: 8px
-  padding: 10px
-  width: auto
-  border: 1px solid #cccccc
-  margin: 5px*/
+.initialHide
+  width: 400px
+
+form
+  background-color: $form_background_color
+  border: 2px solid $form_border_color
+  border-radius: 5px
+  width: 400px
+  padding: 5px
+
+.tryIt
+  background-color: $form_dark_background
+  color: $body_text_dark
+
+.signIn
+  background-color: $nav_background_color
+  border: 2px solid $nav_border_color
+  border-radius: 5px
+
+  a {
+    color: $nav_text_color
+  }
+
+.frontPage {
+  border: 2px solid $form_border_color
+}
+
+.explainIt {
+  color: $nav_border_color
+}
+
 
 // Pulldown
 $pulldown_arrow_size = 0.75rem
@@ -81,7 +122,7 @@ $px = 1px
   padding: 10px;
   margin: 15px;
 
-  background: $pulldown_background_color;
+  background: $body_background_color;
 
   border: 2px solid $pulldown_border_color;
   border-radius: 5px;
@@ -109,19 +150,23 @@ $px = 1px
   &:before {
     border-width: $pulldown_arrow_size;
 
-    border-bottom-color: $pulldown_border_color;
+    border-right-color: $pulldown_border_color;
+    margin-top: -.5rem
   }
   &:after {
     border-width: $pulldown_arrow_size - 3px;
-    margin-left: -1*$pulldown_arrow_size + 3px;
-    border-bottom-color: $pulldown_background_color ;
+    margin-left: 0;
+    // margin-left: -1*$pulldown_arrow_size + 3px;
+    border-right-color: $pulldown_background_color ;
+    // border-right-color: black ; //for testing visibility
   }
 
   &, // default
   &.arrowCenter {
     &:before,
     &:after {
-      left: 50%;
+      left: -.76rem;
+      top: 1.5rem
     }
   }
 
