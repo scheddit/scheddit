@@ -1,6 +1,14 @@
 // Custom Stylus
 // ===========
 
+$nav_text_color = white
+$nav_border_color = rgb(160, 160, 160)
+$nav_background_color = #cee3f8 //from reddit
+$nav_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
+
+/*body
+  background-color :*/
+
 #user
   padding: 25px
   float: right
@@ -15,9 +23,26 @@
   display: table-cell
   padding: 0 10px
 
+.nav
+  background-color: $nav_background_color
+
+.nav a
+  color: $nav_text_color
+
+.navbar-header
+  background-color: $nav_background_color
+
+.navbar-header a
+  color: $nav_text_color
+
+.collapse
+  background-color: $nav_background_color
+
+.collapse a
+  color: $nav_text_color
 
 .navbar-collapse
-  background-color: white
+  /*background-color: white*/
   border-bottom: 1px solid #cccccc
 
 
