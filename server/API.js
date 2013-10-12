@@ -88,16 +88,16 @@ module.exports.api = function(app, schema) {
         //   'User-Agent':'scheddit'
         // };
 
-        console.log("accessToken from db :" + token);
+        // console.log("accessToken from db :" + token);
 
         request.post({
-          url: 'https://oauth.reddit.com/api/submit', 
+          url: 'https://oauth.reddit.com/api/submit',
           json: true,
           body: body,
           headers: { Authorization: "Bearer " + token + ", scope=submit", 'User-Agent': 'Requests test'}
         }, function(err, response, body){
           //debugger;
-          console.log(err, body);
+          // console.log(err, body);
         });
 
     });
@@ -110,7 +110,7 @@ module.exports.api = function(app, schema) {
   //   the request will proceed.  Otherwise, the user will be redirected to the
   //   login page.
   function ensureAuthenticated(req, res, next) {
-    console.log('ensuring');
+    // console.log('ensuring');
     if (req.isAuthenticated()) { return next(); }
     res.redirect('/login');
   }
