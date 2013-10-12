@@ -68,7 +68,6 @@ var rStrategy = new redditStrategy({
     callbackURL: "http://localhost:1337/redirect"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('modhash?', profile);
 
     var conditions = { "profile.id" : profile.id };
     var update = {
@@ -82,10 +81,10 @@ var rStrategy = new redditStrategy({
     var options = { upsert: true};
     //Update user document if found in databse,
     //If not found, create document
-    console.log("AccessToken:" + accessToken);
-    console.log("Profile: " + profile.name);
+    // console.log("AccessToken:" + accessToken);
+    // console.log("Profile: " + profile.name);
     schema.userModel.findOneAndUpdate(conditions, update, options, function(){
-      console.log('user in database');
+      // console.log('user in database');
     });
     return done(null, profile);
 });

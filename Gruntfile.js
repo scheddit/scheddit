@@ -1,7 +1,18 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+
     pkg: grunt.file.readJSON('package.json'),
+
+    concurrent: {
+      target: {
+        tasks: ['nodemon:dev', 'watch'],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+    },
+
     nodemon: {
       dev: {
         options: {
@@ -17,13 +28,19 @@ module.exports = function(grunt) {
           },
           cwd: __dirname
         }
-      },
-      exec: {
+      }
+    },
+
+    watch: {
+      scripts: {
+        files: ['public/css/**/*.styl'],
+        tasks: ['stylus'],
         options: {
-          exec: 'less'
+          livereload: true
         }
       }
     },
+
     requirejs: {
       mainJS: {
         options: {
@@ -48,6 +65,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
     jshint: {
       files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
       options: {
@@ -59,6 +77,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
     mochaTest: {
       test: {
         options: {
@@ -67,6 +86,7 @@ module.exports = function(grunt) {
         src: ['server/tests/**/*.js']
       }
     },
+
     shell: {
       copyBootstrapCSS: {
         command: 'cp ./public/js/libs/bootstrap/dist/css/bootstrap.css ./public/css/bootstrap.css'
@@ -78,29 +98,43 @@ module.exports = function(grunt) {
         command: 'cp -r ./public/js/libs/font-awesome/font/* ./public/font'
       }
     },
-    less: {
-      production: {
+
+    stylus: {
+      compile: {
         options: {
-          paths: ["public/css"]
+          paths: ["public/css"],
+          urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
+          use: [
+            require('fluidity') // use stylus plugin at compile time
+          // ],
+          // import: [      //  @import 'foo', 'bar/moo', etc. into every .styl file
+          //   'foo',       //  that is compiled. These might be findable based on values you gave
+          //   'bar/moo'    //  to `paths`, or a plugin you added under `use`
+          ]
         },
+
         files: {
-          "public/css/includes/css/custom.css": "public/css/includes/less/custom.less"
+          "public/css/includes/css/custom.css": "public/css/includes/stylus/custom.styl" // 1:1 compile
         }
       }
     }
+
   });
 
+
+  grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-concurrent');
 
   grunt.registerTask('test', ['jshint', 'mochaTest' ]);
-  grunt.registerTask('init', ['shell:copyBootstrapCSS', 'shell:copyFontAwesomeCSS', 'shell:copyFontAwesomeFonts','less:production', 'requirejs:mainJS', 'requirejs:mainCSS']);
-  grunt.registerTask('build', ['less:production', 'requirejs:mainJS', 'requirejs:mainCSS']);
-  grunt.registerTask('server', ['nodemon:dev']);
+  grunt.registerTask('init', ['shell:copyBootstrapCSS', 'shell:copyFontAwesomeCSS', 'shell:copyFontAwesomeFonts', 'requirejs:mainJS', 'requirejs:mainCSS']);
+  grunt.registerTask('build', ['requirejs:mainJS', 'requirejs:mainCSS']);
+  grunt.registerTask('server', ['concurrent']);
   grunt.registerTask('default', ['init', 'test', 'build']);
 
 };
