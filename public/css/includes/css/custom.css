@@ -5,7 +5,7 @@
 .navbar-nav > li > a{line-height:40px}
 .navbar-brand{line-height:40px}
 #logo{padding-left:10px}
-.post{position:relative;padding:0;margin:0;background:rgba(200,200,200,0.92);border:2px solid #a0a0a0;border-radius:5px;font-size:16px;list-style:none;}
+.post{position:relative;padding:10px;margin:15px;background:rgba(200,200,200,0.92);border:2px solid #a0a0a0;border-radius:5px;font-size:16px;list-style:none;}
 .post:before,.post:after{position:absolute;width:0;height:0;border:solid transparent;content:" ";pointer-events:none;left:50%;bottom:100%;margin-left:-.75rem}
 .post:before{border-width:.75rem;border-bottom-color:#a0a0a0}
 .post:after{border-width:-2.25rem;margin-left:2.25rem;border-bottom-color:rgba(200,200,200,0.92)}
