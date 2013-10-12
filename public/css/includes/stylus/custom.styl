@@ -22,6 +22,7 @@ body
 
 .container
   margin-top: 20px
+  margin-bottom: 50px
 
 #user
   border: 1px solid $nav_border_color
@@ -162,24 +163,26 @@ $px = 1px
   }
   &:before {
     border-width: $pulldown_arrow_size;
-
     border-right-color: $pulldown_border_color;
     margin-top: -.5rem
+    left: -.75rem;
+    top: 1.45rem
+
   }
   &:after {
-    border-width: $pulldown_arrow_size - 3px;
-    margin-left: 0;
-    // margin-left: -1*$pulldown_arrow_size + 3px;
-    border-right-color: $pulldown_background_color ;
-    // border-right-color: black ; //for testing visibility
+    border-width: $pulldown_arrow_size - .15rem
+    margin-left: 0
+    left: -1.1rem
+    top: 1.1rem
+    border-right-color: $body_background_color
   }
 
   &, // default
   &.arrowCenter {
     &:before,
     &:after {
-      left: -.76rem;
-      top: 1.5rem
+      // left: -.76rem;
+//      top: 1.5rem
     }
   }
 
