@@ -52,7 +52,7 @@ module.exports.api = function(app, schema) {
     if (req.query.state == req.session.state){
       // console.log('redireq', req);
       passport.authenticate('reddit', {
-        successRedirect: '/#user',
+        successRedirect: '/#user', // needs to send user along
         failureRedirect: '/login'
       })(req, res, next);
     }
@@ -111,7 +111,7 @@ module.exports.api = function(app, schema) {
   //   the request will proceed.  Otherwise, the user will be redirected to the
   //   login page.
   function ensureAuthenticated(req, res, next) {
-    console.log('ensuring');
+    // console.log('ensuring');
     if (req.isAuthenticated()) { return next(); }
     res.redirect('/login');
   }
