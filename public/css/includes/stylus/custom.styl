@@ -20,10 +20,15 @@ $form_dark_text = rgb(241, 241, 241)
 body
   background-color : $body_background_color
 
+.container
+  margin-top: 20px
+
 #user
-  // border: 1px solid $nav_border_color
+  border: 1px solid $nav_border_color
   padding: 25px
   float: right
+  a
+    color: $nav_text_color
 
 .post-details
   list-style: none
@@ -34,8 +39,21 @@ body
   display: table-cell
   padding: 0 10px
 
+.navbar-toggle
+  border: 1px solid $body_background_color
+
+
+.icon-bar
+  background-color: $body_background_color
+
+
 .nav
   background-color: $nav_background_color
+
+
+header
+  display: inline-block
+
 
 .nav a
   color: $nav_text_color
@@ -53,7 +71,7 @@ body
   color: $nav_text_color
 
 .navbar-collapse
-  /*background-color: white*/
+  background-color: $nav_background_color
   border-bottom: 1px solid #cccccc
 
 .navbar-nav
@@ -87,18 +105,13 @@ form
 .tryIt
   background-color: $form_dark_background
   color: $body_text_dark
-
-.signIn
-  background-color: $nav_background_color
-  border: 2px solid $nav_border_color
-  border-radius: 5px
-
-  a {
-    color: $nav_text_color
-  }
+  display: inline-flex
+  p
+    font-size: 2rem
 
 .frontPage {
   border: 2px solid $form_border_color
+  margin 5px
 }
 
 .explainIt {
