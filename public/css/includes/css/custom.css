@@ -10,7 +10,7 @@
 .post:before{border-width:.75rem;border-bottom-color:#a0a0a0}
 .post:after{border-width:-2.25rem;margin-left:2.25rem;border-bottom-color:rgba(200,200,200,0.92)}
 .post:before,.post.arrowCenter:before,.post:after,.post.arrowCenter:after{left:50%}
-.post.arrowCenter > strong:first-child{text-align:center;padding:.563rem 0 0 0}
+.post.arrowCen ter > strong:first-child{text-align:center;padding:.563rem 0 0 0}
 .post.arrowLeft:before,.post.arrowLeft:after{left:1.25rem}
 .post.arrowRight:before,.post.arrowRight:after{left:auto;right:.5rem}
 .post.arrowRight:after{margin-left:0;margin-right:3px}
