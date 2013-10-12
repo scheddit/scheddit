@@ -52,14 +52,15 @@ module.exports.postModel = postModel;
 // SCHEMA METHODS
 // ==============
 module.exports.insertPost = function(postData, res) {
-    userModel.findOne({ 'profile.id': postData.redditProfileId}, 'oauthInfo.accessToken', function(err, user) {
+    userModel.findOne({ 'profile.id': postData.redditProfileId}, 'oauthInfo.accessToken profile.id', function(err, user) {
       if(err) console.log(err);
       postData.accessToken = user.oauthInfo.accessToken;
-    });
-    var newPost = new postModel(postData);
-    newPost.save(function (err) {
-      if (err) console.log(err);
-      else console.log('post saved!');
+      postData.redditProfileId = user.profile.id;
+      var newPost = new postModel(postData);
+      newPost.save(function (err) {
+        if (err) console.log(err);
+        else console.log('post saved!');
+      });
     });
 };
 

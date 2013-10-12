@@ -26,26 +26,27 @@ module.exports.api = function(app, schema) {
   });
 
   app.get('/userdata', function(req, res) {
-    //TO-DO: solidify schema
-    //schema.getUserPosts
-    //figure out how to get the userid of the client
-    //result = schema.userGet(req, res, 'dummyUser');
-
-    schema.userModel.findOne({'profile.name': req.user.name }, 'profile', function(err, result){
+    schema.userModel.findOne({'profile.name': req.user.name },
+      'profile',
+      function(err, result){
       res.send(result.profile);
     });
-
   });
 
 
   app.get('/userposts', function(req, res) {
-    schema.userModel.findOne({'profile.name': req.user.name }, 'profile.id', function(err, result){
-      var posts = [];
-      //find all posts w/ id = result.profile.id;
-      //debugger;
-      res.send(result.posts);
-    });
+    schema.userModel.findOne({'profile.name': req.user.name },
+      'profile',
+      function(err,result){
+        schema.postModel.find({'redditProfileId': result.profile.id },
+          function(err,result){
+            //debugger;
+            res.send(result);
+          }
+        );
+      });
   });
+
 
   app.get('/redirect', function(req, res, next) {
     if (req.query.state == req.session.state){
@@ -62,45 +63,45 @@ module.exports.api = function(app, schema) {
 
   app.post('/schedule', function(req, res, next) {
 
-//debugger;
     var postData = req.body;
     postData.isPending = true;
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
 
+//moving this to postScheduled.js Script
+    // //query mongo for this users oauth token
+    // schema.userModel.findOne({'profile.name': req.user.name },
+    //   'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
+    //     var token = response.oauthInfo.accessToken;
+    //     var refresh = response.oauthInfo.refreshToken;
+    //     var data = postData;
 
-    //query mongo for this users oauth token
-    schema.userModel.findOne({'profile.name': req.user.name },
-      'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
-        var token = response.oauthInfo.accessToken;
-        var refresh = response.oauthInfo.refreshToken;
-        var body = {
-          api_type: 'json',
-          kind: 'link',
-          sr: 'testonetwo',
-          title: 'The Url for Google',
-          url: 'http://www.google.com',
-          then: 'comments'
-        };
+    //     var body = {
+    //       api_type: 'json',
+    //       title: data.title ,
+    //       kind: 'link',
+    //       url: data.urlOrDetails,
+    //       sr: data.subreddit,
+    //       r: data.subreddit
+    //     };
 
-        // var headers = {
-        //   'Content-Type':'application/json',
-        //   'User-Agent':'scheddit'
-        // };
+    //     var headers = {
+    //       Authorization: "bearer" + token
+    //     };
 
-        console.log("accessToken from db :" + token);
+    //     console.log("accessToken from db :" + token);
 
-        request.post({
-          url: 'https://oauth.reddit.com/api/submit', 
-          json: true,
-          body: body,
-          headers: { Authorization: "Bearer " + token + ", scope=submit", 'User-Agent': 'Requests test'}
-        }, function(err, response, body){
-          //debugger;
-          console.log(err, body);
-        });
+    //     request.post({
+    //       url: 'https://oauth.reddit.com/api/submit', 
+    //       form: body,
+    //       headers: { Authorization: "bearer " + token}
+    //     }, function(err, response, body){
+    //       if(err) throw err;
+    //       console.log('response.statusCode', response.statusCode);
+    //       console.log(JSON.stringify(body));
+    //     });
 
-    });
+    // });
 
   });
 
