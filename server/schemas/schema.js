@@ -37,7 +37,10 @@ var postSchema = new Schema({
   // according to http://api.mongodb.org/perl/current/MongoDB/DataTypes.html
   // creating Date objects is slow and we should be storing
   // a Number and converting to a date
-  time: Date,
+  schedule: {
+    time: String,
+    date: String
+  },
   isPending: Boolean,
   accessToken: String
 });
@@ -56,6 +59,9 @@ module.exports.insertPost = function(postData, res) {
       if(err) console.log(err);
       postData.accessToken = user.oauthInfo.accessToken;
       postData.redditProfileId = user.profile.id;
+      postData.schedule = {};
+      postData.schedule.date = postData.scheduler[0];
+      postData.schedule.time = postData.scheduler[1];
       var newPost = new postModel(postData);
       newPost.save(function (err) {
         if (err) console.log(err);

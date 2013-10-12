@@ -69,7 +69,7 @@ module.exports.api = function(app, schema) {
     schema.insertPost(postData);
 
 //moving this to postScheduled.js Script
-    // //query mongo for this users oauth token
+    //query mongo for this users oauth token
     // schema.userModel.findOne({'profile.name': req.user.name },
     //   'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
     //     var token = response.oauthInfo.accessToken;
