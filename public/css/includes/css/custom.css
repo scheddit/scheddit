@@ -1,6 +1,6 @@
 body{background-color:#f1f1f1}
 .container{margin-top:20px;margin-bottom:50px}
-#user{border:1px solid #7a93b4;padding:25px;float:right;}
+#user{border:1px solid #7a93b4;padding:25px;float:right;margin:16px;}
 #user a{color:#fff}
 .post-details{list-style:none;display:table-row}
 .post-details li{display:table-cell;padding:0 10px}
@@ -14,7 +14,7 @@ header{display:inline-block}
 .collapse{background-color:#7c90ad}
 .collapse a{color:#fff}
 .navbar-collapse{background-color:#7c90ad;border-bottom:1px solid #ccc}
-.navbar-nav{border:1px solid #7a93b4}
+.navbar-nav{border:1px solid #7a93b4;margin:16px 0}
 .navbar-nav > li > a{line-height:40px}
 .navbar-brand{line-height:40px}
 #logo{padding-left:10px}
