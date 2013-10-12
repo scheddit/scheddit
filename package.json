@@ -20,10 +20,7 @@
   "main": "./server/server",
   "dependencies": {
     "express": "3.x",
-<<<<<<< HEAD
-=======
     "needle": "~0.6.1",
->>>>>>> fae89e5776baa834607ca714d17b8cca2a89962d
     "request": "~2.27.0"
   },
   "devDependencies": {
