@@ -1,7 +1,13 @@
 #user{padding:25px;float:right}
 .post-details{list-style:none;display:table-row}
 .post-details li{display:table-cell;padding:0 10px}
-.navbar-collapse{background-color:#fff;border-bottom:1px solid #ccc}
+.nav{background-color:#cee3f8}
+.nav a{color:#fff}
+.navbar-header{background-color:#cee3f8}
+.navbar-header a{color:#fff}
+.collapse{background-color:#cee3f8}
+.collapse a{color:#fff}
+.navbar-collapse{border-bottom:1px solid #ccc}
 .navbar-nav > li > a{line-height:40px}
 .navbar-brand{line-height:40px}
 #logo{padding-left:10px}
