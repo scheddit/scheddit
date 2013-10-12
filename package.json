@@ -41,6 +41,8 @@
     "grunt-node-inspector": "~0.1.0",
     "grunt-contrib-stylus": "~0.8.0",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-concurrent": "~0.4.0"
+    "grunt-concurrent": "~0.4.0",
+    "fluidity": "~0.2.0",
+    "stylus": "~0.38.0"
   }
 }
