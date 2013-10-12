@@ -52,7 +52,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
       },
       // Renders the view's template to the UI
       render: function() {
-        $(document).find('#user').append('<a href="#user">' + this.name + '</a>');
+        $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
         this.template = _.template(template, {name: this.name});
 
         return this.$el.html(this.template);
@@ -61,7 +61,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
           console.log("link");
-          $('#urlOrDetails').attr("placeholder", "Enter url to share");
+          $('#urlOrDetails').attr("placeholder", "URL");
           $('#urlOrDetails').attr("type", "url");
         }
         else if (linkOrSelf === "self"){
