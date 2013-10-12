@@ -25,10 +25,10 @@ form{background-color:#e2e2e2;border:2px solid #c2c2c2;border-radius:5px;width:4
 .tryIt p{font-size:2rem}
 .frontPage{border:2px solid #c2c2c2;margin:5px}
 .explainIt{color:#7a93b4}
-.post{position:relative;padding:10px;margin:15px;background:#f1f1f1;border:2px solid #a0a0a0;border-radius:5px;font-size:16px;list-style:none;}
+.post{position:relative;padding:10px;margin:15px;color:#3a4854;background:#fff;border:2px solid #3a4854;border-radius:5px;font-size:16px;list-style:none;}
 .post:before,.post:after{position:absolute;width:0;height:0;border:solid transparent;content:" ";pointer-events:none;left:50%;bottom:100%;margin-left:-.75rem}
-.post:before{border-width:.75rem;border-right-color:#a0a0a0;margin-top:-.5rem;left:-.75rem;top:1.45rem}
-.post:after{border-width:.6rem;margin-left:0;left:-1.1rem;top:1.1rem;border-right-color:#f1f1f1}
+.post:before{border-width:.75rem;border-right-color:#3a4854;margin-top:-.5rem;left:-.75rem;top:1.45rem}
+.post:after{border-width:.6rem;margin-left:0;left:-1.1rem;top:1.1rem;border-right-color:#fff}
 .post.arrowCen ter > strong:first-child{text-align:center;padding:.563rem 0 0 0}
 .post.arrowLeft:before,.post.arrowLeft:after{left:1.25rem}
 .post.arrowRight:before,.post.arrowRight:after{left:auto;right:.5rem}
