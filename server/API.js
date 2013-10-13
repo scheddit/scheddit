@@ -56,7 +56,8 @@ module.exports.api = function(app, schema) {
     postData.isPending = true;
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
-    res.redirect('/#user/');
+    res.redirect('/#user');
+    res.send();
   });
 
   // Simple route middleware to ensure user is authenticated.
