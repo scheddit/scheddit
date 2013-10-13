@@ -14,6 +14,11 @@ db.once('open', function callback () {
   console.log('Connected to ' + Config.database.name);
 });
 
+var updateCallback = function(err,response){
+  if(err) throw err;
+  console.log("set isPending false response " + response);
+};
+
 var postCallback =function(index) {
   return function(err, response, body){
     //use third status that tell that we tried once
@@ -24,14 +29,13 @@ var postCallback =function(index) {
     console.log('response.statusCode', response.statusCode);
     console.log('this posts ID:', id);
     console.log(JSON.stringify(body));
+    //update isPending Flag to false
+    schema.postModel.update({ _id : id },
+      { $set: { isPending : false }}, updateCallback);
     process.exit(0);
   };
-} 
-
-var updateCallback = function(err,response){
-  if(err) throw err;
-  console.log("set isPending false response " + response);
 };
+
 
 schema.postModel.find({'isPending': true },
   function(err,result){
@@ -42,33 +46,32 @@ schema.postModel.find({'isPending': true },
 
     console.log("Current Time:" + date.getTime());
     for(var elm in result){
-      var dateTime = result[elm].schedule.date + " " + result[elm].schedule.time;
-      console.log("DateTime from post: ", dateTime);
-      var scheduleDate = dateLib.getDateFromFormat(dateTime, "yyyy-MM-dd kk:mm");
-      console.log("Schedule Time: ", scheduleDate);
+      var scheduledTime = result[elm].schedule.date + " " + result[elm].schedule.time;
+      console.log("DateTime from post: ", scheduledTime);
+      var scheduleTimePOSIX = Date.parse(scheduledTime);
+      console.log("Schedule Time: ", scheduleTimePOSIX);
 
-      var body = {
-        api_type: 'json',
-        title: result[elm].title ,
-        kind: 'link',
-        url: result[elm].urlOrDetails,
-        sr: result[elm].subreddit,
-        r: result[elm].subreddit
-      };
+      if(scheduleTimePOSIX < date.getTime()){
 
-      console.log(result[elm]);
-      console.log("accessToken from db :" + result[elm].accessToken);
+        console.log("Posting ", result[elm].title);
 
-      request.post({
-          url: 'https://oauth.reddit.com/api/submit',
-          form: body,
-          headers: { Authorization: "bearer " + result[elm].accessToken}
-        }, postCallback(result[elm]._id));
+        var body = {
+          api_type: 'json',
+          title: result[elm].title ,
+          kind: 'link',
+          url: result[elm].urlOrDetails,
+          sr: result[elm].subreddit,
+          r: result[elm].subreddit
+        };
 
-      //update isPending Flag to false
-      var currentRecord = result[elm];
-      schema.postModel.update({ _id : result[elm]._id },
-        { $set: { isPending : false }}, updateCallback);
+        console.log(result[elm]);
+        console.log("accessToken from db :" + result[elm].accessToken);
 
+        request.post({
+            url: 'https://oauth.reddit.com/api/submit',
+            form: body,
+            headers: { Authorization: "bearer " + result[elm].accessToken}
+          }, postCallback(result[elm]._id));
+      }
     }
 });
