@@ -1,12 +1,11 @@
 var request   = require('request');
 var mongoose  = require('mongoose');
 var schema    = require('../server/schemas/schema');
-var dateLib   = require('../server/lib/date');
 var Config    = global.Config = require('../server/config/config.js').config;
 
 mongoose.connect('mongodb://' + Config.database.IP + ':' +Config.database.port + '/' + Config.database.name);
 
-var date = new Date;
+var date = new Date();
 var tasksRetrieved = 0;
 var completedTasks = 0;
 
