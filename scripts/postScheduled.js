@@ -7,6 +7,8 @@ var Config    = global.Config = require('../server/config/config.js').config;
 mongoose.connect('mongodb://' + Config.database.IP + ':' +Config.database.port + '/' + Config.database.name);
 
 var date = new Date;
+var tasksRetrieved = 0;
+var completedTasks = 0;
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DB connection error:'));
@@ -17,9 +19,13 @@ db.once('open', function callback () {
 var updateCallback = function(err,response){
   if(err) throw err;
   console.log("set isPending false response " + response);
+  completeTasks++;
+  if(completeTasks === tasksRetrieved){
+    process.exit(0);
+  }
 };
 
-var postCallback =function(index) {
+var postCallback = function(index) {
   return function(err, response, body){
     //use third status that tell that we tried once
     //store err in database
@@ -32,20 +38,29 @@ var postCallback =function(index) {
     //update isPending Flag to false
     schema.postModel.update({ _id : id },
       { $set: { isPending : false }}, updateCallback);
-    process.exit(0);
   };
 };
 
+var isEmpty = function (collection) {
+   for(var record in collection) {
+      if (collection.hasOwnProperty(record)) {
+         return false;
+      }
+   }
+   return true;
+}
 
 schema.postModel.find({'isPending': true },
   function(err,result){
     if(err) throw err;
-    if(!result){
+
+    if (isEmpty(result)) {
       process.exit(0);
     }
 
     console.log("Current Time:" + date.getTime());
     for(var elm in result){
+      tasksRetrieved++;
       var scheduledTime = result[elm].schedule.date + " " + result[elm].schedule.time;
       console.log("DateTime from post: ", scheduledTime);
       var scheduleTimePOSIX = Date.parse(scheduledTime);
