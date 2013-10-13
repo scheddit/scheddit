@@ -52,7 +52,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
       },
       // Renders the view's template to the UI
       render: function() {
-        $(document).find('#user').append('<a href="#user">' + this.name + '</a>');
+        $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
         this.template = _.template(template, {name: this.name});
 
         return this.$el.html(this.template);
@@ -61,13 +61,13 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
           console.log("link");
-          $('#urlOrDetails').attr("placeholder", "Enter url to share");
-          $('#urlOrDetails').attr("type", "url");
+          $('#urlOrDetails').replaceWith($('<input name="urlOrDetails" id="urlOrDetails"></input>'));
+          $('#urlOrDetails').attr("placeholder", "URL").attr("type", "url");
         }
         else if (linkOrSelf === "self"){
           console.log("self");
-          $('#urlOrDetails').attr("placeholder", "text (optional)");
-          $('#urlOrDetails').attr("type", "text");
+          $('#urlOrDetails').replaceWith($('<textarea name="urlOrDetails" id="urlOrDetails"></textarea>'));
+          $('#urlOrDetails').attr("placeholder", "text (optional)").attr("type", "text");
         }
         $('.initialHide').removeClass('initialHide');
         $('.initialCollapse').removeClass('initialCollapse');
