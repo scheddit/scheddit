@@ -19,8 +19,8 @@ db.once('open', function callback () {
 var updateCallback = function(err,response){
   if(err) throw err;
   console.log("set isPending false response " + response);
-  completeTasks++;
-  if(completeTasks === tasksRetrieved){
+  completedTasks++;
+  if(completedTasks === tasksRetrieved){
     process.exit(0);
   }
 };
@@ -87,6 +87,11 @@ schema.postModel.find({'isPending': true },
             form: body,
             headers: { Authorization: "bearer " + result[elm].accessToken}
           }, postCallback(result[elm]._id));
+      } else {
+        completedTasks++;
       }
+    }
+    if(completedTasks === tasksRetrieved){
+      process.exit(0);
     }
 });
