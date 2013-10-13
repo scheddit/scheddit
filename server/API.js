@@ -5,8 +5,6 @@ var util      = require('util');
 var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
 var http = require('http');
-
-var request = require('request');
 var server = require('./server');
 
 module.exports.api = function(app, schema) {
@@ -33,7 +31,6 @@ module.exports.api = function(app, schema) {
     });
   });
 
-
   app.get('/userposts', function(req, res) {
     schema.userModel.findOne({'profile.name': req.user.name },
       'profile',
@@ -46,7 +43,6 @@ module.exports.api = function(app, schema) {
         );
       });
   });
-
 
   app.get('/redirect', function(req, res, next) {
     if (req.query.state == req.session.state){
@@ -62,12 +58,10 @@ module.exports.api = function(app, schema) {
   });
 
   app.post('/schedule', function(req, res, next) {
-
     var postData = req.body;
     postData.isPending = true;
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
-
   });
 
   // Simple route middleware to ensure user is authenticated.

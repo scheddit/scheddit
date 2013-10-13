@@ -57,12 +57,8 @@ var rStrategy = new redditStrategy({
     };
 
     var options = { upsert: true};
-    //Update user document if found in databse,
-    //If not found, create document
-    // console.log("AccessToken:" + accessToken);
-    // console.log("Profile: " + profile.name);
+    //Update user document with current tokens if found in databse
     schema.userModel.findOneAndUpdate(conditions, update, options, function(){
-      // console.log('user in database');
     });
     return done(null, profile);
 });
