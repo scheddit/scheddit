@@ -48,45 +48,46 @@ var isEmpty = function (collection) {
       }
    }
    return true;
-}
+};
 
 schema.postModel.find({'isPending': true },
-  function(err,result){
+  function(err,collection){
     if(err) throw err;
 
-    if (isEmpty(result)) {
+    if (isEmpty(collection)) {
       process.exit(0);
     }
 
     console.log("Current Time:" + date.getTime());
-    for(var elm in result){
+    for(var row in collection){
+      record = collection[row];
       tasksRetrieved++;
-      var scheduledTime = result[elm].schedule.date + " " + result[elm].schedule.time;
+      var scheduledTime = record.schedule.date + " " + record.schedule.time;
       console.log("DateTime from post: ", scheduledTime);
       var scheduleTimePOSIX = Date.parse(scheduledTime);
       console.log("Schedule Time: ", scheduleTimePOSIX);
 
       if(scheduleTimePOSIX < date.getTime()){
 
-        console.log("Posting ", result[elm].title);
+        console.log("Posting ", record.title);
 
         var body = {
           api_type: 'json',
-          title: result[elm].title ,
+          title: record.title ,
           kind: 'link',
-          url: result[elm].urlOrDetails,
-          sr: result[elm].subreddit,
-          r: result[elm].subreddit
+          url: record.urlOrDetails,
+          sr: record.subreddit,
+          r: record.subreddit
         };
 
-        console.log(result[elm]);
-        console.log("accessToken from db :" + result[elm].accessToken);
+        console.log(record);
+        console.log("AccessToken from db :" + record.accessToken);
 
         request.post({
             url: 'https://oauth.reddit.com/api/submit',
             form: body,
-            headers: { Authorization: "bearer " + result[elm].accessToken}
-          }, postCallback(result[elm]._id));
+            headers: { Authorization: "bearer " + record.accessToken}
+          }, postCallback(record._id));
       } else {
         completedTasks++;
       }
