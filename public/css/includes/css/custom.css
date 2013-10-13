@@ -22,8 +22,8 @@ header{display:inline-block}
 form{width:100%;padding:5px;}
 form select,form input,form textarea{width:98%;margin:5px;background-color:#f1f1f1;text-align:center}
 textarea{height:70px}
-.tryIt{background-color:#bababa;color:#3a4854;display:inline-flex;}
-.tryIt p{font-size:2rem}
+.tryIt{background-color:#bababa;color:#3a4854;display:inline-flex;vertical-align:center;padding:20px;border-radius:3px;}
+.tryIt p{font-size:2rem;line-height:60px;padding-right:20px;font-weight:bold}
 .frontPage{border:2px solid $form_border_color;margin:5px}
 .explainIt{color:#7a93b4}
 .post{position:relative;padding:10px;margin:15px;color:#3a4854;background:#fff;border:2px solid #3a4854;border-radius:5px;font-size:16px;list-style:none;}
