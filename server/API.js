@@ -68,41 +68,6 @@ module.exports.api = function(app, schema) {
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
 
-//moving this to postScheduled.js Script
-    //query mongo for this users oauth token
-    // schema.userModel.findOne({'profile.name': req.user.name },
-    //   'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
-    //     var token = response.oauthInfo.accessToken;
-    //     var refresh = response.oauthInfo.refreshToken;
-    //     var data = postData;
-
-    //     var body = {
-    //       api_type: 'json',
-    //       title: data.title ,
-    //       kind: 'link',
-    //       url: data.urlOrDetails,
-    //       sr: data.subreddit,
-    //       r: data.subreddit
-    //     };
-
-    //     var headers = {
-    //       Authorization: "bearer" + token
-    //     };
-
-    //     console.log("accessToken from db :" + token);
-
-    //     request.post({
-    //       url: 'https://oauth.reddit.com/api/submit', 
-    //       form: body,
-    //       headers: { Authorization: "bearer " + token}
-    //     }, function(err, response, body){
-    //       if(err) throw err;
-    //       console.log('response.statusCode', response.statusCode);
-    //       console.log(JSON.stringify(body));
-    //     });
-
-    // });
-
   });
 
   // Simple route middleware to ensure user is authenticated.
