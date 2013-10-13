@@ -9,12 +9,6 @@ var server = require('./server');
 
 module.exports.api = function(app, schema) {
 
-  // Sample Rest Call
-
-  app.get('/hello', function(req, res) {
-    res.send('<h1>Hello World!</h1>');
-  });
-
   app.get('/login', function(req, res, next) {
     req.session.state = crypto.randomBytes(32).toString('hex');
     passport.authenticate('reddit', {
@@ -62,6 +56,7 @@ module.exports.api = function(app, schema) {
     postData.isPending = true;
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
+    res.redirect('/#user/');
   });
 
   // Simple route middleware to ensure user is authenticated.
