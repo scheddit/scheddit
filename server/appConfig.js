@@ -2,7 +2,7 @@ var Config    = global.Config = require('./config/config.js').config;
 var express   = require("express");
 var passport  = require('passport');
 var rStrategy = require('./passportConfig');
-var app = module.exports = express();
+var app = express();
 // APP CONFIGURATION
 // ====================
 
@@ -23,3 +23,5 @@ app.configure(function() {
 
   app.use(app.router);
 });
+
+module.exports = app;
