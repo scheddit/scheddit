@@ -94,8 +94,6 @@ var rStrategy = new redditStrategy({
 passport.use(rStrategy);
 module.exports.rStrategy = rStrategy;
 
-//rs._oauth2.post(uri,token,secret,body, function(){/*callback;*/ });
-
 // APP CONFIGURATION
 // ====================
 
@@ -131,3 +129,4 @@ if (require.main === module) {
   console.info('Running app as a module');
   exports.app = app;
 }
+
