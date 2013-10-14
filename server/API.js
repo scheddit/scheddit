@@ -53,7 +53,7 @@ module.exports.api = function(app, schema) {
 
   app.post('/api/schedule', function(req, res, next) {
     var postData = req.body;
-    postData.isPending = true;
+    postData.isPending = "pending";
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
     res.redirect('/#user');
