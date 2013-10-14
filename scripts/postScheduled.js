@@ -36,7 +36,7 @@ var postCallback = function(index) {
     console.log(JSON.stringify(body));
     //update isPending Flag to false
     schema.postModel.update({ _id : id },
-      { $set: { isPending : false }}, updateCallback);
+      { $set: { isPending : 'sent' }}, updateCallback);
   };
 };
 
@@ -49,7 +49,7 @@ var isEmpty = function (collection) {
    return true;
 };
 
-schema.postModel.find({'isPending': true },
+schema.postModel.find({'isPending': 'pending' },
   function(err,collection){
     if(err) throw err;
 
