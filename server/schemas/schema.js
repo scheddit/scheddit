@@ -41,7 +41,7 @@ var postSchema = new Schema({
     time: String,
     date: String
   },
-  isPending: Boolean,
+  isPending: String,
   accessToken: String
 });
 
