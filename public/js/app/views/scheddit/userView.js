@@ -37,22 +37,54 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
 
       // function that is triggered when the submit button is pressed
       addToSchedule: function(event){
+        //string variable required because element type will depend on kind of submission.
+        var element = '';
+        //helper funciton to replace '<' and '>' with '&lt' and '&gt' respectivly
+        var replaceChars = function(string) {
+          var result = string.replace(/</gi,'&lt');
+            return result.replace(/>/gi, '&gt');
+        };
+
+        var formData = [
+          {name: 'kind'},
+          {name: 'title'},
+          {name: 'subreddit'},
+          {name: 'urlOrDetails'},
+          {name: 'date'},
+          {name: 'time'}
+        ];
+
+        var form =$(document).find('form');
+        formData[0].value = form.find('select[name=kind] option:selected').val();
+        formData[1].value = replaceChars(form.find('input[name=title]').val());
+        formData[2].value = replaceChars(form.find('input[name=subreddit]').val());
+        if(formData[0] === 'link') {
+          element = 'input';
+        } else {
+          element = 'textarea';
+        }
+        formData[3].value = replaceChars(form.find(element+'[name=urlOrDetails]').val());
+        formData[4].value = form.find('input[name=date]').val();
+        formData[5].value = form.find('input[name=time]').val();
+
         $.ajax({
-          url: "/schedule", // the API
+          url: "/api/schedule", // the API
           method: "POST",
-          data: this.$el.find('form').serializeArray()
+          data: formData
         })
         .done(function(data){
           console.log('schedule ajax success', data);
+          console.log('schedule ajax success');
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
         });
         return false;
       },
+
       // Renders the view's template to the UI
       render: function() {
-        $(document).find('#user').append('<a href="#user">' + this.name + '</a>');
+        $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
         this.template = _.template(template, {name: this.name});
 
         return this.$el.html(this.template);
@@ -60,14 +92,14 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
-          console.log("link");
-          $('#urlOrDetails').attr("placeholder", "Enter url to share");
-          $('#urlOrDetails').attr("type", "url");
+          // console.log("link");
+          $('#urlOrDetails').replaceWith($('<input name="urlOrDetails" id="urlOrDetails"></input>'));
+          $('#urlOrDetails').attr("placeholder", "URL").attr("type", "url");
         }
         else if (linkOrSelf === "self"){
-          console.log("self");
-          $('#urlOrDetails').attr("placeholder", "text (optional)");
-          $('#urlOrDetails').attr("type", "text");
+          // console.log("self");
+          $('#urlOrDetails').replaceWith($('<textarea name="urlOrDetails" id="urlOrDetails"></textarea>'));
+          $('#urlOrDetails').attr("placeholder", "text (optional)").attr("type", "text");
         }
         $('.initialHide').removeClass('initialHide');
         $('.initialCollapse').removeClass('initialCollapse');

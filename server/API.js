@@ -5,19 +5,11 @@ var util      = require('util');
 var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
 var http = require('http');
-
-var request = require('request');
 var server = require('./server');
 
 module.exports.api = function(app, schema) {
 
-  // Sample Rest Call
-
-  app.get('/hello', function(req, res) {
-    res.send('<h1>Hello World!</h1>');
-  });
-
-  app.get('/login', function(req, res, next) {
+  app.get('/api/login', function(req, res, next) {
     req.session.state = crypto.randomBytes(32).toString('hex');
     passport.authenticate('reddit', {
       state: req.session.state,
@@ -25,34 +17,33 @@ module.exports.api = function(app, schema) {
     })(req, res, next);
   });
 
-  app.get('/userdata', function(req, res) {
-    //TO-DO: solidify schema
-    //schema.getUserPosts
-    //figure out how to get the userid of the client
-    //result = schema.userGet(req, res, 'dummyUser');
-
-    schema.userModel.findOne({'profile.name': req.user.name }, 'profile', function(err, result){
+  app.get('/api/userdata', function(req, res) {
+    schema.userModel.findOne({'profile.name': req.user.name },
+      'profile',
+      function(err, result){
       res.send(result.profile);
     });
-
   });
 
-
-  app.get('/userposts', function(req, res) {
-    schema.userModel.findOne({'profile.name': req.user.name }, 'profile.id', function(err, result){
-      var posts = [];
-      //find all posts w/ id = result.profile.id;
-      //debugger;
-      res.send(result.posts);
-    });
+  app.get('/api/userposts', function(req, res) {
+    schema.userModel.findOne({'profile.name': req.user.name },
+      'profile',
+      function(err,result){
+        schema.postModel.find({'redditProfileId': result.profile.id },
+          function(err,result){
+            //debugger;
+            res.send(result);
+          }
+        );
+      });
   });
 
-  app.get('/redirect', function(req, res, next) {
+  app.get('/api/redirect', function(req, res, next) {
     if (req.query.state == req.session.state){
       // console.log('redireq', req);
       passport.authenticate('reddit', {
         successRedirect: '/#user', // needs to send user along
-        failureRedirect: '/login'
+        failureRedirect: '/'
       })(req, res, next);
     }
     else {
@@ -60,48 +51,13 @@ module.exports.api = function(app, schema) {
     }
   });
 
-  app.post('/schedule', function(req, res, next) {
-
-//debugger;
+  app.post('/api/schedule', function(req, res, next) {
     var postData = req.body;
-    postData.isPending = true;
+    postData.isPending = "pending";
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
-
-
-    //query mongo for this users oauth token
-    schema.userModel.findOne({'profile.name': req.user.name },
-      'oauthInfo.accessToken oauthInfo.refreshToken', function(err, response){
-        var token = response.oauthInfo.accessToken;
-        var refresh = response.oauthInfo.refreshToken;
-        var body = {
-          api_type: 'json',
-          kind: 'link',
-          sr: 'testonetwo',
-          title: 'The Url for Google',
-          url: 'http://www.google.com',
-          then: 'comments'
-        };
-
-        // var headers = {
-        //   'Content-Type':'application/json',
-        //   'User-Agent':'scheddit'
-        // };
-
-        // console.log("accessToken from db :" + token);
-
-        request.post({
-          url: 'https://oauth.reddit.com/api/submit',
-          json: true,
-          body: body,
-          headers: { Authorization: "Bearer " + token + ", scope=submit", 'User-Agent': 'Requests test'}
-        }, function(err, response, body){
-          //debugger;
-          // console.log(err, body);
-        });
-
-    });
-
+    res.redirect('/#user');
+    res.send();
   });
 
   // Simple route middleware to ensure user is authenticated.
@@ -112,6 +68,6 @@ module.exports.api = function(app, schema) {
   function ensureAuthenticated(req, res, next) {
     // console.log('ensuring');
     if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login');
+    res.redirect('/api/login');
   }
 };

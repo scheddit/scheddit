@@ -37,8 +37,11 @@ var postSchema = new Schema({
   // according to http://api.mongodb.org/perl/current/MongoDB/DataTypes.html
   // creating Date objects is slow and we should be storing
   // a Number and converting to a date
-  time: Date,
-  isPending: Boolean,
+  schedule: {
+    time: String,
+    date: String
+  },
+  isPending: String,
   accessToken: String
 });
 
@@ -52,14 +55,18 @@ module.exports.postModel = postModel;
 // SCHEMA METHODS
 // ==============
 module.exports.insertPost = function(postData, res) {
-    userModel.findOne({ 'profile.id': postData.redditProfileId}, 'oauthInfo.accessToken', function(err, user) {
+    userModel.findOne({ 'profile.id': postData.redditProfileId}, 'oauthInfo.accessToken profile.id', function(err, user) {
       if(err) console.log(err);
       postData.accessToken = user.oauthInfo.accessToken;
-    });
-    var newPost = new postModel(postData);
-    newPost.save(function (err) {
-      if (err) console.log(err);
-      else console.log('post saved!');
+      postData.redditProfileId = user.profile.id;
+      postData.schedule = {};
+      postData.schedule.date = postData.date;
+      postData.schedule.time = postData.time;
+      var newPost = new postModel(postData);
+      newPost.save(function (err) {
+        if (err) console.log(err);
+        else console.log('post saved!');
+      });
     });
 };
 
