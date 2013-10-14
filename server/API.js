@@ -9,7 +9,7 @@ var server = require('./server');
 
 module.exports.api = function(app, schema) {
 
-  app.get('/login', function(req, res, next) {
+  app.get('/api/login', function(req, res, next) {
     req.session.state = crypto.randomBytes(32).toString('hex');
     passport.authenticate('reddit', {
       state: req.session.state,
@@ -17,7 +17,7 @@ module.exports.api = function(app, schema) {
     })(req, res, next);
   });
 
-  app.get('/userdata', function(req, res) {
+  app.get('/api/userdata', function(req, res) {
     schema.userModel.findOne({'profile.name': req.user.name },
       'profile',
       function(err, result){
@@ -25,7 +25,7 @@ module.exports.api = function(app, schema) {
     });
   });
 
-  app.get('/userposts', function(req, res) {
+  app.get('/api/userposts', function(req, res) {
     schema.userModel.findOne({'profile.name': req.user.name },
       'profile',
       function(err,result){
@@ -38,12 +38,12 @@ module.exports.api = function(app, schema) {
       });
   });
 
-  app.get('/redirect', function(req, res, next) {
+  app.get('/api/redirect', function(req, res, next) {
     if (req.query.state == req.session.state){
       // console.log('redireq', req);
       passport.authenticate('reddit', {
         successRedirect: '/#user', // needs to send user along
-        failureRedirect: '/login'
+        failureRedirect: '/'
       })(req, res, next);
     }
     else {
@@ -51,7 +51,7 @@ module.exports.api = function(app, schema) {
     }
   });
 
-  app.post('/schedule', function(req, res, next) {
+  app.post('/api/schedule', function(req, res, next) {
     var postData = req.body;
     postData.isPending = true;
     postData.redditProfileId = req.user.id;
@@ -68,6 +68,6 @@ module.exports.api = function(app, schema) {
   function ensureAuthenticated(req, res, next) {
     // console.log('ensuring');
     if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login');
+    res.redirect('/api/login');
   }
 };

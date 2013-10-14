@@ -38,7 +38,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/U
       // function that is triggered when the submit button is pressed
       addToSchedule: function(event){
         $.ajax({
-          url: "/schedule", // the API
+          url: "/api/schedule", // the API
           method: "POST",
           data: this.$el.find('form').serializeArray()
         })

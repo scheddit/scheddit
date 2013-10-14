@@ -21,7 +21,7 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "text!templates/schedd
         // GET to /login
         // console.log("testing 1, 2, 3");
         $.ajax({
-          url: "/login",
+          url: "/api/login",
           method: "GET"
         })
         .done(function(data){

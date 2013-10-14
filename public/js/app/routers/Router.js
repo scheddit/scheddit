@@ -31,7 +31,7 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/UserVi
 
       user: function() {
         var data = {};
-        $.get("/userdata").success(function(userdata){
+        $.get("/api/userdata").success(function(userdata){
           console.log('in success', userdata);
           data.user = userdata;
           data.posts = [
