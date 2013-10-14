@@ -14,7 +14,7 @@ define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/PostView",
       render: function() {
         return this.$el.html('<h3>History</h3>').append(
           this.collection.map(function(post){
-            if (!post.attributes.isPending){
+            if (post.attributes.isPending === 'sent' || post.attributes.isPending === false){
               return new PostView({model: post}).render();
             } else return;
           })
