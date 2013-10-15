@@ -49,8 +49,7 @@ var isEmpty = function (collection) {
    return true;
 };
 
-schema.postModel.find({'isPending': 'pending' },
-  function(err,collection){
+var handleResults =  function(err,collection){
     if(err) throw err;
 
     if (isEmpty(collection)) {
@@ -100,4 +99,7 @@ schema.postModel.find({'isPending': 'pending' },
     if(completedTasks === tasksRetrieved){
       process.exit(0);
     }
-});
+};
+
+
+schema.postModel.find({'isPending': 'pending' }).limit(20).execFind(handleResults);
