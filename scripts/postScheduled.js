@@ -74,6 +74,7 @@ schema.postModel.find({'isPending': 'pending' },
           api_type: 'json',
           title: record.title ,
           kind: 'link',
+          save: true,
           url: record.urlOrDetails,
           sr: record.subreddit,
           r: record.subreddit
