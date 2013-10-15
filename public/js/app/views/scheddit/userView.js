@@ -82,7 +82,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
 
         //clear the form after submission
         $('#postType').prop('selectedIndex',0);
-        $("input[type=text], textarea").val("");
+        $(".refresh").val("");
 
         return false;
       },
@@ -98,14 +98,17 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
           // console.log("link");
-          $('#urlOrDetails').replaceWith($('<input name="urlOrDetails" id="urlOrDetails"></input>'));
-          $('#urlOrDetails').attr("placeholder", "URL").attr("type", "url");
+          $('#urlOrDetails').replaceWith($('<input id="urlOrDetails" name="urlOrDetails"></input>'));
+          $('#urlOrDetails').attr("placeholder", "URL").attr("type", "url")
+            .addClass('refresh').attr('name','urlOrDetails');
         }
         else if (linkOrSelf === "self"){
           // console.log("self");
-          $('#urlOrDetails').replaceWith($('<textarea name="urlOrDetails" id="urlOrDetails"></textarea>'));
-          $('#urlOrDetails').attr("placeholder", "text (optional)").attr("type", "text");
+          $('#urlOrDetails').replaceWith($('<textarea id="urlOrDetails" name="urlOrDetails"></textarea>'));
+          $('#urlOrDetails').attr("placeholder", "text (optional)").attr("type", "text")
+            .addClass('refresh').attr('name','urlOrDetails');
         }
+        // $('urlOrDetails').addClass('refresh').attr('name','urlOrDetails');
         $('.initialHide').removeClass('initialHide');
         $('.initialCollapse').removeClass('initialCollapse');
 
