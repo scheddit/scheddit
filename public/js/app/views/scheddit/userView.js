@@ -79,6 +79,11 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         .fail(function(err){
           console.log('schedule ajax fail', err);
         });
+
+        //clear the form after submission
+        $('#postType').prop('selectedIndex',0);
+        $("input[type=text], textarea").val("");
+
         return false;
       },
 

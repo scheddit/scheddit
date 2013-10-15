@@ -99,6 +99,8 @@ header
   width: 419px
   background-color: $form_background_color
   padding: 5px
+  border: 2px solid $body_text_dark
+  border-radius: 5px
   h3
     color: $body_text_dark
 
@@ -119,15 +121,20 @@ textarea
 .tryIt
   background-color: $form_dark_background
   color: $body_text_dark
-  display: inline-flex
-  vertical-align: center
   padding: 20px
   border-radius: 3px
+  width: 909px
+  @media screen and (max-width: 991px)
+    width: 481px
   p
     font-size: 2rem
     line-height: 60px
-    padding-right: 20px
     font-weight: bold
+    display: inline-block
+    margin: 0 4%
+
+  #loginButton
+    display: inline-block
 
 .frontPage {
   border: 2px solid $form_border_color
@@ -137,6 +144,13 @@ textarea
 .explainIt {
   color: $nav_border_color
 }
+
+.howItWorksOutter
+  display: inline-block
+
+.howItWorksInner
+  display: inline-block
+
 
 
 // speechbubble
