@@ -9,36 +9,35 @@ var server = require('./server');
 
 module.exports.api = function(app, schema) {
 
-  app.get('/api/login', function(req, res, next) {
+  var apiLogin = function(req, res, next) {
     req.session.state = crypto.randomBytes(32).toString('hex');
     passport.authenticate('reddit', {
       state: req.session.state,
       duration: 'permanent'
     })(req, res, next);
-  });
+  };
 
-  app.get('/api/userdata', function(req, res) {
+  var apiUsers = function(req, res) {
     schema.userModel.findOne({'profile.name': req.user.name },
       'profile',
       function(err, result){
       res.send(result.profile);
     });
-  });
+  };
 
-  app.get('/api/userposts', function(req, res) {
+  var apiPosts = function(req, res) {
     schema.userModel.findOne({'profile.name': req.user.name },
       'profile',
       function(err,result){
         schema.postModel.find({'redditProfileId': result.profile.id },
           function(err,result){
-            //debugger;
             res.send(result);
           }
         );
       });
-  });
+  };
 
-  app.get('/api/redirect', function(req, res, next) {
+  var apiRedirect = function(req, res, next) {
     if (req.query.state == req.session.state){
       // console.log('redireq', req);
       passport.authenticate('reddit', {
@@ -49,16 +48,24 @@ module.exports.api = function(app, schema) {
     else {
       next( new Error(403) );
     }
-  });
+  };
 
-  app.post('/api/schedule', function(req, res, next) {
+  var apiSchedule = function(req, res, next) {
     var postData = req.body;
     postData.isPending = "pending";
     postData.redditProfileId = req.user.id;
     schema.insertPost(postData);
-    res.redirect('/#user');
-    res.send();
-  });
+  };
+
+  app.get('/api/login', apiLogin);
+
+  app.get('/api/userdata', apiUsers);
+
+  app.get('/api/userposts', apiPosts);
+
+  app.get('/api/redirect', apiRedirect);
+
+  app.post('/api/schedule', apiSchedule);
 
   // Simple route middleware to ensure user is authenticated.
   //   Use this route middleware on any resource that needs to be protected.  If
