@@ -1,6 +1,6 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/User.html", "views/scheddit/PostView", "views/scheddit/ScheduleView", "views/scheddit/HistoryView"],
+define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/user.html", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
 
   function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){ //note: we are not passing in postView.html
 
