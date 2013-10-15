@@ -1,6 +1,6 @@
 // Router.js
 
-define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/UserView", "views/scheddit/SchedditView", "models/scheddit/User", "models/scheddit/Post"],
+define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/userView", "views/scheddit/schedditView", "models/scheddit/User", "models/scheddit/Post"],
 
   function($, Backbone, Model, UserView, View, User, Post) {
 

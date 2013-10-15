@@ -1,6 +1,6 @@
 // IndexView.js
 
-define(["jquery", "backbone", "models/scheddit/Scheddit", "text!templates/scheddit/Scheddit.html"],
+define(["jquery", "backbone", "models/scheddit/Scheddit", "text!templates/scheddit/scheddit.html"],
   function($, Backbone, Model, template){
     var SchedditView = Backbone.View.extend({
       // The DOM Element associated with this view
