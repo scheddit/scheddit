@@ -43,7 +43,7 @@ var rStrategy = new redditStrategy({
     clientID: redditConsumerKey,
     clientSecret: redditConsumerSecret,
     callbackURL: "http://localhost:1337/api/redirect",
-    scope: ['submit', 'identity']
+    scope: ['submit', 'identity','history']
   },
   function(accessToken, refreshToken, profile, done) {
 
