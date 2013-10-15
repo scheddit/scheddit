@@ -23,8 +23,9 @@ header{display:inline-block}
 form{width:100%;padding:5px;}
 form select,form input,form textarea{width:98%;margin:5px;background-color:#f1f1f1;text-align:center}
 textarea{height:70px}
-.tryIt{background-color:#bababa;color:#3a4854;padding:20px;border-radius:3px;}
-.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0}
+.tryIt{background-color:#bababa;color:#3a4854;padding:20px;border-radius:3px;width:909px;}
+@media screen and (max-width: 991px){.tryIt{width:481px}
+}.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0 4%}
 .tryIt #loginButton{display:inline-block}
 .frontPage{border:2px solid $form_border_color;margin:5px}
 .explainIt{color:#7a93b4}
