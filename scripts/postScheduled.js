@@ -73,12 +73,17 @@ schema.postModel.find({'isPending': 'pending' },
         var body = {
           api_type: 'json',
           title: record.title ,
-          kind: 'link',
+          kind: record.kind,
           save: true,
-          url: record.urlOrDetails,
           sr: record.subreddit,
           r: record.subreddit
         };
+
+        if(record.kind ==='link'){
+          body.url = record.urlOrDetails;
+        }else{
+          body.text = record.urlOrDetails;
+        }
 
         console.log(record);
         console.log("AccessToken from db :" + record.accessToken);
