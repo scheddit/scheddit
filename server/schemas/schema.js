@@ -60,8 +60,8 @@ module.exports.insertPost = function(postData, res) {
       postData.accessToken = user.oauthInfo.accessToken;
       postData.redditProfileId = user.profile.id;
       postData.schedule = {};
-      postData.schedule.date = postData.scheduler[0];
-      postData.schedule.time = postData.scheduler[1];
+      postData.schedule.date = postData.date;
+      postData.schedule.time = postData.time;
       var newPost = new postModel(postData);
       newPost.save(function (err) {
         if (err) console.log(err);
