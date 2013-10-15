@@ -42,7 +42,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         //helper funciton to replace '<' and '>' with '&lt' and '&gt' respectivly
         var replaceChars = function(string) {
           var result = string.replace(/</gi,'&lt');
-            return result.replace(/>/gi, '&gt');
+          return result.replace(/>/gi, '&gt');
         };
 
         var formData = [
@@ -58,7 +58,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         formData[0].value = form.find('select[name=kind] option:selected').val();
         formData[1].value = replaceChars(form.find('input[name=title]').val());
         formData[2].value = replaceChars(form.find('input[name=subreddit]').val());
-        if(formData[0] === 'link') {
+        if(formData[0].value === 'link') {
           element = 'input';
         } else {
           element = 'textarea';
