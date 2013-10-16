@@ -42,7 +42,8 @@ var postSchema = new Schema({
     date: String
   },
   isPending: String,
-  accessToken: String
+  accessToken: String,
+  refreshToken: String
 });
 
 // CREATE DATABASE MODEL
@@ -54,14 +55,19 @@ module.exports.postModel = postModel;
 
 // SCHEMA METHODS
 // ==============
-module.exports.insertPost = function(postData, res) {
-    userModel.findOne({ 'profile.id': postData.redditProfileId}, 'oauthInfo.accessToken profile.id', function(err, user) {
+module.exports.insertPost = function(postData, user) {
+  postData.redditProfileId = user.id;
+  userModel.findOne({ 'profile.id': postData.redditProfileId},
+   'oauthInfo.accessToken oauthInfo.refreshToken profile.id',
+    function(err, user) {
       if(err) console.log(err);
       postData.accessToken = user.oauthInfo.accessToken;
+      postData.refreshToken = user.oauthInfo.refreshToken;
       postData.redditProfileId = user.profile.id;
       postData.schedule = {};
       postData.schedule.date = postData.date;
       postData.schedule.time = postData.time;
+      postData.isPending = "pending";
       var newPost = new postModel(postData);
       newPost.save(function (err) {
         if (err) console.log(err);
