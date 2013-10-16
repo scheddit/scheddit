@@ -40,6 +40,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         //string variable required because element type will depend on kind of submission.
         var element = '';
         //helper funciton to replace '<' and '>' with '&lt' and '&gt' respectivly
+        //this should be handled by templating language and shouldn't even be needed unless we're using .innerHTML(stuff)
         var replaceChars = function(string) {
           var result = string.replace(/</gi,'&lt');
           return result.replace(/>/gi, '&gt');
@@ -54,18 +55,17 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
           {name: 'time'}
         ];
 
-        var form =$(document).find('form');
-        formData[0].value = form.find('select[name=kind] option:selected').val();
-        formData[1].value = replaceChars(form.find('input[name=title]').val());
-        formData[2].value = replaceChars(form.find('input[name=subreddit]').val());
+        formData[0].value = $('select[name=kind] option:selected').val();
+        formData[1].value = replaceChars($('#postTitle').val());
+        formData[2].value = replaceChars($('#postSubreddit').val());
         if(formData[0].value === 'link') {
           element = 'input';
         } else {
           element = 'textarea';
         }
-        formData[3].value = replaceChars(form.find(element+'[name=urlOrDetails]').val());
-        formData[4].value = form.find('input[name=date]').val();
-        formData[5].value = form.find('input[name=time]').val();
+        formData[3].value = replaceChars($('#urlOrDetails').val());
+        formData[4].value = $('#postDate').val();
+        formData[5].value = $('#postTime').val();
 
         $.ajax({
           url: "/api/schedule", // the API
