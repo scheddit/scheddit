@@ -42,7 +42,7 @@ passport.deserializeUser(function(obj, done) {
 var rStrategy = new redditStrategy({
     clientID: redditConsumerKey,
     clientSecret: redditConsumerSecret,
-    callbackURL: "http://schedditbeta.elasticbeanstalk.com/api/redirect",
+    callbackURL: "http://scheddit.com/api/redirect",
     scope: ['submit', 'identity','history']
   },
   function(accessToken, refreshToken, profile, done) {
