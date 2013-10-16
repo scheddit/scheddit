@@ -17,7 +17,7 @@ header{display:inline-block}
 .navbar-collapse{background-color:#7c90ad;border-bottom:1px solid #ccc;padding:0}
 .navbar-nav{border:1px solid #7a93b4;margin:0}
 .navbar-nav > li > a{line-height:40px}
-.navbar-brand{padding:0 15px;margin-left:auto;margin-right:auto}
+.navbar-brand{padding:0 15px;margin:auto}
 .toShareForm{width:419px;background-color:#7c90ad;padding:5px;border:2px solid #3a4854;border-radius:5px;}
 .toShareForm h3{color:#3a4854}
 form{width:100%;padding:5px;}
