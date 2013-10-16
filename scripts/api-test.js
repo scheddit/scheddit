@@ -1,14 +1,12 @@
 var request = require('request');
 
-var token = 'cJYCvuVXJ8J_YxIvFhQYa9WS1dE';
+var token = 'vwEQSgJs_sIkqeBowUelzmn6OZg';
 
 var body = {
   api_type: 'json',
-  url: 'http://www.nytimes.com/2013/10/06/us/a-federal-budget-crisis-months-in-the-planning.html',
+  url: 'http://www.reddit.html',
   kind: 'link',
-  sr: 'testonetwo',
-  title: 'Crisis Budget Planned',
-  r: 'testonetwo'
+  title: 'BAD_CAPTCHA test'
 };
 
 request.post({
@@ -18,6 +16,9 @@ request.post({
   },function(err, response, body){
     if(err) throw err;
     console.log('response.statusCode', response.statusCode);
-    console.log(JSON.stringify(body));
+    var redditError = JSON.parse(body).json.errors[0][0];
+    if(redditError === "BAD_CAPTCHA") {
+      console.log(redditError);
+    }
 });
 
