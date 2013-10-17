@@ -75,7 +75,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         .done(function(data){
           console.log('schedule ajax success', data);
           console.log('schedule ajax success');
-          if (data.error = "BAD_CAPTCHA") {
+          if (data.error === "BAD_CAPTCHA") {
             // alert the user that we cannot post for them
           }
         })
@@ -97,6 +97,7 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
 
         return this.$el.html(this.template);
       },
+
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
