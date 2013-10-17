@@ -6,6 +6,7 @@ var crypto    = require('crypto');
 var redditStrategy  = require('passport-reddit').Strategy;
 var http = require('http');
 var server = require('./server');
+var request = require('request');
 
 module.exports.api = function(app, schema) {
 
@@ -49,9 +50,45 @@ module.exports.api = function(app, schema) {
       next( new Error(403) );
     }
   };
+  var checkForNoCaptcha = function(username, callback){
+    var body = {
+      api_type: 'json',
+      url: 'http://www.reddit.html',
+      kind: 'link',
+      title: 'BAD_CAPTCHA test'
+    };
+    // when checking for Captcha for the reddit account
+    // response.statusCode 200
+    // {json: {captcha: "ryRyJ7e1XiShn98ck9HBZWdIS0q6w5vx", errors: [["BAD_CAPTCHA", "care to try these again?", "captcha"]]}}
+
+    schema.userToken(username, function(token){
+      request.post({
+        url: 'https://oauth.reddit.com/api/submit',
+        form: body,
+        headers: { Authorization : "bearer " + token}
+        },function(err, response, body){
+          if(err) throw err;
+          var redditError = JSON.parse(body).json.errors[0][0];
+          callback(redditError);
+      });
+    });
+  };
 
   var apiSchedule = function(req, res, next) {
-    schema.insertPost(req.body, req.user);
+    // doesn't always have a req.user!
+    var userName = req.user;
+    // run the captcha check at this point
+    checkForNoCaptcha(userName.name, function(errorMessage){
+      if (errorMessage === "BAD_CAPTCHA") {
+        console.log("BAD_CAPTCHA caught");
+        // send something back to the client side with notice/error
+        var error = {"error": errorMessage};
+        res.send(200, JSON.stringify(error));
+      } else {
+        console.log("saving to database");
+        schema.insertPost(req.body, req.user);
+      }
+    });
   };
 
   app.get('/api/login', apiLogin);

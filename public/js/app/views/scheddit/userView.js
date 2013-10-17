@@ -48,6 +48,10 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
         .done(function(data){
           console.log('schedule ajax success', data);
           console.log('schedule ajax success');
+          if (data.error === "BAD_CAPTCHA") {
+            // alert the user that we cannot post for them
+            // ask andre about handlebars and what's going on with this
+          }
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
@@ -68,6 +72,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
 
         return this.$el.html(this.template(data));
       },
+
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
