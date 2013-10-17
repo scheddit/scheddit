@@ -74,6 +74,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
 
         return this.$el.html(this.template(data));
       },
+
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){

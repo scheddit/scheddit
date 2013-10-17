@@ -77,13 +77,18 @@ module.exports.insertPost = function(postData, user) {
 };
 
 module.exports.userGet = function(req, res, username) {
-  userModel.find({'username': username}, function(err, user){
+  userModel.find({'profile.name': username}, function(err, user){
      if (err) throw err;
-     console.log("user: " + user.profile.name);
   //   res.send(user);
    });
 };
 
+module.exports.userToken = function(username, callback) {
+  userModel.find({'profile.name': username},'oauthInfo.accessToken', function(err, token){
+     if (err) throw err;
+     callback(token[0].oauthInfo.accessToken);
+   });
+};
 
 module.exports.usersPostsGet = function(req, res, userid) {
   res.send(dummyUser);
