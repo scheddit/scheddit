@@ -1,6 +1,6 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/user.html", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
+define(["jquery", "backbone", "models/scheddit/User", "templates/template", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
 
   function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){ //note: we are not passing in postView.html
 
@@ -90,9 +90,11 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
       // Renders the view's template to the UI
       render: function() {
         $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
-        this.template = _.template(template, {name: this.name});
+        // this.template = _.template(template, {name: this.name});
+        this.template = template['public/template/user.hbs'];
+        var data = this.name;
 
-        return this.$el.html(this.template);
+        return this.$el.html(this.template(data));
       },
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
