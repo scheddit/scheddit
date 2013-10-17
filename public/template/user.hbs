@@ -1,0 +1,29 @@
+<!-- HTML Template -->
+<div style="height:80px"></div>
+<div class="container">
+  <h4 class="name"><em>Welcome {{name}}!</em></h4>
+  <div class="toShareForm">
+    <h3 class="underline"> What would you like to share today? </h3>
+    <form id="newPost" name="submission"class="initialCollapse">
+      <select name="kind" id="postType" class="btn dropdown-toggle initialHide">
+        <option selected="selected">Select a type of post</option>
+        <option value="link">Link</option>
+        <option value="self">Self-Post</option>
+      </select>
+      <br/>
+      <input name="title" id="postTitle" type="text" placeholder="title" class="refresh initialHide"></input>
+      <br/>
+      <input name="subreddit" id="postSubreddit" type="text" placeholder="choose a subreddit" class="refresh initialHide"></input>
+      <br/>
+      <input name="urlOrDetails" id="urlOrDetails" type="url" placeholder="URL or text" class="refresh initialHide"></input>
+      <br/>
+      <input type="date" id="postDate" name="date" class="refresh initialHide"></input>
+      <br/>
+      <input type="time" id="postTime" name="time" class="refresh initialHide"></input>
+      <br/>
+      <input type="submit" name="submitButton" class="submitButton initialHide"></input>
+    </form>
+  </div>
+  <div id="schedule"></div>
+  <div id="history"></div>
+</div>

@@ -38,6 +38,10 @@ module.exports = function(grunt) {
         options: {
           livereload: true
         }
+      },
+      handlebars: {
+        files: ['public/template/*.hbs'],
+        tasks: ['handlebars'],
       }
     },
 
@@ -117,11 +121,23 @@ module.exports = function(grunt) {
           "public/css/includes/css/custom.css": "public/css/includes/stylus/custom.styl" // 1:1 compile
         }
       }
+    },
+
+    handlebars: {
+      compile: {
+        options: {
+          namespace: "JST" //?
+        },
+        files: {
+          "public/js/app/templates/template.js": "public/template/*.hbs",
+          // "path/to/another.js": ["path/to/sources/*.hbs", "path/to/more/*.hbs"]
+        }
+      }
     }
 
   });
 
-
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-requirejs');

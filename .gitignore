@@ -4,3 +4,4 @@ public/js/libs/*
 server/config/**
 .DS_Store
 npm-debug.log
+.nodemonignore
