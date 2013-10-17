@@ -1,7 +1,7 @@
 // historyView.js -- this is for historyd posts
 
 
-define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/postView", "templates/template"],
+define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/postView", "templates/post"],
 
   function($, Backbone, Model, PostView, template){
 

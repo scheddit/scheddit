@@ -21,7 +21,7 @@ require.config({
 
       "bootstrap": "libs/bootstrap/dist/js/bootstrap",
       //TODO: check this
-      "handlebars": "libs/handlebars/dist/handlebars",
+      "handlebars": "libs/handlebars/handlebars",
 
       // Plugins
       // =======
@@ -39,7 +39,8 @@ require.config({
 
       "routers": "app/routers",
 
-      "templates": "app/templates",
+      //TODO: fix this
+      "templates": "app/templates/public/template",
 
       "views": "app/views",
 

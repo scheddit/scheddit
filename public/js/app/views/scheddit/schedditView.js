@@ -1,6 +1,6 @@
 // IndexView.js
 
-define(["jquery", "backbone", "models/scheddit/Scheddit", "templates/template"],
+define(["jquery", "backbone", "models/scheddit/Scheddit", "templates/scheddit"],
   function($, Backbone, Model, template){
     var SchedditView = Backbone.View.extend({
       // The DOM Element associated with this view
@@ -34,7 +34,7 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "templates/template"],
       // Renders the view's template to the UI
       render: function() {
         // Setting the view's template property using the Underscore template method
-        this.template = template['public/template/scheddit.hbs'];
+        this.template = template;
         // Dynamically updates the UI with the view's template
         this.$el.html(this.template);
         // Maintains chainability
