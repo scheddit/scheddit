@@ -46,14 +46,14 @@ module.exports = function(grunt) {
         options: {
           baseUrl: "public/js/",
           paths: {
-            "desktop": "app/config/Init"
+            "main": "app/config/Init"
           },
           wrap: true,
           name: "libs/almond/almond",
           preserveLicenseComments: false,
           optimize: "uglify",
           mainConfigFile: "public/js/app/config/Init.js",
-          include: ["desktop"],
+          include: ["main"],
           out: "public/js/app/config/Init.min.js"
         }
       },
@@ -67,7 +67,8 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
+      files: ['Gruntfile.js'],
+      // files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
       options: {
         globals: {
           jQuery: true,
@@ -102,7 +103,7 @@ module.exports = function(grunt) {
     stylus: {
       compile: {
         options: {
-          paths: ["public/css"],
+          paths: ["public/css"]
         },
 
         files: {
