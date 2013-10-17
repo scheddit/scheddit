@@ -12,7 +12,6 @@ define(["jquery", "backbone"],
 
       // Model Constructor
       initialize: function() {
-
       },
 
       defaults: {
@@ -23,7 +22,8 @@ define(["jquery", "backbone"],
         urlOrDetails:"",
         selfPost:"",
         isPending: true,
-        time:""
+        time:"",
+        url:"http://www.reddit.com/r/scheddit"
       }
     });
 
@@ -33,3 +33,6 @@ define(["jquery", "backbone"],
   }
 
 );
+
+
+// notes
