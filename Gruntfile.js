@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       },
       handlebars: {
         files: ['public/template/*.hbs'],
-        tasks: ['handlebars'],
+        tasks: ['handlebars']
       }
     },
 
@@ -50,14 +50,14 @@ module.exports = function(grunt) {
         options: {
           baseUrl: "public/js/",
           paths: {
-            "desktop": "app/config/Init"
+            "main": "app/config/Init"
           },
           wrap: true,
           name: "libs/almond/almond",
           preserveLicenseComments: false,
           optimize: "uglify",
           mainConfigFile: "public/js/app/config/Init.js",
-          include: ["desktop"],
+          include: ["main"],
           out: "public/js/app/config/Init.min.js"
         }
       },
@@ -71,7 +71,8 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
+      files: ['Gruntfile.js'],
+      // files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
       options: {
         globals: {
           jQuery: true,
@@ -106,7 +107,7 @@ module.exports = function(grunt) {
     stylus: {
       compile: {
         options: {
-          paths: ["public/css"],
+          paths: ["public/css"]
           // urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
           // use: [
             // require('fluidity') // use stylus plugin at compile time
@@ -129,7 +130,7 @@ module.exports = function(grunt) {
           namespace: "JST" //?
         },
         files: {
-          "public/js/app/templates/template.js": "public/template/*.hbs",
+          "public/js/app/templates/template.js": "public/template/*.hbs"
           // "path/to/another.js": ["path/to/sources/*.hbs", "path/to/more/*.hbs"]
         }
       }
