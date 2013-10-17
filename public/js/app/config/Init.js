@@ -20,8 +20,9 @@ require.config({
       "backbone": "libs/backbone/backbone",
 
       "bootstrap": "libs/bootstrap/dist/js/bootstrap",
-      //TODO: check this
-      "handlebars": "libs/handlebars/dist/handlebars",
+      
+      // //TODO: check this
+      "handlebars": "libs/handlebars/handlebars",
 
       // Plugins
       // =======

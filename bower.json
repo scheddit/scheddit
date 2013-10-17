@@ -29,6 +29,6 @@
     "text": "latest",
     "bootstrap": "latest",
     "font-awesome": "latest",
-    "handlebars.js": "latest"
+    "handlebars": "~1.0.0"
   }
 }
