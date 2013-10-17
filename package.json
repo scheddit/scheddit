@@ -1,21 +1,22 @@
 {
-  "name": "scheddit",
-  "description": "Built with theStack!",
-  "version": "0.0.1",
-  "homepage": "https://pschroedl.github.io/scheddit",
+  "name": "Scheddit",
+  "description": "Preschedule your reddit posts. This set of files == deployment-env.",
+  "version": "0.1.12",
+  "homepage": "https://www.scheddit.com",
   "author": {
-    "name": "Peter Schroedl",
-    "url": "https://github.com/pschroedl"
+    "name": "Peter Schroedl, Andre Evangelesta, Rupa Sharma, Kevin Moore",
+    "url": "http://www.scheddit.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:pschroedl/scheddit.git"
+    "url": "http://www.github.com/scheddit/scheddit"
   },
   "keywords": [
+    "scheddit",
     "generator-thestack"
   ],
   "bugs": {
-    "url": "https://github.com/pschroedl/scheddit/issues"
+    "url": "http://www.reddit.com/r/scheddit"
   },
   "main": "./server/server",
   "dependencies": {
