@@ -1,6 +1,6 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/user.html", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
+define(["jquery", "backbone", "models/scheddit/User", "templates/template", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
 
   function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){ //note: we are not passing in postView.html
 
@@ -39,38 +39,11 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
       addToSchedule: function(event){
         //string variable required because element type will depend on kind of submission.
         var element = '';
-        //helper funciton to replace '<' and '>' with '&lt' and '&gt' respectivly
-        var replaceChars = function(string) {
-          var result = string.replace(/</gi,'&lt');
-          return result.replace(/>/gi, '&gt');
-        };
-
-        var formData = [
-          {name: 'kind'},
-          {name: 'title'},
-          {name: 'subreddit'},
-          {name: 'urlOrDetails'},
-          {name: 'date'},
-          {name: 'time'}
-        ];
-
-        var form =$(document).find('form');
-        formData[0].value = form.find('select[name=kind] option:selected').val();
-        formData[1].value = replaceChars(form.find('input[name=title]').val());
-        formData[2].value = replaceChars(form.find('input[name=subreddit]').val());
-        if(formData[0].value === 'link') {
-          element = 'input';
-        } else {
-          element = 'textarea';
-        }
-        formData[3].value = replaceChars(form.find(element+'[name=urlOrDetails]').val());
-        formData[4].value = form.find('input[name=date]').val();
-        formData[5].value = form.find('input[name=time]').val();
 
         $.ajax({
           url: "/api/schedule", // the API
           method: "POST",
-          data: formData
+          data: $('#newPost').serializeArray()
         })
         .done(function(data){
           console.log('schedule ajax success', data);
@@ -89,10 +62,11 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
 
       // Renders the view's template to the UI
       render: function() {
-        $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
-        this.template = _.template(template, {name: this.name});
+        $('#user').empty().append('<a href="#user">' + this.name + '</a>');
+        this.template = template['public/template/user.hbs'];
+        var data = {name: this.name};
 
-        return this.$el.html(this.template);
+        return this.$el.html(this.template(data));
       },
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;

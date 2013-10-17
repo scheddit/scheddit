@@ -43,7 +43,9 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-concurrent": "~0.4.0",
     "fluidity": "~0.2.0",
-    "stylus": "~0.38.0"
+    "stylus": "~0.38.0",
+    "handlebars": "~1.0.12",
+    "grunt-contrib-handlebars": "~0.5.11"
   }, 
   "scripts": {
     "start": "node server/server.js"
