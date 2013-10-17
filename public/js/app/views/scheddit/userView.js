@@ -75,6 +75,9 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         .done(function(data){
           console.log('schedule ajax success', data);
           console.log('schedule ajax success');
+          if (data.error = "BAD_CAPTCHA") {
+            // alert the user that we cannot post for them
+          }
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
