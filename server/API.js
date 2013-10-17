@@ -81,6 +81,7 @@ module.exports.api = function(app, schema) {
     checkForNoCaptcha(userName.name, function(errorMessage){
       if (errorMessage === "BAD_CAPTCHA") {
         console.log("BAD_CAPTCHA caught");
+        // send something back to the client side with notice/error
       } else {
         console.log("saving to database");
         schema.insertPost(req.body, req.user);
