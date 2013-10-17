@@ -42,7 +42,7 @@ passport.deserializeUser(function(obj, done) {
 var rStrategy = new redditStrategy({
     clientID: redditConsumerKey,
     clientSecret: redditConsumerSecret,
-    callbackURL: "http://localhost:1337/api/redirect",
+    callbackURL: "http://www.scheddit.com/api/redirect",
     scope: ['submit', 'identity','history']
   },
   function(accessToken, refreshToken, profile, done) {
