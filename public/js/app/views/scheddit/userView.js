@@ -90,9 +90,8 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
       // Renders the view's template to the UI
       render: function() {
         $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
-        // this.template = _.template(template, {name: this.name});
         this.template = template['public/template/user.hbs'];
-        var data = this.name;
+        var data = {name: this.name};
 
         return this.$el.html(this.template(data));
       },
