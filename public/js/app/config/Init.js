@@ -20,6 +20,8 @@ require.config({
       "backbone": "libs/backbone/backbone",
 
       "bootstrap": "libs/bootstrap/dist/js/bootstrap",
+      //TODO: check this
+      "handlebars": "libs/handlebars/dist/handlebars",
 
       // Plugins
       // =======
@@ -70,7 +72,7 @@ require.config({
 });
 
 // Includes Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(["jquery", "backbone", "routers/Router", "bootstrap", "backbone.validateAll"],
+require(["jquery", "backbone", "routers/Router", "bootstrap", "backbone.validateAll", "handlebars"],
 
   function($, Backbone, Router) {
 
