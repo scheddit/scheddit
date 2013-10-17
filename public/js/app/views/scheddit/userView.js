@@ -50,6 +50,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
           console.log('schedule ajax success');
           if (data.error === "BAD_CAPTCHA") {
             // alert the user that we cannot post for them
+            // ask andre about handlebars and what's going on with this
           }
         })
         .fail(function(err){
