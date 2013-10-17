@@ -15,28 +15,37 @@ db.once('open', function callback () {
   console.log('Connected to ' + Config.database.name);
 });
 
-var updateCallback = function(err,response){
+var checkIfDone = function(err,response){
   if(err) throw err;
-  console.log("set isPending false response " + response);
   completedTasks++;
   if(completedTasks === tasksRetrieved){
+    db.close();
     process.exit(0);
   }
 };
 
-var postCallback = function(index) {
+var postCallback = function(record) {
   return function(err, response, body){
     //use third status that tell that we tried once
     //store err in database
     //use index
-    var id = index;
     if(err) throw err;
     console.log('response.statusCode', response.statusCode);
-    console.log('this posts ID:', id);
-    console.log(JSON.stringify(body));
-    //update isPending Flag to false
-    schema.postModel.update({ _id : id },
-      { $set: { isPending : 'sent' }}, updateCallback);
+    console.log('this posts ID:', record.id);
+    console.log(JSON.parse(body));
+    //if body does not contain record.title, update 
+    //isPending flag to 'error'
+    if (JSON.parse(body).name === undefined){
+      console.log("error!");
+      schema.postModel.update({ _id : record.id },
+        { $set: { isPending : 'error' }}, checkIfDone);
+    } else {
+      //update isPending Flag to sent
+      console.log("sent!")
+      schema.postModel.update({ _id : record.id },
+        { $set: { isPending : 'sent' }}, checkIfDone);
+    }
+
   };
 };
 
@@ -91,7 +100,7 @@ var handleResults =  function(err,collection){
             url: 'https://oauth.reddit.com/api/submit',
             form: body,
             headers: { Authorization: "bearer " + record.accessToken}
-          }, postCallback(record._id));
+          }, postCallback(record));
       } else {
         completedTasks++;
       }
