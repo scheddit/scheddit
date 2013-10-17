@@ -39,38 +39,11 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
       addToSchedule: function(event){
         //string variable required because element type will depend on kind of submission.
         var element = '';
-        //helper funciton to replace '<' and '>' with '&lt' and '&gt' respectivly
-        //this should be handled by templating language and shouldn't even be needed unless we're using .innerHTML(stuff)
-        var replaceChars = function(string) {
-          var result = string.replace(/</gi,'&lt');
-          return result.replace(/>/gi, '&gt');
-        };
-
-        var formData = [
-          {name: 'kind'},
-          {name: 'title'},
-          {name: 'subreddit'},
-          {name: 'urlOrDetails'},
-          {name: 'date'},
-          {name: 'time'}
-        ];
-
-        formData[0].value = $('select[name=kind] option:selected').val();
-        formData[1].value = replaceChars($('#postTitle').val());
-        formData[2].value = replaceChars($('#postSubreddit').val());
-        if(formData[0].value === 'link') {
-          element = 'input';
-        } else {
-          element = 'textarea';
-        }
-        formData[3].value = replaceChars($('#urlOrDetails').val());
-        formData[4].value = $('#postDate').val();
-        formData[5].value = $('#postTime').val();
 
         $.ajax({
           url: "/api/schedule", // the API
           method: "POST",
-          data: formData
+          data: $('#newPost').serializeArray()
         })
         .done(function(data){
           console.log('schedule ajax success', data);
@@ -89,7 +62,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/template", "vie
 
       // Renders the view's template to the UI
       render: function() {
-        $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
+        $('#user').empty().append('<a href="#user">' + this.name + '</a>');
         this.template = template['public/template/user.hbs'];
         var data = {name: this.name};
 
