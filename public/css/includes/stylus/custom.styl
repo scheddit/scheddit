@@ -97,6 +97,18 @@ textarea
     margin: 0
     padding: 13px
 
+.loggedinUser
+  border: 1px solid $nav_border_color
+  padding: 26px
+  float: right
+  margin: 0
+  background-color: rgb(216, 159, 37)
+  opacity 1.0
+  a
+    color: $nav_text_color
+    font-weight: bold
+    font-size: large
+
 .navbar-toggle
   border: 1px solid $body_background_color
   margin: 23px
@@ -141,8 +153,8 @@ textarea
 
   margin: 15px
   padding: 10px
-
   position: relative
+  z-index: -1
 
   &:before,
   &:after {
@@ -196,8 +208,6 @@ textarea
   h3
     color: $body_text_dark
 
-
-
 .tryIt
   background-color: $form_dark_background
   color: $body_text_dark
@@ -217,17 +227,6 @@ textarea
 
 #loginButton
   display: inline-block
-
-.loggedinUser
-  border: 1px solid $nav_border_color
-  padding: 26px
-  float: right
-  margin: 0
-  background-color: rgb(216, 159, 37);
-  a
-    color: $nav_text_color
-    font-weight: bold
-    font-size: large
 
 // Rupa's additions to the Stylus
 #formWarning
