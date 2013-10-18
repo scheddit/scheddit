@@ -1,62 +1,9 @@
 <div class="post">
-  <h4 class="underline">{{title}}</h4>
-  <ul class="post-details">
-    <li>
-      <div>
-        <span>kind</span>
-        <br/>
-        <span>{{kind}}</span>
-      </div>
-    <h4 class="underline">{{title}}</h4>
-    <ul class="post-details">
-      <li>
-        <div>
-          <span>kind</span>
-          <br/>
-          <span>{{kind}}</span>
-        </div>
-        </li>
-      <li>
-        <div><a href="{{url}}">{{title}}</a>
-          <span>content</span>
-          <br/>
-          <span>{{urlOrDetails}}</span>
-        </div>
-        </li>
-      <li>
-        <div>
-          <span>subreddit</span>
-          <br/>
-          <span>{{subreddit}}</span>
-        </div>
-        </li>
-      <li>
-        <div>
-          <span>scheduled time</span>
-          <br/>
-          <span>{{schedule.date}} {{schedule.time}}</span>
-        </div>
-      </li>
-    <li>
-      <div>
-        <span>content</span>
-        <br/>
-        <span>{{urlOrDetails}}</span>
-      </div>
-      </li>
-    <li>
-      <div>
-        <span>subreddit</span>
-        <br/>
-        <span>{{subreddit}}</span>
-      </div>
-      </li>
-    <li>
-      <div>
-        <span>scheduled time</span>
-        <br/>
-        <span>{{schedule.date}} {{schedule.time}}</span>
-      </div>
-    </li>
-  </ul>
+  <div class="post-title">
+    <a href="{{url}}">{{title}}</a> / {{subreddit}}
+  </div>
+  <div class="post-time">
+    {{schedule.date}} {{schedule.time}}
+  </div>
+  <div class="post-content">{{urlOrDetails}}</div>
 </div>
