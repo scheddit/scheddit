@@ -29,7 +29,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.date)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " "
     + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\n      </div>\n    </li>\n  </ul>\n</div>";
+    + "</span>\n      </div>\n    </li>\n  </ul>\n</div>\n";
   return buffer;
   })
 return template
