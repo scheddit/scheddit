@@ -33,15 +33,11 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['public/css/**/*.styl'],
-        tasks: ['stylus'],
+        files: ['public/css/**/*.styl', 'public/template/*.hbs'],
+        tasks: ['stylus', 'handlebars_requirejs'],
         options: {
           livereload: true
         }
-      },
-      handlebars: {
-        files: ['public/template/*.hbs'],
-        tasks: ['handlebars']
       }
     },
 
@@ -108,14 +104,6 @@ module.exports = function(grunt) {
       compile: {
         options: {
           paths: ["public/css"]
-          // urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
-          // use: [
-            // require('fluidity') // use stylus plugin at compile time
-          // ],
-          // import: [      //  @import 'foo', 'bar/moo', etc. into every .styl file
-          //   'foo',       //  that is compiled. These might be findable based on values you gave
-          //   'bar/moo'    //  to `paths`, or a plugin you added under `use`
-          // ]
         },
 
         files: {
@@ -124,21 +112,19 @@ module.exports = function(grunt) {
       }
     },
 
-    handlebars: {
-      compile: {
-        options: {
-          namespace: "JST" //?
-        },
+    handlebars_requirejs: {
+      basic: {
         files: {
-          "public/js/app/templates/template.js": "public/template/*.hbs"
-          // "path/to/another.js": ["path/to/sources/*.hbs", "path/to/more/*.hbs"]
+          // folder : files
+          // files will be converted into modules and dumped into the folder
+          'public/js/app/templates/': 'public/template/*.hbs'
         }
       }
     }
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-handlebars-requirejs');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-requirejs');

@@ -45,7 +45,7 @@
     "fluidity": "~0.2.0",
     "stylus": "~0.38.0",
     "handlebars": "~1.0.12",
-    "grunt-contrib-handlebars": "~0.5.11"
+    "grunt-handlebars-requirejs": "~0.1.0"
   },
   "scripts": {
     "start": "node server/server.js"
