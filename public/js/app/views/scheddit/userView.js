@@ -67,7 +67,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
 
       // Renders the view's template to the UI
       render: function() {
-        $('#user').empty().append('<a href="#user">' + this.name + '</a>');
+        $('#user').addClass('loggedinUser').empty().append('<a href="#user">' + this.name + '</a>');
         var data = {name: this.name, warning: this.warning};
         console.log("warning in render", this.warning);
 
