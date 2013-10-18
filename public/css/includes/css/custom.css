@@ -1,14 +1,16 @@
 body{background-color:#f1f1f1}
 .foot{margin-top:2px;text-align:center;color:#b8b8b8}
-.container{margin-top:20px;margin-bottom:50px}
-#user{border:1px solid #7a93b4;padding:26px;float:right;margin:0;}
-#user a{color:#fff}
+.footer{position:relative;padding:13px;}
+.footer p{margin:0}
+.container{margin:50px 10% 20px}
+#user{border:1px solid #7a93b4;padding:26px;float:right;margin:0;background-color:#d89f25;}
+#user a{color:#fff;font-weight:bold;font-size:large}
 .post-details{list-style:none;display:table-row}
 .post-details li{display:table-cell;padding:0 10px}
 .navbar-toggle{border:1px solid #f1f1f1;margin:23px}
 .icon-bar{background-color:#f1f1f1}
 .nav{background-color:#7c90ad}
-header{display:inline-block}
+header{display:inline-block;opacity:.9}
 .nav a{color:#fff}
 .navbar-header{background-color:#7c90ad}
 .navbar-header a{color:#fff}
@@ -31,6 +33,8 @@ textarea{height:70px}
 .explainIt{color:#7a93b4}
 .howItWorksOutter{display:inline-block}
 .howItWorksInner{display:inline-block}
+.listPosts{border:2px solid #3a4854;border-radius:5px;margin-top:27px;padding:0;}
+.listPosts h3{background-color:#7c90ad;border-bottom:2px solid #3a4854;margin:0;padding:13px;color:#3a4854}
 .post{position:relative;padding:10px;margin:15px;color:#3a4854;background:#fff;border:2px solid #3a4854;border-radius:5px;font-size:16px;list-style:none;}
 .post:before,.post:after{position:absolute;width:0;height:0;border:solid transparent;content:" ";pointer-events:none;left:50%;bottom:100%;margin-left:-.75rem}
 .post:before{border-width:.75rem;border-right-color:#3a4854;margin-top:-.5rem;left:-.75rem;top:1.45rem}
