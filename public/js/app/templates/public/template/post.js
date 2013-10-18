@@ -5,23 +5,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, stack2, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"post\">\r\n  <h4 class=\"underline\">";
-  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</h4>\r\n  <ul class=\"post-details\">\r\n    <li>\r\n      <div>\r\n        <span>kind</span>\r\n        <br/>\r\n        <span>";
-  if (stack1 = helpers.kind) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.kind; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</span>\r\n      </div>\r\n    <h4 class=\"underline\">";
-  if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</h4>\r\n    <ul class=\"post-details\">\r\n      <li>\r\n        <div>\r\n          <span>kind</span>\r\n          <br/>\r\n          <span>";
-  if (stack1 = helpers.kind) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.kind; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</span>\r\n        </div>\r\n        </li>\r\n      <li>\r\n        <div><a href=\"";
+  buffer += "<div class=\"post\">\r\n  <div class=\"post-title\">\r\n    <a href=\"";
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -29,31 +13,19 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a>\r\n          <span>content</span>\r\n          <br/>\r\n          <span>";
-  if (stack1 = helpers.urlOrDetails) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.urlOrDetails; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</span>\r\n        </div>\r\n        </li>\r\n      <li>\r\n        <div>\r\n          <span>subreddit</span>\r\n          <br/>\r\n          <span>";
+    + "</a> / ";
   if (stack1 = helpers.subreddit) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.subreddit; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\r\n        </div>\r\n        </li>\r\n      <li>\r\n        <div>\r\n          <span>scheduled time</span>\r\n          <br/>\r\n          <span>"
+    + "\r\n  </div>\r\n  <div class=\"post-time\">\r\n    "
     + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.date)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " "
     + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\r\n        </div>\r\n      </li>\r\n    <li>\r\n      <div>\r\n        <span>content</span>\r\n        <br/>\r\n        <span>";
+    + "\r\n  </div>\r\n  <div class=\"post-content\">";
   if (stack2 = helpers.urlOrDetails) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.urlOrDetails; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</span>\r\n      </div>\r\n      </li>\r\n    <li>\r\n      <div>\r\n        <span>subreddit</span>\r\n        <br/>\r\n        <span>";
-  if (stack2 = helpers.subreddit) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.subreddit; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</span>\r\n      </div>\r\n      </li>\r\n    <li>\r\n      <div>\r\n        <span>scheduled time</span>\r\n        <br/>\r\n        <span>"
-    + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.date)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " "
-    + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\r\n      </div>\r\n    </li>\r\n  </ul>\r\n</div>\r\n";
+    + "</div>\r\n</div>\r\n";
   return buffer;
   })
 return template
