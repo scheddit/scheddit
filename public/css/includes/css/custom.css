@@ -5,9 +5,9 @@ header{display:inline-block;opacity:.9}
 textarea{height:70px}
 .collapse{background-color:#7c90ad;}
 .collapse a{color:#fff}
-.container{margin:50px 10% 20px}
+.container{margin:60px 10% 20px}
 .explainIt{color:#7a93b4}
-.foot{color$body_text_recessedmargin-top:2px;text-align:center}
+.foot{color:#b8b8b8;margin-top:2px;text-align:center}
 .footer{padding:13px;position:relative;}
 .footer p{margin:0}
 .frontPage{border:2px solid $form_border_color;margin:5px}
