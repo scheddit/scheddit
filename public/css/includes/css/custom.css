@@ -44,3 +44,16 @@ textarea{height:70px}
 }.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0 4%}
 #loginButton{display:inline-block}
 #formWarning{visibility:hidden;display:hidden;height:0}
+#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
+@media screen and (max-width: 650px){#main-container{height:550px}
+}.landingTitles{text-align:center;margin-top:8px}
+#loginButton{margin:10px auto;width:440px}
+#howItWorks{display:inline-block;float:left;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;}
+@media screen and (max-width: 650px){#howItWorks{width:100%;float:none;display:block;height:48%}
+}#whoItsFor{display:inline-block;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;float:left;margin-left:4%;padding:15px;width:48%;height:100%;background-color:#fff;}
+@media screen and (max-width: 650px){#whoItsFor{width:100%;float:none;display:block;height:48%;margin-left:0;margin-top:5px}
+}#mainTitles{margin-bottom:-15px}
+#loginButton{margin-top:32px}
+#warning{margin-top:50px}
+#whoItsFor linth-child(-n+2){line-height:35px}
+body{font-family:"Lucida Grande" !important}
