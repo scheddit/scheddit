@@ -1,4 +1,4 @@
-body{background-color:#f1f1f1}
+body{background-color:#f1f1f1;font-family:"Lucida Grande" !important}
 form{padding:5px;width:100%;}
 form input,form select,form textarea{background-color:#f1f1f1;margin:5px;text-align:center;width:98%}
 header{display:inline-block;opacity:.9}
@@ -14,6 +14,7 @@ textarea{height:70px}
 .howItWorksOutter{display:inline-block}
 .howItWorksInner{display:inline-block}
 .icon-bar{background-color:#f1f1f1}
+.landingTitles{text-align:center;margin-top:8px}
 .listPosts{border:2px solid #3a4854;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin-top:27px;padding:0;}
 .listPosts h3{background-color:#7c90ad;border-bottom:2px solid #3a4854;color:#3a4854;margin:0;padding:13px}
 .loggedinUser{border:1px solid #7a93b4;padding:26px;float:right;margin:0;background-color:#d89f25;opacity:1;}
@@ -42,18 +43,14 @@ textarea{height:70px}
 .tryIt{background-color:#bababa;color:#3a4854;padding:20px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;width:909px;}
 @media screen and (max-width 991px){.tryIt{width:481px}
 }.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0 4%}
-#loginButton{display:inline-block}
 #formWarning{visibility:hidden;display:hidden;height:0}
-#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
-@media screen and (max-width: 650px){#main-container{height:550px}
-}.landingTitles{text-align:center;margin-top:8px}
-#loginButton{margin:10px auto;width:440px}
 #howItWorks{display:inline-block;float:left;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;}
 @media screen and (max-width: 650px){#howItWorks{width:100%;float:none;display:block;height:48%}
-}#whoItsFor{display:inline-block;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;float:left;margin-left:4%;padding:15px;width:48%;height:100%;background-color:#fff;}
-@media screen and (max-width: 650px){#whoItsFor{width:100%;float:none;display:block;height:48%;margin-left:0;margin-top:5px}
+}#loginButton{display:inline-block;margin:32px auto 10px;width:440px}
+#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
+@media screen and (max-width: 650px){#main-container{height:550px}
 }#mainTitles{margin-bottom:-15px}
-#loginButton{margin-top:32px}
 #warning{margin-top:50px}
-#whoItsFor linth-child(-n+2){line-height:35px}
-body{font-family:"Lucida Grande" !important}
+#whoItsFor{display:inline-block;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;float:left;margin-left:4%;padding:15px;width:48%;height:100%;background-color:#fff;}
+@media screen and (max-width: 650px){#whoItsFor{width:100%;float:none;display:block;height:48%;margin-left:0;margin-top:5px}
+}#whoItsFor li nth-child(-n+2){line-height:35px}

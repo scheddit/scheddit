@@ -39,6 +39,7 @@ box-shadow()
 //element styling
 body
   background-color $body_background_color
+  font-family "Lucida Grande" !important
 
 form
   padding 5px
@@ -94,6 +95,10 @@ textarea
 
 .icon-bar
   background-color $body_background_color
+
+.landingTitles
+  text-align center
+  margin-top 8px
 
 .listPosts
   border 2px solid $speechbubble_border_color
@@ -251,38 +256,10 @@ textarea
 
 //id styling
 
-#loginButton
-  display inline-block
-
-// Rupa's additions to the Stylus
 #formWarning
   visibility hidden
   display hidden
   height 0px
-
-
-
-//kevmo's additions to da stylusin'
-
-#main-container
-  width 100%
-  overflow hidden
-  width 100%
-  overflow hidden
-  height 234px
-  padding-top 30px
-
-  @media screen and (max-width: 650px)
-    height 550px
-
-.landingTitles
-  text-align center
-  margin-top 8px
-
-#loginButton 
-  margin 10px auto
-  width 440px
-
 
 #howItWorks
   display inline-block
@@ -299,6 +276,28 @@ textarea
     float none
     display block
     height 48%
+
+#loginButton
+  display inline-block
+  margin 32px auto 10px
+  width 440px
+
+#main-container
+  width 100%
+  overflow hidden
+  width 100%
+  overflow hidden
+  height 234px
+  padding-top 30px
+
+  @media screen and (max-width: 650px)
+    height 550px
+
+#mainTitles
+  margin-bottom -15px
+
+#warning
+  margin-top 50px
 
 #whoItsFor
   display inline-block
@@ -318,21 +317,6 @@ textarea
     height 48%
     margin-left 0
     margin-top 5px
-
-#mainTitles
-  margin-bottom -15px
-
-#loginButton
-  margin-top 32px
-
-
-#warning
-  margin-top 50px
-
-#whoItsFor linth-child(-n+2)
-  line-height 35px
-
-body
-  font-family "Lucida Grande" !important
-
+  li nth-child(-n+2)
+    line-height 35px
 
