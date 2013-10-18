@@ -17,6 +17,17 @@ $form_background_color = rgb(124, 144, 173)
 $form_dark_background = rgb(186, 186, 186)
 $form_dark_text = rgb(241, 241, 241)
 
+// speechbubble
+$speechbubble_arrow_size = 0.75rem
+$speechbubble_text_color = rgb(220, 220, 220)
+$speechbubble_border_color = rgb(58, 72, 84)
+$speechbubble_background_color = rgb(255, 255, 255)
+$speechbubble_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
+
+
+$px = 1px
+
+
 body
   background-color: $body_background_color
 
@@ -25,17 +36,25 @@ body
   text-align: center
   color:$body_text_recessed
 
+.footer
+  position: relative
+  padding: 13px
+  p
+    margin: 0
+
 .container
-  margin-top: 20px
-  margin-bottom: 50px
+  margin: 50px 10% 20px
 
 #user
   border: 1px solid $nav_border_color
   padding: 26px
   float: right
   margin: 0
+  background-color: rgb(216, 159, 37);
   a
     color: $nav_text_color
+    font-weight: bold
+    font-size: large
 
 .post-details
   list-style: none
@@ -61,6 +80,7 @@ body
 
 header
   display: inline-block
+  opacity: 0.9
 
 
 .nav a
@@ -151,17 +171,19 @@ textarea
 .howItWorksInner
   display: inline-block
 
+.listPosts
+  border: 2px solid $speechbubble_border_color
+  border-radius: 5px
+  margin-top: 27px
+  padding: 0
+  h3
+    background-color: rgb(124, 144, 173)
+    border-bottom: 2px solid rgb(58, 72, 84)
+    margin: 0
+    padding: 13px
+    color: rgb(58, 72, 84)
 
 
-// speechbubble
-$speechbubble_arrow_size = 0.75rem
-$speechbubble_text_color = rgb(220, 220, 220)
-$speechbubble_border_color = rgb(58, 72, 84)
-$speechbubble_background_color = rgb(255, 255, 255)
-$speechbubble_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
-
-
-$px = 1px
 
 .post {
   position: relative
