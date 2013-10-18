@@ -1,8 +1,8 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
+define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView", "views/scheddit/modalView", "bootstrap"],
 
-  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){
+  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView, BootstrapModal){
 
     var UserView = Backbone.View.extend({
 
@@ -32,7 +32,8 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         // write an event that is triggered when the button is clicked and calls a function that launches oAuth
         "click .submitButton": "addToSchedule",
         // listen for change on the "select type of post button", then call jquery function that either displays link or self-post form
-        "change #postType": "displayTextOrLinkForm"
+        "change #postType": "displayTextOrLinkForm",
+        "click #modal-clicker": "displayModal"
       },
 
       // function that is triggered when the submit button is pressed
@@ -92,6 +93,14 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         $('.initialHide').removeClass('initialHide');
         $('.initialCollapse').removeClass('initialCollapse');
 
+      },
+
+      displayModal: function(){
+        var modal = new BootstrapModal({
+          content: "stuff",
+          title: 'modal header',
+          animate: true
+        }).open(function(){console.log("clicked OK");});
       }
 
     });
