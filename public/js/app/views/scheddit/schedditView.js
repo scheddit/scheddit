@@ -17,9 +17,6 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "templates/scheddit"],
       },
       // function that is triggered on button event
       launchOauth: function(){
-        // code goes here
-        // GET to /login
-        // console.log("testing 1, 2, 3");
         $.ajax({
           url: "/api/login",
           method: "GET"
@@ -33,10 +30,8 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "templates/scheddit"],
       },
       // Renders the view's template to the UI
       render: function() {
-        // Setting the view's template property using the Underscore template method
-        this.template = template;
         // Dynamically updates the UI with the view's template
-        this.$el.html(this.template);
+        this.$el.html(template);
         // Maintains chainability
         return this;
       }

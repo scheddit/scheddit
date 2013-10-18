@@ -2,7 +2,7 @@
 
 define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
 
-  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){ //note: we are not passing in postView.html
+  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){
 
     var UserView = Backbone.View.extend({
 
@@ -47,7 +47,13 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         })
         .done(function(data){
           console.log('schedule ajax success', data);
-          console.log('schedule ajax success');
+          var errorCode = $.parseJSON(data);
+          console.log(errorCode);
+          if (errorCode.error === "BAD_CAPTCHA") {
+            // alert the user that we cannot post for them
+            // ask andre about handlebars and what's going on with this
+            $('#formWarning').toggleClass( "hidden" ).text("You don't have enough Reddit Karma. Currently with Scheddit Beta posting from all accounts is not supported.");
+          }
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
@@ -56,18 +62,18 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         //clear the form after submission
         $('#postType').prop('selectedIndex',0);
         $(".refresh").val("");
-
         return false;
       },
 
       // Renders the view's template to the UI
       render: function() {
         $('#user').empty().append('<a href="#user">' + this.name + '</a>');
-        this.template = template;
-        var data = {name: this.name};
+        var data = {name: this.name, warning: this.warning};
+        console.log("warning in render", this.warning);
 
-        return this.$el.html(this.template(data));
+        return this.$el.html(template(data));
       },
+
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){
