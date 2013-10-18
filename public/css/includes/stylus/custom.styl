@@ -1,6 +1,7 @@
 // Custom Stylus
 // ===========
 
+//variables
 $body_background_color = rgb(241, 241, 241)
 $body_text_dark = rgb(58, 72, 84)
 $body_text_recessed = rgb(184, 184, 184)
@@ -25,6 +26,15 @@ $speechbubble_background_color = rgb(255, 255, 255)
 $speechbubble_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
 
 $px = 1px
+
+//mixins
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+
+box-shadow()
+  -webkit-box-shadow arguments
 
 //element styling
 body
@@ -87,7 +97,7 @@ textarea
 
 .listPosts
   border: 2px solid $speechbubble_border_color
-  border-radius: 5px
+  border-radius 5px
   margin-top: 27px
   padding: 0
   h3
@@ -143,7 +153,9 @@ textarea
   background: $speechbubble_background_color
 
   border: 2px solid $speechbubble_border_color
-  border-radius: 5px
+  border-radius 5px
+
+  box-shadow 10px 5px 5px $form_dark_background
 
   color: $speechbubble_border_color
 
@@ -220,7 +232,7 @@ textarea
   background-color: $form_background_color
   padding: 5px
   border: 2px solid $body_text_dark
-  border-radius: 5px
+  border-radius 5px
   h3
     color: $body_text_dark
 
@@ -228,7 +240,7 @@ textarea
   background-color: $form_dark_background
   color: $body_text_dark
   padding: 20px
-  border-radius: 3px
+  border-radius 3px
   width: 909px
   @media screen and (max-width: 991px)
     width: 481px
