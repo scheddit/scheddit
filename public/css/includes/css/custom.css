@@ -36,16 +36,16 @@ textarea{height:70px}
 .post:before{border-width:.75rem;border-right-color:#3a4854;margin-top:-.5rem;left:-.75rem;top:1.45rem}
 .post:after{border-width:.6rem;margin-left:0;left:-1.1rem;top:1.1rem;border-right-color:#fff}
 #formWarning{visibility:hidden;display:hidden;height:0}
-#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;}
+#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
 @media screen and (max-width: 650px){#main-container{height:550px}
-}.landingTitles{text-align:center}
+}.landingTitles{text-align:center;margin-top:8px}
 #loginButton{margin:10px auto;width:440px}
 #howItWorks{display:inline-block;float:left;border-style:solid;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;}
 @media screen and (max-width: 650px){#howItWorks{width:100%;float:none;display:block;height:48%}
 }#whoItsFor{display:inline-block;border-style:solid;border-radius:5px;float:left;margin-left:4%;padding:15px;width:48%;height:100%;background-color:#fff;}
 @media screen and (max-width: 650px){#whoItsFor{width:100%;float:none;display:block;height:48%;margin-left:0;margin-top:5px}
 }#mainTitles{margin-bottom:-15px}
-.underlineThis{text-decoration:underline}
 #loginButton{margin-top:32px}
 #warning{margin-top:50px}
 #whoItsFor li:nth-child(-n+2){line-height:35px}
+body{font-family:"Lucida Grande" !important}
