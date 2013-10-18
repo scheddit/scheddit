@@ -27,6 +27,21 @@ textarea{height:70px}
 .navbar-header a{color:#fff}
 .navbar-nav{border:1px solid #7a93b4;margin:0}
 .navbar-nav > li > a{line-height:40px}
+.navbar-brand{margin:0;padding:0 15px}
+.toShareForm{width:419px;margin:0 auto;background-color:#3a4854;padding:15px;border:1px solid #7c90ad;border-radius:5px;}
+.toShareForm h3{color:#7c90ad}
+.modal-holder{width:50%;margin:0 auto;border-color:#fff;border-width:1px;background-color:#f1f1f1}
+form{width:100%;padding:5px;}
+form select,form input,form textarea{width:98%;margin:5px;background-color:#f1f1f1;text-align:center}
+textarea{height:70px}
+.tryIt{background-color:#bababa;color:#3a4854;padding:20px;border-radius:3px;width:909px;}
+@media screen and (max-width: 991px){.tryIt{width:481px}
+}.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0 4%}
+.tryIt #loginButton{display:inline-block}
+.frontPage{border:2px solid $form_border_color;margin:5px}
+.explainIt{color:#7a93b4}
+.howItWorksOutter{display:inline-block}
+.howItWorksInner{display:inline-block}
 .post{background:#fff;border:2px solid #3a4854;border-radius:5px;color:#3a4854;font-size:16px;list-style:none;margin:15px;padding:10px;position:relative;z-index:-1;}
 .post:before,.post:after{position:absolute;width:0;height:0;border:solid transparent;content:" ";pointer-events:none;left:50%;bottom:100%;margin-left:-.75rem}
 .post:before{border-width:.75rem;border-right-color:#3a4854;margin-top:-.5rem;left:-.75rem;top:1.45rem}

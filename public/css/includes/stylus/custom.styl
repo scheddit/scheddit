@@ -16,6 +16,7 @@ $form_background_color = rgb(124, 144, 173)
 // $form_border_color = rgb(194,194,194)
 $form_dark_background = rgb(186, 186, 186)
 $form_dark_text = rgb(241, 241, 241)
+$form_gradient = rgb(241, 241, 241) rgb(186, 186, 186)
 
 // speechbubble
 $speechbubble_arrow_size = 0.75rem
@@ -138,6 +139,87 @@ textarea
 
 .navbar-nav > li > a
   line-height: 40px
+
+
+.navbar-brand
+  margin: 0
+  padding: 0 15px
+
+.toShareForm
+  width: 419px
+  margin: 0 auto
+  background-color: $body_text_dark
+  padding:15px
+  border: 1px solid $form_background_color
+  border-radius: 5px
+  h3
+    color: $form_background_color
+
+.modal-holder
+  width: 50%
+  margin: 0 auto
+  border-color: #FFFFFF
+  border-width: 1px
+  background-color: $body_background_color
+
+form
+  width: 100%
+  padding: 5px
+  select,
+  input,
+  textarea
+    width: 98%
+    margin: 5px
+    background-color: $body_background_color
+    text-align: center
+
+textarea
+  height: 70px
+
+.tryIt
+  background-color: $form_dark_background
+  color: $body_text_dark
+  padding: 20px
+  border-radius: 3px
+  width: 909px
+  @media screen and (max-width: 991px)
+    width: 481px
+  p
+    font-size: 2rem
+    line-height: 60px
+    font-weight: bold
+    display: inline-block
+    margin: 0 4%
+
+  #loginButton
+    display: inline-block
+
+.frontPage {
+  border: 2px solid $form_border_color
+  margin 5px
+}
+
+.explainIt {
+  color: $nav_border_color
+}
+
+.howItWorksOutter
+  display: inline-block
+
+.howItWorksInner
+  display: inline-block
+
+
+
+// speechbubble
+$speechbubble_arrow_size = 0.75rem
+$speechbubble_text_color = rgb(220, 220, 220)
+$speechbubble_border_color = rgb(58, 72, 84)
+$speechbubble_background_color = rgb(255, 255, 255)
+$speechbubble_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
+
+
+$px = 1px
 
 .post {
   background: $speechbubble_background_color

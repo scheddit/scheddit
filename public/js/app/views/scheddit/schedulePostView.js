@@ -6,7 +6,7 @@ define(["jquery", "backbone", "models/scheddit/Post", "templates/schedulePost"],
 
     var PostView = Backbone.View.extend({
       render: function() {
-        var data = this.model.attributes; //TODO: should this be this.model.toJSON()?
+        var data = this.model.attributes;
         return this.$el.html(template(data));
       }
     });
