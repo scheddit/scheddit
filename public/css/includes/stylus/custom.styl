@@ -1,6 +1,7 @@
 // Custom Stylus
 // ===========
 
+//variables
 $body_background_color = rgb(241, 241, 241)
 $body_text_dark = rgb(58, 72, 84)
 $body_text_recessed = rgb(184, 184, 184)
@@ -26,226 +27,235 @@ $speechbubble_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
 
 $px = 1px
 
+//mixins
+border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+
+box-shadow()
+  -webkit-box-shadow arguments
+
 //element styling
 body
-  background-color: $body_background_color
+  background-color $body_background_color
 
 form
-  padding: 5px
-  width: 100%
+  padding 5px
+  width 100%
   input,
   select,
   textarea
-    background-color: $body_background_color
-    margin: 5px
-    text-align: center
-    width: 98%
+    background-color $body_background_color
+    margin 5px
+    text-align center
+    width 98%
 
 header
-  display: inline-block
-  opacity: 0.9
+  display inline-block
+  opacity 0.9
 
 textarea
-  height: 70px
+  height 70px
 
 //class styling
 
 .collapse
-  background-color: $nav_background_color
+  background-color $nav_background_color
   a
-    color: $nav_text_color
+    color $nav_text_color
 
 .container
-  margin: 50px 10% 20px
+  margin 60px 10% 20px
 
 .explainIt
-  color: $nav_border_color
+  color $nav_border_color
 
 .foot
-  color:$body_text_recessed
-  margin-top: 2px
-  text-align: center
+  color $body_text_recessed
+  margin-top 2px
+  text-align center
 
 .footer
-  padding: 13px
-  position: relative
+  padding 13px
+  position relative
   p
-    margin: 0
+    margin 0
 
 .frontPage
-  border: 2px solid $form_border_color
+  border 2px solid $form_border_color
   margin 5px
 
 .howItWorksOutter
-  display: inline-block
+  display inline-block
 
 .howItWorksInner
-  display: inline-block
+  display inline-block
 
 .icon-bar
-  background-color: $body_background_color
+  background-color $body_background_color
 
 .listPosts
-  border: 2px solid $speechbubble_border_color
-  border-radius: 5px
-  margin-top: 27px
-  padding: 0
+  border 2px solid $speechbubble_border_color
+  border-radius 5px
+  margin-top 27px
+  padding 0
   h3
-    background-color: rgb(124, 144, 173)
-    border-bottom: 2px solid rgb(58, 72, 84)
-    color: rgb(58, 72, 84)
-    margin: 0
-    padding: 13px
+    background-color rgb(124, 144, 173)
+    border-bottom 2px solid rgb(58, 72, 84)
+    color rgb(58, 72, 84)
+    margin 0
+    padding 13px
 
 .loggedinUser
-  border: 1px solid $nav_border_color
-  padding: 26px
-  float: right
-  margin: 0
-  background-color: rgb(216, 159, 37)
+  border 1px solid $nav_border_color
+  padding 26px
+  float right
+  margin 0
+  background-color rgb(216, 159, 37)
   opacity 1.0
   a
-    color: $nav_text_color
-    font-weight: bold
-    font-size: large
+    color $nav_text_color
+    font-weight bold
+    font-size large
 
 .navbar-toggle
-  border: 1px solid $body_background_color
-  margin: 23px
+  border 1px solid $body_background_color
+  margin 23px
 
 .nav
-  background-color: $nav_background_color
+  background-color $nav_background_color
   a
-    color: $nav_text_color
+    color $nav_text_color
 
 .navbar-brand
-  margin: 0
-  padding: 0 15px
+  margin 0
+  padding 0 15px
 
 .navbar-collapse
-  background-color: $nav_background_color
-  border-bottom: 1px solid #cccccc
-  padding: 0
+  background-color $nav_background_color
+  border-bottom 1px solid #cccccc
+  padding 0
 
 .navbar-header
-  background-color: $nav_background_color
+  background-color $nav_background_color
   a
-    color: $nav_text_color
+    color $nav_text_color
 
 .navbar-nav
-  border: 1px solid $nav_border_color
-  margin: 0
+  border 1px solid $nav_border_color
+  margin 0
 
 .navbar-nav > li > a
-  line-height: 40px
+  line-height 40px
 
-.post {
-  background: $speechbubble_background_color
+.post
+  background $speechbubble_background_color
 
-  border: 2px solid $speechbubble_border_color
-  border-radius: 5px
+  border 2px solid $speechbubble_border_color
+  border-radius 5px
 
-  color: $speechbubble_border_color
+  box-shadow 5px 5px 5px $form_dark_background
 
-  font-size: 16px
+  color $speechbubble_border_color
 
-  list-style: none
+  font-size 16px
 
-  margin: 15px
-  padding: 10px
-  position: relative
-  z-index: -1
+  list-style none
+
+  margin 15px
+  padding 10px
+  position relative
+
+  word-wrap break-word
+
+  z-index -1
 
   &:before,
-  &:after {
-    position: absolute;
-    width: 0;
-    height: 0;
+  &:after
+    position absolute
+    width 0
+    height 0
 
-    border: solid transparent;
+    border solid transparent
 
-    content: " ";
+    content " "
 
-    pointer-events: none;
+    pointer-events none
 
-    left: 50%;
-    bottom: 100%;
-    margin-left: -1*$speechbubble_arrow_size;
-  }
-  &:before {
-    border-width: $speechbubble_arrow_size;
-    border-right-color: $speechbubble_border_color;
-    margin-top: -.5rem
-    left: -.75rem;
-    top: 1.45rem
-
-  }
-  &:after {
-    border-width: $speechbubble_arrow_size - .15rem
-    margin-left: 0
-    left: -1.1rem
-    top: 1.1rem
-    border-right-color: $speechbubble_background_color
-  }
-}
+    left 50%
+    bottom 100%
+    margin-left -1*$speechbubble_arrow_size
+  &:before 
+    border-width $speechbubble_arrow_size
+    border-right-color $speechbubble_border_color
+    margin-top -.5rem
+    left -.75rem
+    top 1.45rem
+  &:after
+    border-width $speechbubble_arrow_size - .15rem
+    margin-left 0
+    left -1.1rem
+    top 1.1rem
+    border-right-color $speechbubble_background_color
 
 .post-details
-  list-style: none
-  display: table-row
+  list-style none
+  display table-row
   li
-    display: table-cell
-    float: left
-    padding: 0 10px
+    display table-cell
+    float left
+    padding 0 10px
     div
-      display: inline-block
+      display inline-block
 
 .post-title
   a
-    font-weight: bold
-    font-size: 22px
+    font-weight bold
+    font-size 22px
 
 .post-time
-  margin-left: 10px
-  font-size: 12px
-  font-style: italic
+  margin-left 10px
+  font-size 12px
+  font-style italic
 
 .post-content
-  margin-left: 10px
-  color: black
-  padding: 15px 0;
-  line-height: 23px;
+  margin-left 10px
+  color black
+  padding 15px 0
+  line-height 23px
 
 .toShareForm
-  width: 419px
-  background-color: $form_background_color
-  padding: 5px
-  border: 2px solid $body_text_dark
-  border-radius: 5px
+  width 419px
+  background-color $form_background_color
+  padding 5px
+  border 2px solid $body_text_dark
+  border-radius 5px
   h3
-    color: $body_text_dark
+    color $body_text_dark
 
 .tryIt
-  background-color: $form_dark_background
-  color: $body_text_dark
-  padding: 20px
-  border-radius: 3px
-  width: 909px
-  @media screen and (max-width: 991px)
-    width: 481px
+  background-color $form_dark_background
+  color $body_text_dark
+  padding 20px
+  border-radius 3px
+  width 909px
+  @media screen and (max-width 991px)
+    width 481px
   p
-    font-size: 2rem
-    line-height: 60px
-    font-weight: bold
-    display: inline-block
-    margin: 0 4%
+    font-size 2rem
+    line-height 60px
+    font-weight bold
+    display inline-block
+    margin 0 4%
 
 //id styling
 
 #loginButton
-  display: inline-block
+  display inline-block
 
 // Rupa's additions to the Stylus
 #formWarning
-  visibility: hidden
-  display: hidden
-  height: 0px
+  visibility hidden
+  display hidden
+  height 0px
