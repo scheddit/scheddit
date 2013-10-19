@@ -13,7 +13,7 @@ textarea{height:70px}
 .howItWorksOutter{display:inline-block}
 .howItWorksInner{display:inline-block}
 .icon-bar{background-color:#f1f1f1}
-.landingTitles{text-align:center;margin-top:8px}
+.landingTitles{text-align:center;margin:0}
 .listPosts{border:2px solid #3a4854;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin-top:27px;padding:0;}
 .listPosts h3{background-color:#7c90ad;border-bottom:2px solid #3a4854;color:#3a4854;margin:0;padding:13px}
 .loggedinUser{border:1px solid #7a93b4;padding:26px;float:right;margin:0;background-color:#d89f25;opacity:1;}
