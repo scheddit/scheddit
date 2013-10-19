@@ -85,7 +85,8 @@ module.exports.api = function(app, schema) {
         var error = {"error": errorMessage};
         res.send(200, JSON.stringify(error));
       } else {
-        res.send(200, "{success: success}");
+        var success = {"success": "success"};
+        res.send(200, JSON.stringify(success));
       }
     });
   };
