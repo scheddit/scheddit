@@ -21,16 +21,7 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
             this.options.content.trigger('cancel', this);
           }
         },
-        'click .ok': function(event) {
-          event.preventDefault();
-          this.trigger('ok');
-          if (this.options.content && this.options.content.trigger) {
-            this.options.content.trigger('ok', this);
-          }
-          if (this.options.okCloses) {
-            this.close();
-          }
-        }
+        'click .ok': "addToSchedule"
       },
 
       /**
@@ -96,6 +87,7 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
        * @param {Function} [cb]     Optional callback that runs only when OK is pressed.
        */
       open: function(cb) {
+        // if ajax test works then you can render with the selected view
         if (!this.isRendered) this.render();
 
         var self = this,
@@ -191,6 +183,36 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
         $el.modal('hide');
 
         Modal.count--;
+      },
+
+      addToSchedule: function(event){
+        console.log("inside the function");
+        //string variable required because element type will depend on kind of submission.
+        var element = '';
+
+        $.ajax({
+          url: "/api/schedule", // the API
+          method: "POST",
+          data: $('#newPost').serializeArray()
+        })
+        .done(function(data){
+          console.log('schedule ajax success', data);
+          var errorCode = $.parseJSON(data);
+          console.log(errorCode);
+          if (errorCode.error === "BAD_CAPTCHA") {
+            // alert the user that we cannot post for them
+            // ask andre about handlebars and what's going on with this
+            $('#formWarning').toggleClass( "hidden" ).text("You don't have enough Reddit Karma. Currently with Scheddit Beta posting from all accounts is not supported.");
+          }
+        })
+        .fail(function(err){
+          console.log('schedule ajax fail', err);
+        });
+
+        //clear the form after submission
+        $('#postType').prop('selectedIndex',0);
+        $(".refresh").val("");
+        return false;
       },
 
       /**

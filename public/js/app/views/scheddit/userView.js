@@ -1,8 +1,8 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView", "views/scheddit/modalView", "bootstrap"],
+define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView", "views/scheddit/modalView", "templates/modal", "templates/warningModal", "bootstrap"],
 
-  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView, BootstrapModal){
+  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView, BootstrapModal, modalTemplate, warningModalTemplate){
 
     var UserView = Backbone.View.extend({
 
@@ -33,7 +33,49 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         "click .submitButton": "addToSchedule",
         // listen for change on the "select type of post button", then call jquery function that either displays link or self-post form
         "change #postType": "displayTextOrLinkForm",
-        "click #modal-clicker": "displayModal"
+        "click #modal-clicker": "test"
+      },
+
+      //display modal - takes in a template to display on the frontend
+      displayModal: function(selectedTemplate){
+        var modal = new BootstrapModal({
+          template: selectedTemplate,
+          title: 'What would you like to share today?',
+          animate: true
+        }).open(function(){console.log("clicked OK");});
+      },
+
+      //test the account to see if they can post
+      test: function(event){
+        console.log("inside the function");
+        //string variable required because element type will depend on kind of submission.
+        var element = '';
+
+        $.ajax({
+          url: "/api/test", // the API
+          method: "POST"
+        })
+        .done(function(data){
+          console.log('schedule ajax success', data);
+          var errorCode = $.parseJSON(data);
+          console.log(errorCode);
+          if (errorCode.error === "BAD_CAPTCHA") {
+            // load the error view
+            console.log("inside the bad captcha if");
+            displayModal(warningModalTemplate);
+          } else {
+            // load the form
+            displayModal(modalTemplate);
+          }
+        })
+        .fail(function(err){
+          console.log('schedule ajax fail', err);
+        });
+
+        //clear the form after submission
+        $('#postType').prop('selectedIndex',0);
+        $(".refresh").val("");
+        return false;
       },
 
       // function that is triggered when the submit button is pressed
@@ -93,14 +135,6 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         $('.initialHide').removeClass('initialHide');
         $('.initialCollapse').removeClass('initialCollapse');
 
-      },
-
-      displayModal: function(){
-        var modal = new BootstrapModal({
-          content: "stuff",
-          title: 'What would you like to share today?',
-          animate: true
-        }).open(function(){console.log("clicked OK");});
       }
 
     });

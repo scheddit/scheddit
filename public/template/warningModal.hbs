@@ -6,24 +6,7 @@
       <h4>{{title}}</h4>
     </div>
     <div class="modal-body">
-        <select name="kind" id="postType" class="btn dropdown-toggle initialHide">
-          <option selected="selected">Select a type of post</option>
-          <option value="link">Link</option>
-          <option value="self">Self-Post</option>
-        </select>
-        <br/>
-        <div id="formWarning" class="alert-block alert alert-error hidden">{{warning}}</div>
-        <input name="title" id="postTitle" type="text" placeholder="title" class="refresh initialHide"></input>
-        <br/>
-        <input name="subreddit" id="postSubreddit" type="text" placeholder="choose a subreddit" class="refresh initialHide"></input>
-        <br/>
-        <input name="urlOrDetails" id="urlOrDetails" type="url" placeholder="URL or text" class="refresh initialHide"></input>
-        <br/>
-        <input type="date" id="postDate" name="date" class="refresh initialHide"></input>
-        <br/>
-        <input type="time" id="postTime" name="time" class="refresh initialHide"></input>
-        <br/>
-        <input type="submit" name="submitButton" class="submitButton initialHide"></input>
+        <p>Sorry you do not have enough Reddit Karma to use Scheddit Beta.</p>
     </div>
     <div class="modal-footer">
       <a href="#" class="btn cancel">{{cancelText}}</a>
