@@ -94,18 +94,21 @@ module.exports.api = function(app, schema) {
   var apiSchedule = function(req, res, next) {
     // doesn't always have a req.user!
     var userName = req.user;
+    schema.insertPost(req.body, req.user);
+    var newResponse = {"success": "ADDED_TO_DB"};
+    res.send(200, JSON.stringify(newResponse));
     // run the captcha check at this point
-    checkForNoCaptcha(userName.name, function(errorMessage){
-      if (errorMessage === "BAD_CAPTCHA") {
-        console.log("BAD_CAPTCHA caught");
-        // send something back to the client side with notice/error
-        var error = {"error": errorMessage};
-        res.send(200, JSON.stringify(error));
-      } else {
-        console.log("saving to database");
-        schema.insertPost(req.body, req.user);
-      }
-    });
+    // checkForNoCaptcha(userName.name, function(errorMessage){
+    //   if (errorMessage === "BAD_CAPTCHA") {
+    //     console.log("BAD_CAPTCHA caught");
+    //     // send something back to the client side with notice/error
+    //     var error = {"error": errorMessage};
+    //     res.send(200, JSON.stringify(error));
+    //   } else {
+    //     console.log("saving to database");
+    //     schema.insertPost(req.body, req.user);
+    //   }
+    // });
   };
 
   app.get('/api/login', apiLogin);

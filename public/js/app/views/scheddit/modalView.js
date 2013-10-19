@@ -187,10 +187,6 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
 
       addToSchedule: function(event){
         event.preventDefault();
-        console.log("inside the function");
-        //string variable required because element type will depend on kind of submission.
-        var element = '';
-
         $.ajax({
           url: "/api/schedule", // the API
           method: "POST",
@@ -199,18 +195,21 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
         .done(function(data){
           console.log('schedule ajax success', data);
           // display a submission success here
-          $('#postType').prop('selectedIndex',0);
-          $(".refresh").val("");
-          // this.remove();
-          this.trigger('cancel');
+          var sucess = $.parseJSON(data);
+          if(sucess.success === "ADDED_TO_DB") {
+            $('#postType').prop('selectedIndex',0);
+            $(".refresh").val("");
+            $(".modal").remove();
+            $(".modal-backdrop").remove();
+          }
+
+          // debugger;
+          // this.trigger('cancel');
           // $el.modal('hide');
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
         });
-
-        //clear the form after submission
-        
       },
 
       /**
@@ -240,4 +239,4 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
     // else {
     //   Backbone.BootstrapModal = Modal;
     // }
-})
+});
