@@ -12,6 +12,8 @@ $nav_border_color = rgb(122, 147, 180)
 $nav_background_color = rgb(124, 144, 173)
 // $nav_background_color = rgb(157, 168, 191) rgb(97, 122, 155) NOT WORKING
 $nav_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
+$pop_color = rgb(216, 159, 37)
+$pop_border_color = orangered
 
 $form_background_color = rgb(124, 144, 173)
 // $form_border_color = rgb(194,194,194)
@@ -68,6 +70,13 @@ textarea
   height 70px
 
 //class styling
+
+.btn-primary
+  background-color $speechbubble_border_color
+  border-color $nav_background_color
+.btn-primary:hover
+  background-color $pop_color
+  border-color $pop_border_color
 
 .collapse
   background-color $nav_background_color
@@ -127,6 +136,9 @@ textarea
     color $nav_text_color
     font-weight bold
     font-size large
+
+.modal-button-holder
+  text-align center
 
 .modal-holder
   margin 10% 20%
