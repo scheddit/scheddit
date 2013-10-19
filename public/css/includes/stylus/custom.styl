@@ -38,8 +38,13 @@ box-shadow()
 
 //element styling
 body
-  background-color $body_background_color
-  font-family "Lucida Grande" !important
+  background-image:url('/img/witewall_3.png');
+  //background-repeat:repeat;
+  //background-color $body_background_color
+  font-family "Lucida Grande", Tahoma, Verdana, Arial, sans-serif !important
+
+footer
+  position static !important
 
 form
   padding 5px
@@ -72,16 +77,12 @@ textarea
 .explainIt
   color $nav_border_color
 
-.foot
+.footer
+  padding 13px
   color $body_text_recessed
   margin-top 2px
   text-align center
-
-.footer
-  padding 13px
-  position relative
-  p
-    margin 0
+  bottom 0
 
 .frontPage
   border 2px solid $form_border_color
@@ -270,6 +271,7 @@ textarea
   width 48%
   height 100%;
   background-color #FFFFFF
+  overflow auto
 
   @media screen and (max-width: 650px)
     width 100%
@@ -278,9 +280,10 @@ textarea
     height 48%
 
 #loginButton
-  display inline-block
+  display block
   margin 32px auto 10px
   width 440px
+
 
 #main-container
   width 100%
@@ -309,6 +312,7 @@ textarea
   width 48%
   height 100%
   background-color #FFFFFF
+  overflow auto
 
   @media screen and (max-width: 650px)
     width 100%
