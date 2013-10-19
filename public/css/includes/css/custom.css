@@ -6,7 +6,8 @@ textarea{height:70px}
 .collapse{background-color:#7c90ad;}
 .collapse a{color:#fff}
 .container{margin:0 10%}
-.explainIt{color:#7a93b4}
+@media screen and (max-width: 650px){.explanation li{margin-top:5px}
+}.explainIt{color:#7a93b4}
 .footer{padding:13px;color:#b8b8b8;margin-top:2px;text-align:center;bottom:0}
 .frontPage{border:2px solid $form_border_color;margin:5px}
 .howItWorksOutter{display:inline-block}
@@ -48,7 +49,7 @@ textarea{height:70px}
 }#loginButton{display:block;margin:32px auto 10px;}
 @media screen and (min-width: 600px){#loginButton{width:400px}
 }@media screen and (max-width: 600px){#login-image{display:none}
-}#login-text{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;border:2px solid #7a93b4;background-color:#7c90ad;color:#fff;font-size:large;height:70px;line-height:65px;text-align:center;text-shadow:1px 1px 1px #a8c8f3,-1px -1px 1px #55606f;}
+}#login-text{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;border:2px solid #7a93b4;background-color:#7c90ad;color:#fff;font-size:large;height:70px;line-height:65px;text-align:center;text-shadow:1px 1px 1px #89a4c9,-1px -1px 1px #55606f;}
 @media screen and (min-width: 600px){#login-text{display:none}
 }#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
 @media screen and (max-width: 650px){#main-container{height:550px}
