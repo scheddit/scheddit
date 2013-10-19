@@ -1,4 +1,5 @@
-body{background-color:#f1f1f1;font-family:"Lucida Grande" !important}
+body{background-image:url("/img/witewall_3.png");font-family:"Lucida Grande",Tahoma,Verdana,Arial,sans-serif !important}
+footer{position:static !important}
 form{padding:0;width:100%;}
 form input,form select,form textarea{background-color:#f1f1f1;margin:5px;text-align:center;width:98%}
 header{display:inline-block;opacity:.9}
@@ -7,9 +8,7 @@ textarea{height:70px}
 .collapse a{color:#fff}
 .container{margin:60px 10% 20px}
 .explainIt{color:#7a93b4}
-.foot{color:#b8b8b8;margin-top:2px;text-align:center}
-.footer{padding:13px;position:relative;}
-.footer p{margin:0}
+.footer{padding:13px;color:#b8b8b8;margin-top:2px;text-align:center;bottom:0}
 .frontPage{border:2px solid $form_border_color;margin:5px}
 .howItWorksOutter{display:inline-block}
 .howItWorksInner{display:inline-block}
@@ -48,13 +47,13 @@ textarea{height:70px}
 @media screen and (max-width 991px){.tryIt{width:481px}
 }.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0 4%}
 #formWarning{visibility:hidden;display:hidden;height:0}
-#howItWorks{display:inline-block;float:left;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;}
+#howItWorks{display:inline-block;float:left;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;overflow:auto;}
 @media screen and (max-width: 650px){#howItWorks{width:100%;float:none;display:block;height:48%}
-}#loginButton{display:inline-block;margin:32px auto 10px;width:440px}
+}#loginButton{display:block;margin:32px auto 10px;width:440px}
 #main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
 @media screen and (max-width: 650px){#main-container{height:550px}
 }#mainTitles{margin-bottom:-15px}
 #warning{margin-top:50px}
-#whoItsFor{display:inline-block;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;float:left;margin-left:4%;padding:15px;width:48%;height:100%;background-color:#fff;}
+#whoItsFor{display:inline-block;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;float:left;margin-left:4%;padding:15px;width:48%;height:100%;background-color:#fff;overflow:auto;}
 @media screen and (max-width: 650px){#whoItsFor{width:100%;float:none;display:block;height:48%;margin-left:0;margin-top:5px}
 }#whoItsFor li nth-child(-n+2){line-height:35px}
