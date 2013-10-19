@@ -9,7 +9,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.title) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</h4>\r\n    </div>\r\n    <div class=\"modal-body\">\r\n        <p>Sorry you do not have enough Reddit Karma to use Scheddit Beta.</p>\r\n    </div>\r\n    <div class=\"modal-footer\">\r\n      <a href=\"#\" class=\"btn cancel\">";
+    + "</h4>\r\n    </div>\r\n    <div class=\"modal-body\">\r\n        <p>Sorry, you do not have enough Reddit Karma to use Scheddit Beta.</p>\r\n        <img src=\"img/sad-face.svg\"/>\r\n    </div>\r\n    <div class=\"modal-footer\">\r\n      <a href=\"#\" class=\"btn cancel\">";
   if (stack1 = helpers.cancelText) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.cancelText; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
