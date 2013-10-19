@@ -1,6 +1,6 @@
 // IndexView.js
 
-define(["jquery", "backbone", "models/scheddit/Scheddit", "text!templates/scheddit/scheddit.html"],
+define(["jquery", "backbone", "models/scheddit/Scheddit", "templates/scheddit"],
   function($, Backbone, Model, template){
     var SchedditView = Backbone.View.extend({
       // The DOM Element associated with this view
@@ -17,9 +17,6 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "text!templates/schedd
       },
       // function that is triggered on button event
       launchOauth: function(){
-        // code goes here
-        // GET to /login
-        // console.log("testing 1, 2, 3");
         $.ajax({
           url: "/api/login",
           method: "GET"
@@ -33,10 +30,8 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "text!templates/schedd
       },
       // Renders the view's template to the UI
       render: function() {
-        // Setting the view's template property using the Underscore template method
-        this.template = _.template(template, {});
         // Dynamically updates the UI with the view's template
-        this.$el.html(this.template);
+        this.$el.html(template);
         // Maintains chainability
         return this;
       }

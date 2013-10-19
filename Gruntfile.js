@@ -33,8 +33,8 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['public/css/**/*.styl'],
-        tasks: ['stylus'],
+        files: ['public/css/**/*.styl', 'public/template/*.hbs'],
+        tasks: ['stylus', 'handlebars_requirejs'],
         options: {
           livereload: true
         }
@@ -46,14 +46,14 @@ module.exports = function(grunt) {
         options: {
           baseUrl: "public/js/",
           paths: {
-            "desktop": "app/config/Init"
+            "main": "app/config/Init"
           },
           wrap: true,
           name: "libs/almond/almond",
           preserveLicenseComments: false,
           optimize: "uglify",
           mainConfigFile: "public/js/app/config/Init.js",
-          include: ["desktop"],
+          include: ["main"],
           out: "public/js/app/config/Init.min.js"
         }
       },
@@ -67,7 +67,8 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
+      files: ['Gruntfile.js'],
+      // files: ['Gruntfile.js', 'public/js/app/**/*.js', '!public/js/app/**/*min.js'],
       options: {
         globals: {
           jQuery: true,
@@ -102,34 +103,36 @@ module.exports = function(grunt) {
     stylus: {
       compile: {
         options: {
-          paths: ["public/css"],
-          // urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
-          // use: [
-            // require('fluidity') // use stylus plugin at compile time
-          // ],
-          // import: [      //  @import 'foo', 'bar/moo', etc. into every .styl file
-          //   'foo',       //  that is compiled. These might be findable based on values you gave
-          //   'bar/moo'    //  to `paths`, or a plugin you added under `use`
-          // ]
+          paths: ["public/css"]
         },
 
         files: {
           "public/css/includes/css/custom.css": "public/css/includes/stylus/custom.styl" // 1:1 compile
         }
       }
+    },
+
+    handlebars_requirejs: {
+      basic: {
+        files: {
+          // folder : files
+          // files will be converted into modules and dumped into the folder
+          'public/js/app/templates/': 'public/template/*.hbs'
+        }
+      }
     }
 
   });
 
-
-  grunt.loadNpmTasks('grunt-contrib-stylus');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-handlebars-requirejs');
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('test', ['jshint', 'mochaTest' ]);
   grunt.registerTask('init', ['shell:copyBootstrapCSS', 'shell:copyFontAwesomeCSS', 'shell:copyFontAwesomeFonts', 'requirejs:mainJS', 'requirejs:mainCSS']);

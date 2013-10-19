@@ -1,8 +1,5 @@
 // scheduleView.js -- this is for scheduled posts
-
-
-define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/postView", "text!templates/scheddit/user.html"],
-
+define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/schedulePostView", "templates/post"],
   function($, Backbone, Model, PostView, template){
 
     var ScheduleView = Backbone.View.extend({

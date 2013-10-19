@@ -1,8 +1,8 @@
 // Router.js
 
-define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/userView", "views/scheddit/schedditView", "models/scheddit/User", "models/scheddit/Post"],
+define(["jquery", "underscore", "backbone", "models/scheddit/Scheddit", "views/scheddit/userView", "views/scheddit/schedditView", "models/scheddit/User", "models/scheddit/Post"],
 
-  function($, Backbone, Model, UserView, View, User, Post) {
+  function($, _, Backbone, Model, UserView, View, User, Post) {
 
     var Router = Backbone.Router.extend({
 
@@ -35,6 +35,10 @@ define(["jquery", "backbone", "models/scheddit/Scheddit", "views/scheddit/userVi
           console.log('in success', userdata);
           data.user = userdata;
           $.get("/api/userposts").success(function(userposts){
+            _.each(userposts, function(post){
+              post.url = "http://www.reddit.com/r/"+post.subreddit+"/"+post.title;
+              post.url.replace(/ /g,"_");
+            });
             console.log("posts from server", userposts);
             data.posts = userposts;
             new UserView(data);

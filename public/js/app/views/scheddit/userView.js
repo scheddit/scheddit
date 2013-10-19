@@ -1,8 +1,8 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/user.html", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
+define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView", "views/scheddit/modalView", "templates/modal", "templates/warningModal", "bootstrap"],
 
-  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){ //note: we are not passing in postView.html
+  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView, BootstrapModal, modalTemplate, warningModalTemplate){
 
     var UserView = Backbone.View.extend({
 
@@ -32,49 +32,69 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         // write an event that is triggered when the button is clicked and calls a function that launches oAuth
         "click .submitButton": "addToSchedule",
         // listen for change on the "select type of post button", then call jquery function that either displays link or self-post form
-        "change #postType": "displayTextOrLinkForm"
+        "change #postType": "displayTextOrLinkForm",
+        "click #modal-clicker": "test"
+      },
+
+      //display modal - takes in a template to display on
+      displayModal: function(selectedTemplate){
+        var modal = new BootstrapModal({
+          template: selectedTemplate,
+          title: 'What would you like to share today?',
+          animate: true
+        }).open(function(){console.log("clicked OK");});
+      },
+
+      //test the account to see if they can post
+      test: function(event){
+        //string variable required because element type will depend on kind of submission.
+        var element = 'before';
+        $.ajax({
+          url: "/api/test", // the API
+          method: "POST"
+        })
+        .done(function(data){
+            console.log('schedule ajax success', data);
+            var testResponse = $.parseJSON(data);
+            if (testResponse.error === "BAD_CAPTCHA") {
+              var modal = new BootstrapModal({
+                template: warningModalTemplate,
+                title: 'What would you like to share today?',
+                animate: true
+              }).open(function(){console.log("cannot post");});
+            } else if (testResponse.success === "success"){
+              console.log("inside the if");
+              var modal2 = new BootstrapModal({
+                template: modalTemplate,
+                title: 'What would you like to share today?',
+                animate: true
+              }).open(function(){console.log("form loaded");});
+            }
+        })
+        .fail(function(err){
+          console.log('schedule ajax fail', err);
+        });
       },
 
       // function that is triggered when the submit button is pressed
       addToSchedule: function(event){
         //string variable required because element type will depend on kind of submission.
         var element = '';
-        //helper funciton to replace '<' and '>' with '&lt' and '&gt' respectivly
-        var replaceChars = function(string) {
-          var result = string.replace(/</gi,'&lt');
-          return result.replace(/>/gi, '&gt');
-        };
-
-        var formData = [
-          {name: 'kind'},
-          {name: 'title'},
-          {name: 'subreddit'},
-          {name: 'urlOrDetails'},
-          {name: 'date'},
-          {name: 'time'}
-        ];
-
-        var form =$(document).find('form');
-        formData[0].value = form.find('select[name=kind] option:selected').val();
-        formData[1].value = replaceChars(form.find('input[name=title]').val());
-        formData[2].value = replaceChars(form.find('input[name=subreddit]').val());
-        if(formData[0].value === 'link') {
-          element = 'input';
-        } else {
-          element = 'textarea';
-        }
-        formData[3].value = replaceChars(form.find(element+'[name=urlOrDetails]').val());
-        formData[4].value = form.find('input[name=date]').val();
-        formData[5].value = form.find('input[name=time]').val();
 
         $.ajax({
           url: "/api/schedule", // the API
           method: "POST",
-          data: formData
+          data: $('#newPost').serializeArray()
         })
         .done(function(data){
           console.log('schedule ajax success', data);
-          console.log('schedule ajax success');
+          var errorCode = $.parseJSON(data);
+          console.log(errorCode);
+          if (errorCode.error === "BAD_CAPTCHA") {
+            // alert the user that we cannot post for them
+            // ask andre about handlebars and what's going on with this
+            $('#formWarning').toggleClass( "hidden" ).text("You don't have enough Reddit Karma. Currently with Scheddit Beta posting from all accounts is not supported.");
+          }
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
@@ -83,17 +103,18 @@ define(["jquery", "backbone", "models/scheddit/User", "text!templates/scheddit/u
         //clear the form after submission
         $('#postType').prop('selectedIndex',0);
         $(".refresh").val("");
-
         return false;
       },
 
       // Renders the view's template to the UI
       render: function() {
-        $(document).find('#user').empty().append('<a href="#user">' + this.name + '</a>');
-        this.template = _.template(template, {name: this.name});
+        $('#user').addClass('loggedinUser').empty().append('<a href="#user">' + this.name + '</a>');
+        var data = {name: this.name, warning: this.warning};
+        console.log("warning in render", this.warning);
 
-        return this.$el.html(this.template);
+        return this.$el.html(template(data));
       },
+
       displayTextOrLinkForm: function(event){
         var linkOrSelf = event.target.value;
         if (linkOrSelf=== "link"){

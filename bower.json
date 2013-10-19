@@ -28,6 +28,7 @@
     "requirejs": "latest",
     "text": "latest",
     "bootstrap": "latest",
-    "font-awesome": "latest"
+    "font-awesome": "latest",
+    "handlebars": "latest"
   }
 }
