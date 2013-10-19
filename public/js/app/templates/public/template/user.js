@@ -5,7 +5,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<!-- HTML Template -->\r\n<div style=\"height:80px\"></div>\r\n<div class=\"container\">\r\n  <h4 class=\"name\"><em>Welcome ";
+  buffer += "<!-- HTML Template -->\r\n<div class=\"container\">\r\n  <h4 class=\"name\"><em>Welcome ";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

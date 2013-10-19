@@ -56,8 +56,11 @@ linear-gradient(startPoint, startColor, startInterval, endColor, endInterval, de
   linear-gradient(startPoint, startColor startInterval, endColor endInterval)
 
 //element styling
+
 body
   background-color $body_background_color
+  background-image:url('/img/witewall_3.png');
+  //background-repeat:repeat;
   font-family "Lucida Grande", Tahoma, Verdana, Arial, sans-serif !important
 
 form
@@ -85,21 +88,17 @@ textarea
     color $nav_text_color
 
 .container
-  margin 60px 10% 20px
+  margin 0 10%
 
 .explainIt
   color $nav_border_color
 
-.foot
+.footer
+  padding 13px
   color $body_text_recessed
   margin-top 2px
   text-align center
-
-.footer
-  padding 13px
-  position relative
-  p
-    margin 0
+  bottom 0
 
 .frontPage
   border 2px solid $form_border_color
@@ -150,6 +149,10 @@ textarea
   background-color $nav_background_color
   a
     color $nav_text_color
+
+.navbar
+  margin-bottom 10px
+
 
 .navbar-brand
   margin 0
@@ -291,6 +294,7 @@ textarea
   width 48%
   height 100%;
   background-color #FFFFFF
+  overflow auto
 
   @media screen and (max-width: 650px)
     width 100%
@@ -299,9 +303,10 @@ textarea
     height 48%
 
 #loginButton
-  display inline-block
+  display block
   margin 32px auto 10px
   width 440px
+
 
 #main-container
   width 100%
@@ -330,6 +335,7 @@ textarea
   width 48%
   height 100%
   background-color #FFFFFF
+  overflow auto
 
   @media screen and (max-width: 650px)
     width 100%
@@ -340,4 +346,3 @@ textarea
     margin-top 5px
   li nth-child(-n+2)
     line-height 35px
-
