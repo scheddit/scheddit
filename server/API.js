@@ -55,7 +55,7 @@ module.exports.api = function(app, schema) {
       api_type: 'json',
       url: 'http://www.reddit.html',
       kind: 'link',
-      title: 'BAD_CAPTCHA test'
+      title: 'test'
     };
     // when checking for Captcha for the reddit account
     // response.statusCode 200
@@ -71,6 +71,23 @@ module.exports.api = function(app, schema) {
           var redditError = JSON.parse(body).json.errors[0][0];
           callback(redditError);
       });
+    });
+  };
+
+  var test = function(req, res, next) {
+    // doesn't always have a req.user!
+    var userName = req.user;
+    // run the captcha check at this point
+    checkForNoCaptcha(userName.name, function(errorMessage){
+      if (errorMessage === "BAD_CAPTCHA") {
+        console.log("BAD_CAPTCHA caught");
+        // send something back to the client side with notice/error
+        var error = {"error": errorMessage};
+        res.send(200, JSON.stringify(error));
+      } else {
+        var success = {"success": "success"};
+        res.send(200, JSON.stringify(success));
+      }
     });
   };
 
@@ -100,6 +117,8 @@ module.exports.api = function(app, schema) {
   app.get('/api/redirect', apiRedirect);
 
   app.post('/api/schedule', apiSchedule);
+
+  app.post('/api/test', test);
 
   // Simple route middleware to ensure user is authenticated.
   //   Use this route middleware on any resource that needs to be protected.  If

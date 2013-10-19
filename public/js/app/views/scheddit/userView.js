@@ -1,8 +1,8 @@
 // userView.js
 
-define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView"],
+define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/scheddit/postView", "views/scheddit/scheduleView", "views/scheddit/historyView", "views/scheddit/modalView", "templates/modal", "templates/warningModal", "bootstrap"],
 
-  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView){
+  function($, Backbone, Model, template, PostView, ScheduleView, HistoryView, BootstrapModal, modalTemplate, warningModalTemplate){
 
     var UserView = Backbone.View.extend({
 
@@ -31,7 +31,48 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         // write an event that is triggered when the button is clicked and calls a function that launches oAuth
         "click .submitButton": "addToSchedule",
         // listen for change on the "select type of post button", then call jquery function that either displays link or self-post form
-        "change #postType": "displayTextOrLinkForm"
+        "change #postType": "displayTextOrLinkForm",
+        "click #modal-clicker": "test"
+      },
+
+      //display modal - takes in a template to display on
+      displayModal: function(selectedTemplate){
+        var modal = new BootstrapModal({
+          template: selectedTemplate,
+          title: 'What would you like to share today?',
+          animate: true
+        }).open(function(){console.log("clicked OK");});
+      },
+
+      //test the account to see if they can post
+      test: function(event){
+        //string variable required because element type will depend on kind of submission.
+        var element = 'before';
+        $.ajax({
+          url: "/api/test", // the API
+          method: "POST"
+        })
+        .done(function(data){
+            console.log('schedule ajax success', data);
+            var testResponse = $.parseJSON(data);
+            if (testResponse.error === "BAD_CAPTCHA") {
+              var modal = new BootstrapModal({
+                template: warningModalTemplate,
+                title: 'What would you like to share today?',
+                animate: true
+              }).open(function(){console.log("cannot post");});
+            } else if (testResponse.success === "success"){
+              console.log("inside the if");
+              var modal2 = new BootstrapModal({
+                template: modalTemplate,
+                title: 'What would you like to share today?',
+                animate: true
+              }).open(function(){console.log("form loaded");});
+            }
+        })
+        .fail(function(err){
+          console.log('schedule ajax fail', err);
+        });
       },
 
       // function that is triggered when the submit button is pressed

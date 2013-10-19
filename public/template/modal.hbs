@@ -1,0 +1,31 @@
+<!-- HTML Template -->
+<div class="modal-holder">
+  <form id="newPost" name="submission"class="initialCollapse">
+    <div class="modal-header">
+      <a class="close">&times;</a>
+      <h4>{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <select name="kind" id="postType" class="btn dropdown-toggle initialHide">
+          <option selected="selected">Select a type of post</option>
+          <option value="link">Link</option>
+          <option value="self">Self-Post</option>
+        </select>
+        <br/>
+        <div id="formWarning" class="alert-block alert alert-error hidden">{{warning}}</div>
+        <input name="title" id="postTitle" type="text" placeholder="title" class="refresh initialHide"></input>
+        <br/>
+        <input name="subreddit" id="postSubreddit" type="text" placeholder="choose a subreddit" class="refresh initialHide"></input>
+        <br/>
+        <input name="urlOrDetails" id="urlOrDetails" type="url" placeholder="URL or text" class="refresh initialHide"></input>
+        <br/>
+        <input type="date" id="postDate" name="date" class="refresh initialHide"></input>
+        <br/>
+        <input type="time" id="postTime" name="time" class="refresh initialHide"></input>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn cancel">{{cancelText}}</a>
+      <a href="#" class="btn ok btn-primary">{{okText}}</a>
+    </div>
+  </form>
+</div>
