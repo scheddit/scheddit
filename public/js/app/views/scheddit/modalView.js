@@ -199,6 +199,8 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
         .done(function(data){
           console.log('schedule ajax success', data);
           // display a submission success here
+          $('#postType').prop('selectedIndex',0);
+          $(".refresh").val("");
           // this.remove();
           this.trigger('cancel');
           // $el.modal('hide');
@@ -208,8 +210,7 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
         });
 
         //clear the form after submission
-        // $('#postType').prop('selectedIndex',0);
-        // $(".refresh").val("");
+        
       },
 
       /**
