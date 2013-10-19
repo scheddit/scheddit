@@ -41,15 +41,32 @@ border-radius()
 box-shadow()
   -webkit-box-shadow arguments
 
+//linear-gradient()
+//  #87e0fd; /* Old browsers */
+//  -moz-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%); /* FF3.6+ */
+//  -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87e0fd), color-stop(40%,#53cbf1), color-stop(100%,#05abe0)); /* Chrome,Safari4+ */
+//  -webkit-linear-gradient(top, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* Chrome10+,Safari5.1+ */
+//  -o-linear-gradient(top, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* Opera 11.10+ */
+//  -ms-linear-gradient(top, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* IE10+ */
+//  linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); /* W3C */
+
+linear-gradient(startPoint, startColor, startInterval, endColor, endInterval, deprecatedWebkitStartPoint = false, deprecatedWebkitEndPoint = false)
+  startColor
+  if deprecatedWebkitStartPoint && deprecatedWebkitEndPoint
+    -webkit-gradient(linear, deprecatedWebkitStartPoint, deprecatedWebkitEndPoint, color-stop(startInterval, startColor), color-stop(endInterval, endColor))
+  -webkit-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+  -moz-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+  -ms-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+  -o-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+  linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+
 //element styling
+
 body
+  background-color $body_background_color
   background-image:url('/img/witewall_3.png');
   //background-repeat:repeat;
-  //background-color $body_background_color
   font-family "Lucida Grande", Tahoma, Verdana, Arial, sans-serif !important
-
-footer
-  position static !important
 
 form
   padding 0px
@@ -63,8 +80,7 @@ form
     width 98%
 
 header
-  display inline-block
-  opacity 0.9
+  position static
 
 textarea
   height 70px
@@ -84,7 +100,12 @@ textarea
     color $nav_text_color
 
 .container
-  margin 60px 10% 20px
+  margin 0 10%
+
+.explanation
+  li
+    @media screen and (max-width: 650px)
+      margin-top 5px
 
 .explainIt
   color $nav_border_color
@@ -111,7 +132,7 @@ textarea
 
 .landingTitles
   text-align center
-  margin-top 8px
+  margin 0
 
 .listPosts
   border 2px solid $speechbubble_border_color
@@ -165,6 +186,10 @@ textarea
   a
     color $nav_text_color
 
+.navbar
+  margin-bottom 10px
+
+
 .navbar-brand
   margin 0
   padding 0 15px
@@ -173,6 +198,9 @@ textarea
   background-color $nav_background_color
   border-bottom 1px solid #cccccc
   padding 0
+
+/*.navbar-fixed-top
+  position static*/
 
 .navbar-header
   background-color $nav_background_color
@@ -313,7 +341,25 @@ textarea
 #loginButton
   display block
   margin 32px auto 10px
-  width 440px
+  @media screen and (min-width: 600px)
+    width 400px
+
+#login-image
+  @media screen and (max-width: 600px)
+    display none
+
+#login-text
+  border-radius 5px
+  border 2px solid $nav_border_color
+  background-color $nav_background_color
+  color $nav_text_color
+  font-size large
+  height 70px
+  line-height 65px
+  text-align center
+  text-shadow 1px 1px 1px #89A4C9,-1px -1px 1px #55606f
+  @media screen and (min-width: 600px)
+    display none
 
 
 #main-container
@@ -354,4 +400,3 @@ textarea
     margin-top 5px
   li nth-child(-n+2)
     line-height 35px
-
