@@ -98,7 +98,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
       displayModal: function(){
         var modal = new BootstrapModal({
           content: "stuff",
-          title: 'modal header',
+          title: 'What would you like to share today?',
           animate: true
         }).open(function(){console.log("clicked OK");});
       }
