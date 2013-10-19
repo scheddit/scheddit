@@ -121,23 +121,23 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
         $backdrop.css('z-index', backdropIndex + numModals);
         this.$el.css('z-index', elIndex + numModals);
 
-        if (this.options.allowCancel) {
-          $backdrop.one('click', function() {
-            if (self.options.content && self.options.content.trigger) {
-              self.options.content.trigger('cancel', self);
-            }
+        // if (this.options.allowCancel) {
+        //   $backdrop.one('click', function() {
+        //     if (self.options.content && self.options.content.trigger) {
+        //       self.options.content.trigger('cancel', self);
+        //     }
 
-            self.trigger('cancel');
-          });
+        //     self.trigger('cancel');
+        //   });
 
-          $(document).one('keyup.dismiss.modal', function (e) {
-            e.which = 27 && self.trigger('cancel');
+        //   $(document).one('keyup.dismiss.modal', function (e) {
+        //     e.which = 27 && self.trigger('cancel');
 
-            if (self.options.content && self.options.content.trigger) {
-              e.which = 27 && self.options.content.trigger('shown', self);
-            }
-          });
-        }
+        //     if (self.options.content && self.options.content.trigger) {
+        //       e.which = 27 && self.options.content.trigger('shown', self);
+        //     }
+        //   });
+        // }
 
         this.on('cancel', function() {
           self.close();
@@ -186,6 +186,7 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
       },
 
       addToSchedule: function(event){
+        event.preventDefault();
         console.log("inside the function");
         //string variable required because element type will depend on kind of submission.
         var element = '';
@@ -197,22 +198,18 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
         })
         .done(function(data){
           console.log('schedule ajax success', data);
-          var errorCode = $.parseJSON(data);
-          console.log(errorCode);
-          if (errorCode.error === "BAD_CAPTCHA") {
-            // alert the user that we cannot post for them
-            // ask andre about handlebars and what's going on with this
-            $('#formWarning').toggleClass( "hidden" ).text("You don't have enough Reddit Karma. Currently with Scheddit Beta posting from all accounts is not supported.");
-          }
+          // display a submission success here
+          // this.remove();
+          this.trigger('cancel');
+          // $el.modal('hide');
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
         });
 
         //clear the form after submission
-        $('#postType').prop('selectedIndex',0);
-        $(".refresh").val("");
-        return false;
+        // $('#postType').prop('selectedIndex',0);
+        // $(".refresh").val("");
       },
 
       /**
@@ -220,7 +217,7 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
        * Can be called from within a 'close' or 'ok' event listener.
        */
       preventClose: function() {
-        this._preventClose = true;
+        this._preventClose = false;
       }
     });
   return Modal;

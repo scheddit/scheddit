@@ -47,7 +47,6 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
 
       //test the account to see if they can post
       test: function(event){
-        console.log("inside the function");
         //string variable required because element type will depend on kind of submission.
         var element = 'before';
         $.ajax({
@@ -64,6 +63,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
                 animate: true
               }).open(function(){console.log("cannot post");});
             } else if (testResponse.success === "success"){
+              console.log("inside the if");
               var modal2 = new BootstrapModal({
                 template: modalTemplate,
                 title: 'What would you like to share today?',
