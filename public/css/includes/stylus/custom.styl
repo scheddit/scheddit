@@ -305,7 +305,25 @@ textarea
 #loginButton
   display block
   margin 32px auto 10px
-  width 440px
+  @media screen and (min-width: 600px)
+    width 400px
+
+#login-image
+  @media screen and (max-width: 600px)
+    display none
+
+#login-text
+  border-radius 5px
+  border 2px solid $nav_border_color
+  background-color $nav_background_color
+  color $nav_text_color
+  font-size large
+  height 70px
+  line-height 65px
+  text-align center
+  text-shadow 1px 1px 1px #A8C8F3, -1px -1px 1px #55606F
+  @media screen and (min-width: 600px)
+    display none
 
 
 #main-container

@@ -45,8 +45,12 @@ textarea{height:70px}
 #formWarning{visibility:hidden;display:hidden;height:0}
 #howItWorks{display:inline-block;float:left;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;overflow:auto;}
 @media screen and (max-width: 650px){#howItWorks{width:100%;float:none;display:block;height:48%}
-}#loginButton{display:block;margin:32px auto 10px;width:440px}
-#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
+}#loginButton{display:block;margin:32px auto 10px;}
+@media screen and (min-width: 600px){#loginButton{width:400px}
+}@media screen and (max-width: 600px){#login-image{display:none}
+}#login-text{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;border:2px solid #7a93b4;background-color:#7c90ad;color:#fff;font-size:large;height:70px;line-height:65px;text-align:center;text-shadow:1px 1px 1px #a8c8f3,-1px -1px 1px #55606f;}
+@media screen and (min-width: 600px){#login-text{display:none}
+}#main-container{width:100%;overflow:hidden;width:100%;overflow:hidden;height:234px;padding-top:30px;}
 @media screen and (max-width: 650px){#main-container{height:550px}
 }#mainTitles{margin-bottom:-15px}
 #warning{margin-top:50px}
