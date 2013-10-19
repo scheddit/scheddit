@@ -36,7 +36,7 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
         "click #modal-clicker": "test"
       },
 
-      //display modal - takes in a template to display on the frontend
+      //display modal - takes in a template to display on
       displayModal: function(selectedTemplate){
         var modal = new BootstrapModal({
           template: selectedTemplate,
@@ -49,33 +49,31 @@ define(["jquery", "backbone", "models/scheddit/User", "templates/user", "views/s
       test: function(event){
         console.log("inside the function");
         //string variable required because element type will depend on kind of submission.
-        var element = '';
-
+        var element = 'before';
         $.ajax({
           url: "/api/test", // the API
           method: "POST"
         })
         .done(function(data){
-          console.log('schedule ajax success', data);
-          var errorCode = $.parseJSON(data);
-          console.log(errorCode);
-          if (errorCode.error === "BAD_CAPTCHA") {
-            // load the error view
-            console.log("inside the bad captcha if");
-            displayModal(warningModalTemplate);
-          } else {
-            // load the form
-            displayModal(modalTemplate);
-          }
+            console.log('schedule ajax success', data);
+            var testResponse = $.parseJSON(data);
+            if (testResponse.error === "BAD_CAPTCHA") {
+              var modal = new BootstrapModal({
+                template: warningModalTemplate,
+                title: 'What would you like to share today?',
+                animate: true
+              }).open(function(){console.log("cannot post");});
+            } else if (testResponse.success === "success"){
+              var modal2 = new BootstrapModal({
+                template: modalTemplate,
+                title: 'What would you like to share today?',
+                animate: true
+              }).open(function(){console.log("form loaded");});
+            }
         })
         .fail(function(err){
           console.log('schedule ajax fail', err);
         });
-
-        //clear the form after submission
-        $('#postType').prop('selectedIndex',0);
-        $(".refresh").val("");
-        return false;
       },
 
       // function that is triggered when the submit button is pressed

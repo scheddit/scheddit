@@ -64,19 +64,19 @@ define(["jquery", "underscore", "backbone", "templates/modal"],
             content = options.content;
 
         //Create the modal container
-        $el.html(template(options));
+        $el.html(this.options.template(options));
 
-        var $content = this.$content = $el.find('.modal-body');
+        // var $content = this.$content = $el.find('.modal-body');
 
-        //Insert the main content if it's a view
-        if (content.$el) {
-          content.render();
-          $el.find('.modal-body').html(content.$el);
-        }
+        // //Insert the main content if it's a view
+        // if (content.$el) {
+        //   content.render();
+        //   $el.find('.modal-body').html(content.$el);
+        // }
 
-        if (options.animate) $el.addClass('fade');
+        // if (options.animate) $el.addClass('fade');
 
-        this.isRendered = true;
+        // this.isRendered = true;
 
         return this;
       },
