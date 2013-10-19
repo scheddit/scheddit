@@ -10,7 +10,7 @@ define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/postView",
       },
       // Renders the view's template to the UI
       render: function() {
-        return this.$el.html('<h3>History</h3>').append(
+        return this.$el.html('<div class="section-title"><h3>Post History - Posts from Scheddit</h3></div>').append(
           this.collection.map(function(post){
             if (post.attributes.isPending === 'sent' || post.attributes.isPending === false){
               return new PostView({model: post}).render();

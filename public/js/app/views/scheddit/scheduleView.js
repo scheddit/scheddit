@@ -10,7 +10,7 @@ define(["jquery", "backbone", "models/scheddit/Post", "views/scheddit/schedulePo
 
       // Renders the view's template to the UI
       render: function() {
-        return this.$el.html('<h3>Schedule</h3>').append(
+        return this.$el.html('<div class="section-title"><h3>Scheduled Posts</h3></div>').append(
           this.collection.map(function(post){
             if (post.attributes.isPending === 'pending' || post.attributes.isPending === true){
               return new PostView({model: post}).render();

@@ -1,9 +1,10 @@
 <div class="post">
   <div class="post-title">
-    <a href="{{url}}">{{title}}</a> / {{subreddit}}
+    <a href="{{url}}">{{title}}</a>
   </div>
   <div class="post-time">
-    {{schedule.date}} {{schedule.time}}
+    <strong>Subreddit:</strong> /r/{{subreddit}}
   </div>
-  <div class="post-content">{{urlOrDetails}}</div>
+  <div class="post-content"><strong>Post Details:</strong> {{urlOrDetails}}</div>
+  <div class="post-subreddit">Posted Time: {{schedule.date}} {{schedule.time}}</div>
 </div>

@@ -26,9 +26,11 @@ $modal_background_color = rgb(250, 250, 250)
 // speechbubble
 $speechbubble_arrow_size = 0.75rem
 $speechbubble_text_color = rgb(220, 220, 220)
-$speechbubble_border_color = rgb(58, 72, 84)
+$speechbubble_border_color = #e3e3e3
+$speechbubble_accent_color = rgb(58, 72, 84)
 $speechbubble_background_color = rgb(255, 255, 255)
 $speechbubble_hover_gradient = rgb(87, 133, 248) rgb(0, 87, 246)
+
 
 $px = 1px
 
@@ -88,8 +90,9 @@ textarea
 //class styling
 
 .btn-primary
-  background-color $speechbubble_border_color
+  background-color $speechbubble_accent_color
   border-color $nav_background_color
+
 .btn-primary:hover
   background-color $pop_color
   border-color $pop_border_color
@@ -140,7 +143,6 @@ textarea
   margin-top 27px
   padding 0
   h3
-    background-color rgb(124, 144, 173)
     border-bottom 2px solid rgb(58, 72, 84)
     color rgb(58, 72, 84)
     margin 0
@@ -220,9 +222,9 @@ textarea
   border 2px solid $speechbubble_border_color
   border-radius 5px
 
-  box-shadow 5px 5px 5px $form_dark_background
+  box-shadow 2px 2px 3px $form_dark_background
 
-  color $speechbubble_border_color
+  color $speechbubble_accent_color
 
   font-size 16px
 
@@ -251,7 +253,7 @@ textarea
     left 50%
     bottom 100%
     margin-left -1*$speechbubble_arrow_size
-  &:before 
+  &:before
     border-width $speechbubble_arrow_size
     border-right-color $speechbubble_border_color
     margin-top -.5rem
@@ -281,14 +283,22 @@ textarea
 
 .post-time
   margin-left 10px
-  font-size 12px
-  font-style italic
 
 .post-content
   margin-left 10px
   color black
-  padding 15px 0
+  padding 10px 0
   line-height 23px
+
+.post-subreddit
+  margin-right 10px
+  font-size 12px
+  float right
+  margin-top -10px
+
+.section-title
+  background-color $form_background_color
+  border-radius 5px 5px 0 0
 
 .toShareForm
   width 419px
