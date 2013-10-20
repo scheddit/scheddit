@@ -32,9 +32,16 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      scripts: {
-        files: ['public/css/**/*.styl', 'public/template/*.hbs'],
-        tasks: ['stylus', 'handlebars_requirejs'],
+      css: {
+        files: ['public/css/**/*.styl'],
+        tasks: ['stylus'],
+        options: {
+          livereload: true
+        }
+      },
+      template: {
+        files: ['public/template/*.hbs'],
+        tasks: ['handlebars_requirejs'],
         options: {
           livereload: true
         }
