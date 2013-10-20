@@ -13,15 +13,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.subreddit) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.subreddit; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\n  </div>\n  <div class=\"post-content\"><strong>Post Details:</strong> ";
+    + "\n  </div>\n  <div class=\"post-content\">\n    <strong>Post Details:</strong> ";
   if (stack1 = helpers.urlOrDetails) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.urlOrDetails; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</div>\n  <div class=\"post-subreddit\"><a href=\"#user\">Edit</a> | <a href=\"#user\">Remove</a> | Scheduled Time: "
+    + "\n  </div>\n  <div class=\"post-subreddit\">\n    <a href=\"#user\">Edit</a> | <a href=\"#user\">Remove</a> | Scheduled Time: "
     + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.date)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " "
     + escapeExpression(((stack1 = ((stack1 = depth0.schedule),stack1 == null || stack1 === false ? stack1 : stack1.time)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n</div>\n";
+    + "\n  </div>\n</div>\n";
   return buffer;
   })
 return template
