@@ -9,6 +9,7 @@ textarea{height:70px}
 .collapse{background-color:#7c90ad;}
 .collapse a{color:#fff}
 .container{margin:0 10%}
+.explanation{margin-bottom:0;}
 @media screen and (max-width: 650px){.explanation li{margin-top:5px}
 }.explainIt{color:#7a93b4}
 .footer{padding:13px;color:#b8b8b8;margin-top:2px;text-align:center;bottom:0}
@@ -16,7 +17,7 @@ textarea{height:70px}
 .howItWorksOutter{display:inline-block}
 .howItWorksInner{display:inline-block}
 .icon-bar{background-color:#f1f1f1}
-.landingTitles{text-align:center;margin:0}
+.landingTitles{text-align:center;margin:0 0 3px}
 .listPosts{border:2px solid #e3e3e3;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;margin-top:27px;padding:0;}
 .listPosts h3{border-bottom:2px solid #3a4854;color:#3a4854;margin:0;padding:13px}
 .loggedinUser{border:1px solid #7a93b4;padding:26px;float:right;margin:0;background-color:#d89f25;opacity:1;}
@@ -53,11 +54,12 @@ textarea{height:70px}
 .tryIt{background-color:#bababa;color:#3a4854;padding:20px;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;width:909px;}
 @media screen and (max-width 991px){.tryIt{width:481px}
 }.tryIt p{font-size:2rem;line-height:60px;font-weight:bold;display:inline-block;margin:0 4%}
+.well{padding:10px}
 #formWarning{visibility:hidden;display:hidden;height:0}
 #howItWorks{display:inline-block;float:left;border-style:solid;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:15px;width:48%;height:100%;background-color:#fff;overflow:auto;}
 @media screen and (max-width: 650px){#howItWorks{width:100%;float:none;display:block;height:48%}
 }#loginButton{display:block;margin:32px auto 10px;}
-@media screen and (min-width: 600px){#loginButton{width:400px}
+@media screen and (min-width: 600px){#loginButton{width:440px}
 }@media screen and (max-width: 600px){#login-image{display:none}
 }#login-text{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;border:2px solid #7a93b4;background-color:#7c90ad;color:#fff;font-size:large;height:70px;line-height:65px;text-align:center;text-shadow:1px 1px 1px #89a4c9,-1px -1px 1px #55606f;}
 @media screen and (min-width: 600px){#login-text{display:none}
